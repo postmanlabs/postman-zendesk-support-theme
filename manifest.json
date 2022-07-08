@@ -1,7 +1,7 @@
 {
   "name": "post-zen",
-  "author": "Zendesk",
-  "version": "2.16.0",
+  "author": "Brandon Castillo, Marketing Engineering, Postman.",
+  "version": "1.0.0",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
@@ -13,7 +13,7 @@
           "type": "color",
           "description": "brand_color_description",
           "label": "brand_color_label",
-          "value": "#17494D"
+          "value": "rgba(255, 108, 55, 1)"
         },
         {
           "identifier": "brand_text_color",
@@ -34,7 +34,7 @@
           "type": "color",
           "description": "link_color_description",
           "label": "link_color_label",
-          "value": "#1F73B7"
+          "value": "rgba(31, 115, 183, 1)"
         },
         {
           "identifier": "hover_link_color",
@@ -48,7 +48,7 @@
           "type": "color",
           "description": "visited_link_color_description",
           "label": "visited_link_color_label",
-          "value": "#9358B0"
+          "value": "rgba(31, 115, 183, 1)"
         },
         {
           "identifier": "background_color",
@@ -98,6 +98,10 @@
               "value": "'Courier New', Courier, monospace"
             },
             {
+              "label": "Degular Display Semibold",
+              "value": "'Degular-display-semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+            },
+            {
               "label": "Futura",
               "value": "Futura, 'Century Gothic', sans-serif"
             },
@@ -124,6 +128,10 @@
             {
               "label": "Impact",
               "value": "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+            },
+            {
+              "label": "Inter",
+              "value": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
             },
             {
               "label": "Lucida Grande",
@@ -171,6 +179,10 @@
               "value": "'Courier New', Courier, monospace"
             },
             {
+              "label": "Degular Display Semibold",
+              "value": "'Degular-display-semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+            },
+            {
               "label": "Futura",
               "value": "Futura, 'Century Gothic', sans-serif"
             },
@@ -197,6 +209,10 @@
             {
               "label": "Impact",
               "value": "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+            },
+            {
+              "label": "Inter",
+              "value": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
             },
             {
               "label": "Lucida Grande",
