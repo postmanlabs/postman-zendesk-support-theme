@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Degular-Display-Semibold';
+    src: url('/fonts/Degular-display-semibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: block;
+  };
+  /* inter-regular - latin */
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('/fonts/Inter-regular.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Inter-semibold';
+    font-style: normal;
+    font-weight: 600;
+    font-display: block;
+    src: url('/fonts/Inter-semibold.woff2') format('woff2');
+  }
