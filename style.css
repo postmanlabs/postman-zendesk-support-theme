@@ -551,55 +551,7 @@ button.isDisabled {
   cursor: default;
 }
 
-.button-large,
-input[type="submit"] {
-  cursor: pointer;
-  background-color: #FF6C37;
-  border: 0;
-  /*   border-radius: 4px; */
-  color: #212121;
-  font-size: 14px;
-  line-height: 2.72;
-  min-width: 190px;
-  padding: 0 1.9286em;
-  width: 100%;
-}
 
-@media (min-width: 768px) {
-
-  .button-large,
-  input[type="submit"] {
-    width: auto;
-  }
-}
-
-.button-large:hover,
-.button-large:active,
-.button-large:focus,
-input[type="submit"]:hover,
-input[type="submit"]:active,
-input[type="submit"]:focus {
-  background-color: darken(#FF6C37, 20%);
-}
-
-.button-large[disabled],
-input[type="submit"][disabled] {
-  background-color: #ddd;
-}
-
-.button-secondary {
-  color: lighten(#212121, 20%);
-  border: 1px solid #ddd;
-  background-color: transparent;
-}
-
-.button-secondary:hover,
-.button-secondary:focus,
-.button-secondary:active {
-  color: #212121;
-  border: 1px solid #ddd;
-  background-color: darken(#FFFFFF, 3%);
-}
 
 /***** Split button *****/
 .split-button {
@@ -1193,41 +1145,7 @@ input[type="submit"][disabled] {
   width: 17px;
 }
 
-/***** Footer *****/
-.footer {
-  border-top: 1px solid #ddd;
-  margin-top: 60px;
-  padding: 30px 0;
-}
 
-.footer a {
-  color: lighten(#212121, 20%);
-}
-
-.footer-inner {
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: 0 5%;
-  display: flex;
-  justify-content: space-between;
-}
-
-@media (min-width: 1160px) {
-  .footer-inner {
-    padding: 0;
-    width: 90%;
-  }
-}
-
-.footer-language-selector button {
-  color: lighten(#212121, 20%);
-  display: inline-block;
-}
-
-.powered-by-zendesk a,
-.powered-by-zendesk a:visited {
-  color: lighten(#212121, 20%);
-}
 
 /***** Breadcrumbs *****/
 .breadcrumbs {
@@ -1260,59 +1178,31 @@ input[type="submit"][disabled] {
 }
 
 /***** Search field *****/
-.search-container {
-  position: relative;
-}
 
+/* <form role="search"> from zendesk */
 .search {
-  border-color: #ddd;
-  border-style: solid;
-  border-width: 1px;
   display: flex;
-  position: relative;
-  transition: border 0.12s ease-in-out;
-}
-
-.search:focus-within {
-  border-color: #FF6C37;
-}
-
-.search input[type="search"],
-.search .clear-button {
-  background: rgb(255, 255, 255);
   border: 1px solid rgb(255, 108, 55);
-  border-radius: 4px 0px 0px 4px;
-  box-sizing: border-box;
-  box-shadow: none;
-  color: rgb(166, 166, 166);
-  font-size: 14px;
-  height: 40px;
-  line-height: 20px;
-  margin: 0px;
-  outline: 0px;
-  padding: 0px 12px;
-  transition: border-color 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
-  appearance: none;
-  width: 100%
+  border-radius: 4px;
 }
 
-.search-full input[type="search"],
-.search-full .clear-button {
-  border-color: #fff;
-}
-
-.search input[type="search"] {
+.search-full input[type="search"] {
   appearance: none;
+  border: none;
+  border-radius: 4px;
   -webkit-appearance: none;
   box-sizing: border-box;
-  color: #666;
+  color: #A6A6A6;
   flex: 1 1 auto;
   height: 40px;
   width: 100%;
-}
-
-.search input[type="search"]:focus {
-  color: #555;
+  line-height: 20px;
+  margin: 0;
+  outline: 0;
+  padding: 0 12px;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  -webkit-appearance: none;
+  width: 100%;
 }
 
 .search input[type="search"]::-webkit-search-decoration,
@@ -1329,20 +1219,30 @@ input[type="submit"][disabled] {
   box-shadow: 0 0 0 1000px #fff inset;
 }
 
-.search .clear-button {
-  align-items: center;
+
+button.clear-button {
+  background: rgb(255, 255, 255);
+  border: none;
   box-sizing: border-box;
-  color: #777;
-  cursor: pointer;
-  display: none;
-  flex: none;
-  justify-content: center;
-  padding: 0 15px;
+  box-shadow: none;
+  color: rgb(166, 166, 166);
+  font-size: 14px;
+  height: 40px;
+  line-height: 20px;
+  margin: 0px;
+  outline: 0px;
+  padding: 0px 12px;
+  transition: border-color 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
+  appearance: none;
 }
 
-.search .clear-button:hover {
-  background-color: #FF6C37;
-  color: #fff;
+button.clear-button {
+  border-color: #fff;
+}
+
+button.clear-button:hover {
+  background-color: transparent;
+  color: #FF6C37;
 }
 
 .search .clear-button:focus {
@@ -1350,13 +1250,9 @@ input[type="submit"][disabled] {
   box-shadow: 0 0 0 3px #FF6C37;
 }
 
-.search-has-value .clear-button {
-  display: flex;
-}
 
 [dir="ltr"] .search input[type="search"] {
-  padding-left: 40px;
-  padding-right: 20px;
+  padding: 0 12px;
 }
 
 [dir="ltr"] .search-has-value input[type="search"] {
@@ -1367,7 +1263,7 @@ input[type="submit"][disabled] {
 
 [dir="ltr"] .search-has-value input[type="search"]:focus {
   border-right-color: #FF6C37;
-}
+} 
 
 [dir="ltr"] .search .clear-button {
   border-bottom-left-radius: 0;
@@ -1380,8 +1276,7 @@ input[type="submit"][disabled] {
 }
 
 [dir="rtl"] .search input[type="search"] {
-  padding-left: 20px;
-  padding-right: 40px;
+  padding: 0 12px;
 }
 
 [dir="rtl"] .search-has-value input[type="search"] {
@@ -1402,9 +1297,9 @@ input[type="submit"][disabled] {
 
 [dir="rtl"] .search .clear-button:focus {
   border-right-color: #FF6C37;
-}
+} 
 
-.search-icon {
+ .search-icon {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -1628,21 +1523,7 @@ input[type="submit"][disabled] {
   margin-top: 10px;
 }
 
-/***** Homepage *****/
-.section {
-  margin-bottom: 40px;
-}
 
-@media (min-width: 768px) {
-  .section {
-    margin-bottom: 60px;
-  }
-}
-
-.home-section h2 {
-  margin-bottom: 10px;
-  text-align: center;
-}
 
 /***** Promoted articles *****/
 .promoted-articles {
@@ -5825,16 +5706,7 @@ a.nav-link.uber-nav:active {
   margin-bottom: 8px;
 }
 
-input[type='search'] {
-  background-color: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.24);
-  border-radius: 4px;
-  font-size: 13px;
-  padding: 4px 24px 4px 28px;
-  height: 32px;
-  margin: 0px;
-  width: 256px !important;
-}
+
 
 .dropdown-header:-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
@@ -6027,4 +5899,41 @@ input[type='search'] {
 .footer-social-svg>svg {
   max-height: 100%;
   width: auto;
+}
+
+
+/***** Footer *****/
+.footer {
+  border-top: 1px solid #ddd;
+  margin-top: 60px;
+  padding: 30px 0;
+}
+
+.footer a {
+  color: lighten(#212121, 20%);
+}
+
+.footer-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 1160px) {
+  .footer-inner {
+    padding: 0;
+    width: 90%;
+  }
+}
+
+.footer-language-selector button {
+  color: lighten(#212121, 20%);
+  display: inline-block;
+}
+
+.powered-by-zendesk a,
+.powered-by-zendesk a:visited {
+  color: lighten(#212121, 20%);
 }
