@@ -5549,7 +5549,7 @@ section#footer {
   padding-bottom: 40px !important;
 }
 
-@media sreen and (min-width: 769px) {
+@media (min-width: 769px) {
   section#footer {
     padding-top: 80px !important;
     padding-bottom: 80px !important;
