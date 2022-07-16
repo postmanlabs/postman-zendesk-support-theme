@@ -13,7 +13,7 @@
                         {{search submit=false instant=settings.instant_search class='search search-full'}}
 
                         <div class="mt-3 d-flex">
-                            <p id="statusReport" />
+                            <p id="pm-status" />
                             <a href="https://status.postman.com/" target="_blank" rel="noopener">
                                 Learn More →
                             </a>
@@ -190,42 +190,4 @@
             </div>
         </div>
     </div>
-    <div>
-    </div>
 </section>
-
-<script type="text/javascript" src="https://cdn.statuspage.io/se-v2.js"></script>
-<script src="https://kit.fontawesome.com/a289f6d567.js" crossorigin="anonymous"></script>
-<script>
-    const statusReport = document.getElementById('statusReport');
-    function setStatusIcon(icon) {
-        let fontAwesomeIcon = document.createElement("i")
-        fontAwesomeIcon.className = icon;
-        return statusReport.prepend(fontAwesomeIcon);
-    }
-    let postmanStatusAPI = new StatusPage.page({ page: 'ms1frkqnsp7r' });
-    postmanStatusAPI.status({
-        success: function (data) {
-            const { indicator, description } = data.status;
-            if (indicator === "none") {
-                statusReport.prepend(`${description}. `);
-                setStatusIcon(`icon-indicator fa-solid fa-check status-green`)
-            }
-            else if (indicator === "minor") {
-                statusReport.prepend(`${description}. `);
-                setStatusIcon('icon-indicator fa-solid fa-square-minus status-yellow')
-
-            } else if (indicator === "major") {
-                statusReport.prepend(`${description}. `);
-                setStatusIcon('icon-indicator  fa-solid fa-xmark status-red')
-
-            } else if (indicator === "critical") {
-                statusReport.prepend(`${description}. `);
-                setStatusIcon('icon-indicator fa-solid fa-wrench status-blue')
-
-            } else if (indicator === "") {
-                statusReport.prepend(`We're having issues retrieving data for Postman.`);
-            }
-        }
-    });
-</script>
