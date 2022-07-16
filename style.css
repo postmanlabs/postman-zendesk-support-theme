@@ -2,6 +2,32 @@
 
 /***** Normalize.css *****/
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+@font-face {
+  font-family: "Degular Display Semibold";
+  src: url("./assets/fonts/Degular-display-semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+/* inter-regular - latin */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("./assets/fonts/Inter-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter Semibold";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url("./assets/fonts/Inter-semibold.woff2") format("woff2");
+}
+
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -20,9 +46,14 @@ section.section-container {
 }
 
 hr {
+
   box-sizing: content-box;
   height: 0;
+  opacity: 1 !important;
   overflow: visible;
+  border: 0;
+  margin: 0 !important;
+  border-top: 1px solid rgba(0, 0, 0, .1) !important;
 }
 
 pre {
@@ -208,8 +239,7 @@ p {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
 }
 
-p.subtext,
-a.subtext {
+p.subtitle {
   font-size: 22px;
 }
 
@@ -219,29 +249,50 @@ a.small {
   color: #6b6b6b;
 }
 
-/* Web */
 
+h1,
+h2 {
+  font-family: 'Degular Display Semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
+  margin: 0px 0px 16px;
+  font-weight: 600 !important;
+  color: #212121;
+  font-feature-settings: "kern", "ss01", "salt";
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter Semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif !important;
+  margin-top: 0;
+  margin: 0px 0px 16px;
+  font-weight: 600 !important;
+  color: #212121;
+}
 
 
 h1,
 .h1 {
-  font-size: 48px;
+  font-size: 48px !important;
   line-height: 1;
   margin: 0 0 24px 0;
 }
 
 h2,
 .h2 {
-  font-size: 36px;
+  font-size: 36px !important;
   line-height: 1.1666666667;
   /* 42px */
 }
 
-h3,
-.h3 {
+h3 {
   font-size: 28px;
   letter-spacing: 0.64px;
   line-height: 1.1428571429;
+}
+
+h3.h4 {
+  font-size: 20px;
 }
 
 h4 {
@@ -254,36 +305,11 @@ h6 {
   letter-spacing: -0.24px;
   line-height: 1.375;
   /* 22px */
-  font-weight: 60;
+  font-weight: 600;
   margin: 0 0 8px 0;
 }
 
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  font-weight: 60;
-}
 
-
-h1,
-h2,
-h3 {
-  font-family: 'Degular-Display-Semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
-  margin: 0px 0px 16px;
-  font-weight: 60;
-}
-
-h4,
-h5,
-h6 {
-  font-family: 'Inter-semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
-  margin-top: 0;
-  margin: 0px 0px 16px;
-  font-weight: 60;
-}
 
 
 /* Mobile */
@@ -291,14 +317,14 @@ h6 {
 
   h1,
   .h1 {
-    font-size: 36px;
+    font-size: 36px !important;
     line-height: 1;
     letter-spacing: 0.64px;
     margin: 0 0 16px 0;
   }
 
   h2 {
-    font-size: 28px;
+    font-size: 28px !important;
     line-height: 1.1428571429;
     /* 32px */
     letter-spacing: 0.48px;
@@ -4980,10 +5006,7 @@ html[dir="rtl"] .notification-left-aligned {
 
 /* 
 Custom Styling  */
-hr {
-  border: 0;
-  border-top: 1px solid rgba(0, 0, 0, .1);
-}
+
 
 div.icon {
   height: 50px;
@@ -5530,6 +5553,27 @@ a.nav-link.uber-nav:active {
 }
 
 /********* Footer component *********/
+section#footer {
+  background-color: rgb(255, 255, 255);
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
+
+@media sreen and (min-width: 769px) {
+  section#footer {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+}
+
+div.container.small {
+
+  color: rgb(107, 107, 107);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.57143;
+}
+
 .footer-img {
   height: auto;
   width: 174px;
@@ -5560,7 +5604,7 @@ a.nav-link.uber-nav:active {
 .footer-col-title {
   line-height: 1.4;
   margin-bottom: 8px;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", Helvetica, Arial, sans-serif;
+  font-family: 'Inter Semibold', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", Helvetica, Arial, sans-serif;
   font-weight: 600;
   color: rgb(112, 112, 112);
   font-size: 16px !important;
