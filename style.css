@@ -5895,3 +5895,28 @@ ul.share a svg {
 .related-articles li {
   margin-bottom: 15px;
 }
+
+/******* Postman Status Icons 
+https://status.postman.com/api 
+*******/
+.icon-indicator {
+  margin-right: 8px;
+  display: inline-block;
+  position: relative;
+  top: 0px;
+}
+.icon-indicator.status-green {
+  color: #26b47f;
+}
+
+.icon-indicator.status-yellow {
+   color: #ffb400;
+}
+
+.icon-indicator.status-red {
+  color: #ed4848
+}
+
+.icon-indicator.status-blue {
+  color: #097bed;
+}
