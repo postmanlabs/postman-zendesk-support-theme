@@ -3,14 +3,13 @@
     <div class="col-12">
       <nav class="breadcrumbs-nav">
         {{breadcrumbs}}
-
       </nav>
     </div>
   </div>
   <div class="row">
     <div class="col-8">
-      <article id="main-content">
-        <header class="article-header">
+      <article>
+        <header>
           <h1 title="{{article.title}}">
             {{article.title}}
             {{#if article.internal}}
@@ -21,7 +20,7 @@
             </svg>
             {{/if}}
           </h1>
-
+  </header>
           <div class="article-author d-flex">
             {{#if settings.show_article_author}}
             <div class="avatar article-avatar">
@@ -49,13 +48,11 @@
                 <li class="meta-data">{{t 'updated '}}{{date article.edited_at timeago=true}}</li>
                 {{/is}}
               </ul>
-            </div>
-          </div>
-
-          {{#if settings.show_follow_article}}
+            </div>          {{#if settings.show_follow_article}}
           <div class="article-subscribe">{{subscribe}}</div>
           {{/if}}
-        </header>
+          </div>
+      
 
         <section class="article-info">
           <div class="article-content">
