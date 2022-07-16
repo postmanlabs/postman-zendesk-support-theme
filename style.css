@@ -14,10 +14,8 @@ body {
 main {
   display: block;
 }
-
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
+section.section-container {
+  padding: 80px 0;
 }
 
 hr {
@@ -220,94 +218,45 @@ a.small {
   color: #6b6b6b;
 }
 
-
-h1,
-h2,
-h3 {
-  font-family: 'Degular-Display-Semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
-  margin: 0px 0px 16px;
-}
-
-h4,
-h5,
-h6 {
-  font-family: 'Inter-semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
-  margin-top: 0;
-  margin: 0px 0px 16px;
-}
-
-
-/* Mobile */
-h1,
-.h1 {
-  font-size: 36px;
-  line-height: 1;
-  letter-spacing: 0.64px;
-  margin: 0 0 16px 0;
-}
-
-h2 {
-  font-size: 28px;
-  line-height: 1.1428571429;
-  /* 32px */
-  letter-spacing: 0.48px;
-  margin: 0 0 16px 0;
-}
-
-h3 {
-  font-size: 24px;
-  line-height: 1.5;
-  /* 36px */
-  letter-spacing: 0.64px;
-  margin: 0 0 16px 0;
-}
-
-h3.h4 {
-  font-size: 20px;
-  line-height: 1.2;
-}
-
 /* Web */
 
-@media (min-width: 576px) {
 
-  .h1,
-  h1 {
-    font-size: 48px;
-    line-height: 1;
-    margin: 0 0 24px 0;
-    font-weight: 600;
-  }
 
-  h2,
-  .h2 {
-    font-size: 36px;
-    line-height: 1.1666666667;
-    /* 42px */
-  }
-
-  h3,
-  .h3 {
-    font-size: 28px;
-    letter-spacing: 0.64px;
-    line-height: 1.1428571429;
-    /* 32px */
-  }
+h1, .h1
+ {
+  font-size: 48px  !important;
+  line-height: 1;
+  margin: 0 0 24px 0;
 }
+
+h2,
+.h2 {
+  font-size: 36px  !important;
+  line-height: 1.1666666667;
+  /* 42px */
+}
+
+h3,
+.h3 {
+  font-size: 28px  !important;
+  letter-spacing: 0.64px;
+  line-height: 1.1428571429;
+}
+
 
 
 h4 {
-  font-size: 20px;
+font-size: 20px  !important;
 }
 
 h5,
 h6 {
-  font-size: 16px;
-  letter-spacing: -0.24px;
-  line-height: 1.375;
-  /* 22px */
-  font-weight: 600 !important;
-  margin: 0 0 8px 0;
+font-size: 16px  !important;
+letter-spacing: -0.24px;
+line-height: 1.375;
+/* 22px */
+font-weight: 600 !important;
+margin: 0 0 8px 0;
 }
 
 h4,
@@ -316,8 +265,60 @@ h5,
 .h5,
 h6,
 .h6 {
+font-weight: 600 !important;
+}
+
+
+h1,
+h2,
+h3 {
+  font-family: 'Degular-Display-Semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
+  margin: 0px 0px 16px;
   font-weight: 600 !important;
 }
+
+h4,
+h5,
+h6 {
+  font-family: 'Inter-semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
+  margin-top: 0;
+  margin: 0px 0px 16px;
+  font-weight: 600 !important;
+}
+
+
+/* Mobile */
+@media (max-width: 576px) {
+h1,
+.h1 {
+  font-size: 36px  !important;
+  line-height: 1;
+  letter-spacing: 0.64px;
+  margin: 0 0 16px 0;
+}
+
+h2 {
+  font-size: 28px  !important;
+  line-height: 1.1428571429;
+  /* 32px */
+  letter-spacing: 0.48px;
+  margin: 0 0 16px 0;
+}
+
+h3 {
+  font-size: 24px  !important;
+  line-height: 1.5;
+  /* 36px */
+  letter-spacing: 0.64px;
+  margin: 0 0 16px 0;
+}
+
+h3.h4 {
+  font-size: 20px  !important;
+  line-height: 1.2;
+}
+}
+
 
 a {
   text-decoration: none !important;
@@ -4998,14 +4999,13 @@ a {
 
 /********* Buttons and a tags *********/
 button, a.primary-button, a.secondary-button, a.third-button {
-  padding: 8px 16px;
+padding: 4px 12px;
   text-align: center;
   white-space: nowrap;
   border-radius: 4px;
-  padding: 8px 16px;
   text-align: center;
   margin: 0px;
-  font-size: 12px;
+  font-size: 1.4rem;
   transition: all 0.2s ease-in-out 0s;
   -webkit-box-align: center;
   align-items: center;
@@ -5045,22 +5045,25 @@ button.secondary-button:hover, a.secondary-button:hover {
 }
 
 /********* Navbar component *********/
-.navbar-global {
-  background-color: rgba(255, 255, 255, 0.84) !important;
-  backdrop-filter: blur(4px);
-  padding: 8px 16px;
-  border-bottom: 1px solid #eee;
+nav.pm-navbar {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 6px 16px;
 }
 
-.navbar-global .navbar-brand .navbar-logo-container {
+nav.navbar-brand {
+    margin-right: 10px!important;
+}
+
+nav.pm-navbar .navbar-brand .navbar-logo-container {
   width: 32px;
   height: 32px;
   z-index: 3;
   position: relative;
 }
 
-.navbar-logo-container img {
-  margin-bottom: 1.45rem;
+nav.navbar-logo-container img {
+  border-style: none;
 }
 
 @media (max-width: 991px) {
@@ -5109,6 +5112,44 @@ button.secondary-button:hover, a.secondary-button:hover {
     -ms-transition: all 0.2s ease;
     transition: all 0.2s ease;
   }
+}
+
+.primary-nav {
+  z-index: 100000 !important;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e6e6e6;
+
+}
+
+.primary-nav.activeMenu {
+  background-color: #ffffff !important;
+  position: relative;
+  z-index: 100000 !important;
+}
+
+.secondary-nav {
+
+  position: sticky;
+    background-color: #ffffff !important;
+  top: 0;
+  z-index: 1;
+}
+
+.secondary-nav.activeMenu {
+  background-color: #ffffff !important;
+  z-index: 1;
+  height: 300px;
+  width: 100%;
+}
+
+span.contextual-home-link {
+  color: #212121!important;
+  font-family: 'Inter',system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -.25px;
+  line-height: 1.4;
+  padding-left: 0!important;
 }
 
 .navbar-toggler {
@@ -5477,34 +5518,6 @@ a.nav-link.uber-nav:active {
     z-index: 10;
     background: rgba(0, 0, 0, 0.7);
   }
-}
-
-.nav-primary {
-  backdrop-filter: blur(32px);
-  z-index: 2147483647;
-  padding: 6px 16px !important;
-  border-bottom: 1px solid #e6e6e6;
-}
-
-.nav-primary.activeMenu {
-  background-color: #ffffff !important;
-  position: relative;
-  z-index: 2147483647;
-}
-
-.nav-secondary {
-  backdrop-filter: blur(64px);
-  position: sticky;
-  padding: 4px 16px !important;
-  top: 0;
-  z-index: 1020;
-}
-
-.nav-secondary.activeMenu {
-  background-color: #ffffff !important;
-  z-index: 99;
-  /* height: 300px; */
-  width: 100%;
 }
 
 /********* Footer component *********/
