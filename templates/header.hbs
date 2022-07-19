@@ -185,7 +185,7 @@
 
 <!-- Support Center Secondary Navbar -->
 <nav class="pm-navbar secondary-nav navbar  navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="https://support.postman.com/hc/en-us"
+  <a class="navbar-brand" href="/"
     onClick="ga('send', 'event', 'global-navbar', 'Click', 'blog-home');">
     <span class="contextual-home-link nav-link uber-nav">
       Support Center
@@ -212,7 +212,7 @@
     <ul class="property-context-menu navbar-nav ms-auto">
       {{#unless signed_in}}
       <li class="nav-item">
-        <a class="nav-link uber-nav" href="https://support.postman.com/hc/en-us/profiles/preview"
+        <a class="nav-link uber-nav" href="/hc/en-us/signin?return_to=https%3A%2F%2Fsupport.postman.com%2Fhc%2Fen-us&amp;locale=en-us"
           onClick="ga('send', 'event', 'support-center-navbar', 'Click', 'product-updates');">
           Sign in
         </a>
@@ -220,7 +220,7 @@
       {{/unless}}
       {{#if signed_in}}
       <li class="nav-item">
-        <a class="nav-link uber-nav" href="https://support.postman.com/hc/en-us/profiles/preview"
+        <a class="nav-link uber-nav" href="/hc/en-us/profiles/preview"
           onClick="ga('send', 'event', 'support-center-navbar', 'Click', 'profile');">
           Profile
         </a>
@@ -233,7 +233,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link uber-nav" href="https://support.postman.com/hc/en-us/requests/new"
+        <a class="nav-link uber-nav" href="/hc/en-us/requests/new"
           onClick="ga('send', 'event', 'support-center-navbar', 'Click', 'submit-a-request');">
           Submit a request
         </a>
