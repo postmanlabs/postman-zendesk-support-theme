@@ -431,6 +431,11 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  padding-left: 0 !important;
+}
+
+ul.space {
+  padding-left: 2rem;
 }
 
 .visibility-hidden {
@@ -3780,7 +3785,7 @@ button.clear-button:hover {
 }
 
 .profile-nav {
-  background-color: darken(#FFFFFF, 5%);
+  background-color: transparent;
   margin-bottom: 37px;
 }
 
@@ -3788,11 +3793,11 @@ button.clear-button:hover {
   width: 100%;
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   .profile-section {
     width: calc(100% - 330px);
   }
-}
+} */
 
 .profile-section-header {
   display: flex;

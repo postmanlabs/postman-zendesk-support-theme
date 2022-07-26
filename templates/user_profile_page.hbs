@@ -1,5 +1,7 @@
-<header id="main-content" class="profile-header">
-  <div class="container">
+<section class="section-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-12">
     <div class="profile-info">
       <div class="avatar profile-avatar">
         {{#if user.agent}}
@@ -11,13 +13,10 @@
       </div>
       <div class="basic-info">
         <div class="community-name-and-title-badges">
-          <h1 class="name">
-            {{#if user.url}}
-              <a href="{{user.url}}" target="_zendesk_lotus" title="{{t 'open_user_in_support'}}">{{user.name}}</a>
-            {{else}}
+          <h2 class="name">
               {{user.name}}
-            {{/if}}
-          </h1>
+       
+          </h2>
 
           <div hidden="true" aria-label="{{t 'badges'}}"></div>
           {{#each (filter user.badges on="category_slug" equals="titles")}}
@@ -53,7 +52,55 @@
           {{/if}}
         </div>
       </div>
-      <div class="options">
+      {{#if description}}
+        <p class="description">{{description}}</p>
+      {{/if}}
+
+      <ul class="">
+        <li >
+          <span class="stat-label">{{t 'total_activity'}}</span>
+          <span class="stat-value" id="total-activity">{{total_activity}}</span>
+        </li>
+        <li >
+          <span class="stat-label">{{t 'last_activity'}}</span>
+          <span class="stat-value">
+            {{#if last_activity_at}}
+              {{date last_activity_at timeago=true}}
+            {{else}}
+              {{t 'no_activity_yet'}}
+            {{/if}}
+          </span>
+        </li>
+        <li >
+          <span class="stat-label">{{t 'member_since'}}</span>
+          <span class="stat-value">
+            {{#if member_since}}
+              {{date member_since format='medium'}}
+            {{else}}
+              {{t 'no_activity_yet'}}
+            {{/if}}
+          </span>
+        </li>
+      </ul>
+          <ul class="">
+      <li >
+        <span class="stat-label">{{t 'following_users'}}</span>
+        <span class="stat-value" id="following-count">{{t 'users_count' count=following_count}}</span>
+      </li>
+      <li >
+        <span class="stat-label">{{t 'followed_by'}}</span>
+        <span class="stat-value" id="follower-count">{{t 'users_count' count=follower_count}}</span>
+      </li>
+      <li >
+        <span class="stat-label">{{t 'votes'}}</span>
+        <span class="stat-value" id="vote-count">{{vote_count}}</span>
+      </li>
+      <li >
+        <span class="stat-label">{{t 'subscriptions'}}</span>
+        <span class="stat-value" id="subscription-count">{{subscription_count}}</span>
+      </li>
+    </ul>
+          <div class="options">
         {{#if private_profile}}
           <span class="profile-private-badge">
             {{t 'private'}}
@@ -68,60 +115,10 @@
           {{subscribe}}
         </div>
       </div>
-
-      {{#if description}}
-        <p class="description">{{description}}</p>
-      {{/if}}
-
-      <ul class="profile-stats profile-stats-activity">
-        <li class="stat">
-          <span class="stat-label">{{t 'total_activity'}}</span>
-          <span class="stat-value" id="total-activity">{{total_activity}}</span>
-        </li>
-        <li class="stat">
-          <span class="stat-label">{{t 'last_activity'}}</span>
-          <span class="stat-value">
-            {{#if last_activity_at}}
-              {{date last_activity_at timeago=true}}
-            {{else}}
-              {{t 'no_activity_yet'}}
-            {{/if}}
-          </span>
-        </li>
-        <li class="stat">
-          <span class="stat-label">{{t 'member_since'}}</span>
-          <span class="stat-value">
-            {{#if member_since}}
-              {{date member_since format='medium'}}
-            {{else}}
-              {{t 'no_activity_yet'}}
-            {{/if}}
-          </span>
-        </li>
-      </ul>
     </div>
-    <ul class="profile-stats profile-stats-counters">
-      <li class="stat">
-        <span class="stat-label">{{t 'following_users'}}</span>
-        <span class="stat-value" id="following-count">{{t 'users_count' count=following_count}}</span>
-      </li>
-      <li class="stat">
-        <span class="stat-label">{{t 'followed_by'}}</span>
-        <span class="stat-value" id="follower-count">{{t 'users_count' count=follower_count}}</span>
-      </li>
-      <li class="stat">
-        <span class="stat-label">{{t 'votes'}}</span>
-        <span class="stat-value" id="vote-count">{{vote_count}}</span>
-      </li>
-      <li class="stat">
-        <span class="stat-label">{{t 'subscriptions'}}</span>
-        <span class="stat-value" id="subscription-count">{{subscription_count}}</span>
-      </li>
-    </ul>
-  </div>
-</header>
-
-{{#if visible}}
+        </div>
+          <div class="col-lg-8 col-12">
+          {{#if visible}}
 
   {{#if member_since}}
 
@@ -441,3 +438,12 @@
     </section>
   </div>
 {{/unless}}
+
+        </div>
+      </div>
+    </div>
+    </section>
+
+
+
+
