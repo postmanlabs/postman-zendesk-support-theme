@@ -3793,12 +3793,6 @@ button.clear-button:hover {
   width: 100%;
 }
 
-/* @media (min-width: 1024px) {
-  .profile-section {
-    width: calc(100% - 330px);
-  }
-} */
-
 .profile-section-header {
   display: flex;
   flex-wrap: wrap;
