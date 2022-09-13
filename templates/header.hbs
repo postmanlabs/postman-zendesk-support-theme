@@ -1,6 +1,6 @@
 <a class="skip-navigation" tabindex="1" href="#main-content">{{t 'skip_navigation' }}</a>
 
-<nav class="pm-navbar primary-nav navbar navbar-expand-lg">
+<nav class="pm-navbar navbar navbar-expand-lg primary-nav ">
     <a class="navbar-brand" href="https://www.postman.com/">
       <div class="navbar-logo-container">
         <img src="https://voyager.postman.com/logo/postman-logo-icon-orange.svg" alt="Postman" width="32" height="32" />
@@ -8,14 +8,25 @@
       </div>
     </a>
     <button id="postman-primary-nav" class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
       aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+       <span class="navbar-toggler-icon mobile-icon_span">
+      <div
+        id="icon-wrap-one"
+        class="icon-bar mobile-icon"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
             aria-expanded="false">
             Product
             <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
@@ -27,7 +38,7 @@
             </svg>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="https:/www.postman.com/product/what-is-postman/">
+            <a class="dropdown-item" href="https://www.postman.com/product/what-is-postman/">
               What is Postman?
             </a>
             <a class="dropdown-item" href="https://www.postman.com/product/api-repository/">
@@ -51,12 +62,12 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pricing/">
+          <a class="nav-link" href="https://www.postman.com/pricing/">
             Pricing
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
             aria-expanded="false">
             Enterprise
             <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
@@ -80,7 +91,7 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
             aria-expanded="false">
             Resources and support
             <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
@@ -98,9 +109,6 @@
                 <a class="dropdown-item" href="https://learning.postman.com/docs/getting-started/introduction/">
                   Docs
                 </a>
-                <a class="dropdown-item" href="https://www.postman.com/webinars/">
-                  Webinars
-                </a>
                 <a class="dropdown-item" href="https://www.postman.com/events/breaking-changes/">
                   Breaking Changes show
                 </a>
@@ -112,6 +120,9 @@
                 </a>
                 <a class="dropdown-item" href="https://www.postman.com/state-of-api/">
                   State of the API
+                </a>
+                <a class="dropdown-item" href="https://www.postman.com/api-first">
+                  Guide to API-First
                 </a>
               </div>
               <div class="col-sm-6 col-md-4 dropdown-col">
@@ -128,9 +139,6 @@
                 <a class="dropdown-item" href="https://www.postman.com/company/student-program/student-summit/">
                   Student Summit
                 </a>
-                <a class="dropdown-item" href="https://www.postman.com/postman-galaxy/">
-                  Postman Galaxy
-                </a>
                 <a class="dropdown-item" href="https://www.postman.com/company/nonprofit/">
                   Postman for Nonprofits
                 </a>
@@ -140,7 +148,7 @@
               </div>
               <div class="col-sm-6 col-md-4 dropdown-col">
                 <h6 class="dropdown-header">Support</h6>
-                <a class="dropdown-item" href="https://www.postman.com.support/">
+                <a class="dropdown-item" href="https://www.postman.com/support/">
                   Support Center
                 </a>
                 <a class="dropdown-item" href="https://www.postman.com.support/resellers-support/">
@@ -149,7 +157,7 @@
                 <a class="dropdown-item" href="https://status.postman.com/" target="_blank" rel="noreferrer">
                   Postman status
                 </a>
-                <a class="dropdown-item" hhref="https://www.postman.com/downloads/release-notes/">
+                <a class="dropdown-item" href="https://www.postman.com/downloads/release-notes/">
                   Release notes
                 </a>
                 <a class="dropdown-item" href="https://www.postman.com/company/contact-us/">
@@ -184,32 +192,37 @@
 
 
 <!-- Support Center Secondary Navbar -->
-<nav class="pm-navbar secondary-nav navbar  navbar-expand-lg navbar-light">
+<nav class="pm-navbar navbar sticky navbar-expand-lg navbar-light nav-secondary">
   <a class="navbar-brand" href="/"
-    onClick="ga('send', 'event', 'global-navbar', 'Click', 'blog-home');">
+    onClick="ga('send', 'event', 'global-navbar', 'Click', 'support-center-home');">
     <span class="contextual-home-link nav-link uber-nav">
       Support Center
-      <!--       <span class="sr-only">(current)</span> -->
+    <span class="sr-only">(current)</span>
     </span>
   </a>
   <!-- nav button local navbar start -->
-  <button id="secondaryNav" class="mobile-icon-button_caret mobile-icon-button navbar-toggler" type="button"
-    data-test="mobileNavTogglerBottom" data-toggle="collapse" data-target="#navbarSupportedContentBottom"
-    aria-controls="navbarSupportedContentBottom" aria-expanded="false" aria-label="Toggle navigation">
+  <button 
+    id="secondaryNav" 
+    class="mobile-icon-button_caret mobile-icon-button navbar-toggler" 
+    type="button"
+    data-test="mobileNavTogglerBottom" 
+    data-bs-toggle="collapse" 
+    data-bs-target="#navbarSupportedContentBottom"
+    aria-controls="navbarSupportedContentBottom" 
+    aria-expanded="false" 
+    aria-label="Toggle navigation">
     <span class="navbar-toggler-icon">
       <div id="icon-wrap-two" aria-expanded="false">
         <svg id="navbar-chevron-icons" width="20" height="11" viewBox="0 0 20 11" fill="none"
           xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1L10 10L19 1" stroke="#6B6B6B" stroke-width="1.5" stroke-linecap="round"
-            stroke-linejoin="round" />
+          <path d="M1 1L10 10L19 1" stroke="#6B6B6B" strokeWidth="1.5" strokeLinecap="round"
+            strokeLinejoin="round" />
         </svg>
-
-
       </div>
     </span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContentBottom">
-    <ul class="property-context-menu navbar-nav ms-auto">
+    <ul class="navbar-nav ms-auto">
       {{#unless signed_in}}
       <li class="nav-item">
         <a class="nav-link uber-nav" href="/hc/en-us/signin?return_to=https%3A%2F%2Fsupport.postman.com%2Fhc%2Fen-us&amp;locale=en-us"
@@ -226,13 +239,13 @@
         </a>
       </li>
       {{/if}}
-      <li class="nav-item">
-        <a class="nav-link uber-nav" href="https://community.postman.com/"
+      <li class="nav-item nav-secondary-last-item">
+        <a class="nav-link uber-nav mr-4" target="_blank" rel="noreferrer" href="https://community.postman.com/"
           onClick="ga('send', 'event', 'support-center-navbar', 'Click', 'community');">
           Community
         </a>
       </li>
     </ul>
-    {{search submit=false instant=settings.instant_search class='search search-full'}}
-
+    {{search submit=false instant=settings.instant_search class='search search-full ml-5'}}
+</div>
 </nav>
