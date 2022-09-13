@@ -520,33 +520,126 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const statusResponse = document.getElementById('pm-status');
-  if (statusResponse !== null || undefined){
-  let postmanStatusAPI = new StatusPage.page({ page: 'ms1frkqnsp7r' });
-  postmanStatusAPI.status({
-    success: function (data) {
-      const { indicator, description } = data.status;
-      if (indicator === "none") {
-        statusResponse.prepend(`${description}. `);
-        setStatusIcon(`icon-indicator fa-solid fa-check status-green`)
+  if (statusResponse !== null || undefined) {
+    let postmanStatusAPI = new StatusPage.page({ page: 'ms1frkqnsp7r' });
+    postmanStatusAPI.status({
+      success: function (data) {
+        const { indicator, description } = data.status;
+        if (indicator === "none") {
+          statusResponse.prepend(`${description}. `);
+          setStatusIcon(`icon-indicator fa-solid fa-check status-green`)
+        }
+        else if (indicator === "minor") {
+          statusResponse.prepend(`${description}. `);
+          setStatusIcon('icon-indicator fa-solid fa-square-minus status-yellow')
+
+        } else if (indicator === "major") {
+          statusResponse.prepend(`${description}. `);
+          setStatusIcon('icon-indicator fa-solid fa-xmark status-red')
+
+        } else if (indicator === "critical") {
+          statusResponse.prepend(`${description}. `);
+          setStatusIcon('icon-indicator fa-solid fa-wrench status-blue')
+
+        } else if (indicator === "") {
+          statusResponse.prepend(`We're having issues retrieving data for Postman.`);
+        }
       }
-      else if (indicator === "minor") {
-        statusResponse.prepend(`${description}. `);
-        setStatusIcon('icon-indicator fa-solid fa-square-minus status-yellow')
+    })
+  };
 
-      } else if (indicator === "major") {
-        statusResponse.prepend(`${description}. `);
-        setStatusIcon('icon-indicator fa-solid fa-xmark status-red')
+  
+  // let mobileCaret = document.querySelector('.mobile-icon-button_caret');
+  // console.log(mobileCaret)
+  // mobileCaret.addEventListener('click', function (e) {
+  //   console.log(e)
+  //   document.querySelector(".icon-caret".toggleClass("open"))
+  // });
+  // Toggles Caret Menu to turn on click
 
-      } else if (indicator === "critical") {
-        statusResponse.prepend(`${description}. `);
-        setStatusIcon('icon-indicator fa-solid fa-wrench status-blue')
+  /* Navbar Global and Secondary
+ ***********************************************************************/
+  $(".mobile-icon-button_caret").bind("click", function () {
+    $(".icon-caret").toggleClass("open");
+  });
 
-      } else if (indicator === "") {
-        statusResponse.prepend(`We're having issues retrieving data for Postman.`);
+  // Brandon animations start
+  $('#secondaryNav').on('click', function () {
+    $('body').toggleClass('menu-open');
+    $('.nav-primary').toggleClass('activeMenu');
+    $('.nav-secondary').toggleClass('activeMenu');
+  })
+
+  function showBsDropdown() {
+    $(this)
+      .find('.dropdown-menu')
+      .first()
+      .stop(true, true)
+      .slideDown(225);
+    $(this)
+      .find('.arrow-icon')
+      .addClass('show');
+  }
+
+  function hideBsDropdown() {
+    $(this)
+      .find('.dropdown-menu')
+      .stop(true, true)
+      .slideUp(225);
+    $(this)
+      .find('.arrow-icon')
+      .removeClass('show');
+  }
+  $('.dropdown').on('show.bs.dropdown', showBsDropdown);
+  $('.dropdown').on('hide.bs.dropdown', hideBsDropdown);
+  
+
+  function toggleGlobalNav() {
+    // Global Mobile Icon Transition
+    const toggler = document.getElementById('postman-primary-nav').getAttribute('aria-expanded');
+    const body = document.querySelector('body');
+    const icon1 = document.querySelector('#icon-wrap-one');
+    if (toggler === 'true') {
+      body.classList.add('lock');
+      icon1.classList.add('open');
+    } else {
+      icon1.classList.remove('open');
+      body.classList.remove('lock');
+      const icon2 = document.getElementById('navbar-chevron-icons');
+      const togglerSecondary = document
+        .querySelector('#secondaryNav.navbar-toggler')
+        .getAttribute('aria-expanded');
+      if (togglerSecondary === 'true') {
+        icon2.classList.remove('open');
       }
     }
-  })    
-};
+  }
+
+  let primaryNav = document.getElementById('postman-primary-nav')
+  console.log(primaryNav)
+  primaryNav.addEventListener('click', function (e) {
+    toggleGlobalNav()
+  });
+
+  function showTargetElement() {
+    // LC Mobile Icon Transition
+    const toggler = document.getElementById('secondaryNav').getAttribute('aria-expanded');
+    const toggleChevron = document.getElementById('navbar-chevron-icons');
+  console.log(toggleChevron)
+    if (toggler === 'false') {
+      toggleChevron.classList.remove('open');
+    } else {
+      toggleChevron.classList.add('open');
+    }
+  }
+  let secondaryNav = document.getElementById('secondaryNav');
+  secondaryNav.addEventListener('click', function (e) {
+    showTargetElement();
+  });
+  //  animations finish
+
+
+})
 
   /* pmTechConfig
   ***********************************************************************/
@@ -568,7 +661,6 @@ document.addEventListener('DOMContentLoaded', function () {
   //   }
   // }
   /* End of loading */
-});
 
 /* pmTechSDK
 ***********************************************************************/

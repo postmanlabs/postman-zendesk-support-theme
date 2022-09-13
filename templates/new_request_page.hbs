@@ -1,22 +1,24 @@
-
-<section>
+<section class="section-container">
   <div class="container">
     <div class="row">
       <div class="col-12">
-          <nav class="breadcrumbs-nav">
-    {{breadcrumbs}}
-  </nav>
+        <nav class="breadcrumbs-nav">
+          {{breadcrumbs}}
+        </nav>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h1>
+          {{t 'submit_a_request'}}
+          <span class="follow-up-hint">
+            {{follow_up}}
+          </span>
+        </h1>
 
-  <h1>
-    {{t 'submit_a_request'}}
-    <span class="follow-up-hint">
-      {{follow_up}}
-    </span>
-  </h1>
-
-  <div id="main-content" class="form">
-    {{request_form wysiwyg=true}}
-  </div>
+        <div id="main-content" class="form">
+          {{request_form wysiwyg=true}}
+        </div>
       </div>
     </div>
   </div>

@@ -1,65 +1,77 @@
-<div class="container">
-  <nav class="breadcrumbs-nav">
-    {{breadcrumbs}}
-  </nav>
-
-  <h1 class="form-header">
-    {{t 'what_is_your_post_about'}}
-  </h1>
-
-  <div id="main-content" class="form">
-    {{#form 'post' class='new_community_post'}}
-    <div class="form-field">
-      {{#required 'title'}}
-      {{label 'title'}}
-      {{else}}
-      {{#label 'title'}}
-      {{t 'title_label'}}<span class="optional">({{t 'optional'}})</span>
-      {{/label}}
-      {{/required}}
-      {{input 'title' autofocus=true}}
-      {{#validate 'title'}}
-      <div class="notification notification-error notification-inline">
-        {{error 'title'}}
+<section class="section-container">
+  <div class="container">
+    <div class="row mb-2">
+      <div class="col-12">
+        <nav class="breadcrumbs-nav">
+          {{breadcrumbs}}
+        </nav>
       </div>
-      {{/validate}}
+    </div>
+    <div class="row">
+      <div class="col-12">
+
+        <h1 class="form-header">
+          {{t 'what_is_your_post_about'}}
+        </h1>
+
+        <div id="main-content" class="form">
+          {{#form 'post' class='new_community_post'}}
+            <div class="form-field">
+              {{#required 'title'}}
+                {{label 'title'}}
+                {{else}}
+                  {{#label 'title'}}
+                    {{t 'title_label'}}<span class="optional">({{t 'optional'}})</span>
+                  {{/label}}
+              {{/required}}
+              {{input 'title' autofocus=true}}
+              {{#validate 'title'}}
+                <div class="notification notification-error notification-inline">
+                  {{error 'title'}}
+                </div>
+              {{/validate}}
+            </div>
+
+            {{suggestion_list class='suggestion-list'}}
+
+            <div class="form-field">
+              {{#required 'details'}}
+                {{label 'details'}}
+                {{else}}
+                  {{#label 'details'}}
+                    {{t 'details_label'}}<span class="optional">({{t 'optional'}})</span>
+                  {{/label}}
+              {{/required}}
+              {{wysiwyg 'details'}}
+              {{#validate 'details'}}
+                <div class="notification notification-error notification-inline">
+                  {{error 'details'}}
+                </div>
+              {{/validate}}
+            </div>
+
+            <div class="form-field">
+              {{#required 'topic'}}
+                {{label 'topic'}}
+                {{else}}
+                  {{#label 'topic'}}
+                    {{t 'topic_label'}}<span class="optional">({{t 'optional'}})</span>
+                  {{/label}}
+              {{/required}}
+              {{select 'topic'}}
+              {{#validate 'topic'}}
+                <div class="notification notification-error notification-inline">
+                  {{error 'topic'}}
+                </div>
+              {{/validate}}
+            </div>
+
+            <footer>{{input class="primary-button" type='submit'}}</footer>
+          {{/form}}
+        </div>
+      </div>
     </div>
 
-    {{suggestion_list class='suggestion-list'}}
 
-    <div class="form-field">
-      {{#required 'details'}}
-      {{label 'details'}}
-      {{else}}
-      {{#label 'details'}}
-      {{t 'details_label'}}<span class="optional">({{t 'optional'}})</span>
-      {{/label}}
-      {{/required}}
-      {{wysiwyg 'details'}}
-      {{#validate 'details'}}
-      <div class="notification notification-error notification-inline">
-        {{error 'details'}}
-      </div>
-      {{/validate}}
-    </div>
-
-    <div class="form-field">
-      {{#required 'topic'}}
-      {{label 'topic'}}
-      {{else}}
-      {{#label 'topic'}}
-      {{t 'topic_label'}}<span class="optional">({{t 'optional'}})</span>
-      {{/label}}
-      {{/required}}
-      {{select 'topic'}}
-      {{#validate 'topic'}}
-      <div class="notification notification-error notification-inline">
-        {{error 'topic'}}
-      </div>
-      {{/validate}}
-    </div>
-
-    <footer>{{input type='submit'}}</footer>
-    {{/form}}
   </div>
-</div>
+</section>
