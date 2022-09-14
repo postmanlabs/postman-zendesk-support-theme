@@ -6,7 +6,6 @@
           <header class="my-activities-header">
             <h1>{{t 'requests'}}</h1>
           </header>
-
           {{request_list}}
         {{else}}
           <header class="my-activities-header">
@@ -14,7 +13,7 @@
 
             <div class="my-activities-breadcrumbs-nav">
               <nav class="collapsible-nav collapsible-nav-border">
-                <button type="button" class="collapsible-nav-toggle" aria-label="{{t 'toggle_navigation'}}"
+                <button type="button" class="collapsible-nav-toggle requests-toggle" aria-label="{{t 'toggle_navigation'}}"
                   aria-expanded="false">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12"
                     aria-hidden="true" class="collapsible-nav-toggle-icon chevron-icon">
@@ -137,7 +136,6 @@
               </table>
             {{/if}}
           </div>
-
           {{pagination}}
         {{/if}}
       </div>

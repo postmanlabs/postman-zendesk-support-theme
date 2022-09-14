@@ -27,6 +27,14 @@
   src: url("./assets/fonts/Inter-semibold.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url("./assets/fonts/Ibm-Plex-Mono-v7-Latin-Regular.woff2") format("woff2");
+}
+
 /**** Base *****/
 html {
   line-height: 1.15;
@@ -44,8 +52,13 @@ main {
 
 
 pre {
-  font-family: monospace, monospace;
-  font-size: 1em;
+  background-color: #EDEDED;
+  border-radius: 4px;
+  color: #212121;
+  font-family: "IBM Plex Mono", SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+  font-size: 16px;
+  line-height: 1.625; /* 26px */
+  padding: 16px 24px;
 }
 
 a {
@@ -64,7 +77,20 @@ strong {
   font-weight: bolder;
 }
 
-code,
+code {
+  background-color: #EDEDED !important;
+  border-radius: 4px  !important;
+  color: #212121  !important;
+  font-family: "IBM Plex Mono", SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+  font-size: 16px  !important;
+  box-shadow: none;
+  border-radius: 0;
+  color: #212121;
+  font-size: 15px;
+  line-height: 1.625; /* 26px */
+  padding: 0;
+}
+
 kbd,
 samp {
   font-family: monospace, monospace;
@@ -1048,7 +1074,7 @@ input.search {
   border-radius: 4px;
   -webkit-appearance: none;
   box-sizing: border-box;
-  color: #A6A6A6;
+  color: #212121;
   flex: 1 1 auto;
   width: 100%;
   height: 40px !important;
@@ -1059,6 +1085,10 @@ input.search {
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   -webkit-appearance: none;
   width: 100%;
+}
+
+.search-full input[type="search"]:focus {
+  box-shadow: 0 0 0 1px #FF6C37;
 }
 
 .search input[type="search"]::-webkit-search-decoration,
@@ -1083,17 +1113,23 @@ button.clear-button {
   box-shadow: none;
   color: rgb(166, 166, 166);
   font-size: 14px;
-  height: 40px;
+  height: 10px;
   line-height: 20px;
   margin: 0px;
   outline: 0px;
   padding: 0px 12px;
   transition: border-color 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
   appearance: none;
+  position: absolute;
+  right: 20px;
+  z-index: 0;
+  top: 20px;
 }
 
-button.clear-button {
-  border-color: #fff;
+@media screen and (max-width: 992px){
+  button.clear-button {
+    top: 96px;
+  }
 }
 
 button.clear-button:hover {
@@ -1103,7 +1139,6 @@ button.clear-button:hover {
 
 .search .clear-button:focus {
   outline: 0;
-  box-shadow: 0 0 0 3px #FF6C37;
 }
 
 
@@ -1118,7 +1153,7 @@ button.clear-button:hover {
 }
 
 [dir="ltr"] .search-has-value input[type="search"]:focus {
-  border-right-color: #FF6C37;
+  border-right-color: none;
 }
 
 [dir="ltr"] .search .clear-button {
@@ -1128,7 +1163,7 @@ button.clear-button:hover {
 }
 
 [dir="ltr"] .search .clear-button:focus {
-  border-left-color: #FF6C37;
+  border-left-color: none;
 }
 
 [dir="rtl"] .search input[type="search"] {
@@ -2767,7 +2802,7 @@ button.clear-button:hover {
 }
 
 .collapsible-nav-toggle {
-  top: calc(45px / 2);
+  top: calc(70px / 2);
   transform: translateY(-50%);
   position: absolute;
   right: 0;
@@ -2804,7 +2839,7 @@ button.clear-button:hover {
 
 .collapsible-nav-toggle:focus {
   outline: none;
-  border: 1px solid #FF6C37;
+  border: none;
 }
 
 .collapsible-nav-list {
@@ -2904,7 +2939,7 @@ button.clear-button:hover {
 /* Sidebar navigation that collapses on mobile */
 .collapsible-sidebar {
   flex: 1;
-  max-height: 45px;
+  max-height: 70px;
   overflow: hidden;
   padding: 10px 0;
   position: relative;
@@ -2934,9 +2969,20 @@ button.clear-button:hover {
   border-radius: 50%;
 }
 
+.collapsible-sidebar-toggle:focus {
+  border-radius: 0;
+  border: none;
+}
+
 @media (min-width: 1024px) {
   .collapsible-sidebar-toggle {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .requests-toggle {
+    top: 70px
   }
 }
 
@@ -3323,7 +3369,6 @@ button.clear-button:hover {
 .request-main .form-field.comment-ccs>ul {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom: 0;
 }
 
 .request-main .form-field.comment-ccs>ul[data-hc-focus="true"] {
@@ -3333,7 +3378,6 @@ button.clear-button:hover {
 .request-main .form-field.comment-ccs>input[type="text"] {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom: 0;
 }
 
 .request-main .comment-ccs+textarea {
@@ -4984,6 +5028,11 @@ span.contextual-home-link {
   padding-left: 0 !important;
 }
 
+span.contextual-home-link:active {
+  font-size: 16px !important;
+  padding: 0 !important;
+}
+
 .nav-secondary-last-item {
  margin-right: 12px !important;
 }
@@ -5675,7 +5724,6 @@ ul.article-last-updated li {
 }
 
 .article-relatives {
-  border-top: 1px solid #ddd;
   display: flex;
   flex-direction: column;
   padding: 20px 0;
@@ -5770,4 +5818,8 @@ https://status.postman.com/api
 
 .icon-indicator.status-blue {
   color: #097bed;
+}
+p[dir="auto"] {
+  padding: 12px 0;
+  margin: 0;
 }
