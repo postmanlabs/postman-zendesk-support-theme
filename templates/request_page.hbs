@@ -111,7 +111,7 @@
                   {{/if}}
 
                   <span class="request-submit-comment {{#validate 'body'}}shown{{/validate}}">
-                    {{input type='submit' class="button secondary-button"}}
+                    {{input type='submit' class="primary-button"}}
                   </span>
                 </div>
               </div>
@@ -119,7 +119,7 @@
           </section>
 
           <section class="request-sidebar collapsible-sidebar">
-            <button type="button" class="collapsible-sidebar-toggle" aria-labelledby="request-sidebar-title"
+            <button type="button" id="collapsible-sidebar-toggle" class="collapsible-sidebar-toggle" aria-labelledby="request-sidebar-title"
               aria-expanded="false">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12"
                 aria-hidden="true" class="collapsible-sidebar-toggle-icon chevron-icon">
@@ -133,7 +133,7 @@
             <h2 id="request-sidebar-title" class="collapsible-sidebar-title">
               {{t 'ticket_details'}}
             </h2>
-            <div class="collapsible-sidebar-body">
+            <div class="collapsible-sidebar-body" id="user-nav-mobile">
               {{#if request.followup_source_id}}
                 <dl class="request-details">
                   <dt>{{t 'followup'}}</dt>

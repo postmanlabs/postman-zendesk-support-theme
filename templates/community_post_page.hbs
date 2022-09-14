@@ -44,9 +44,9 @@
       </div>
       <div class="post-meta">
         <span title="{{post.author.name}}">
-    
+
           {{post.author.name}}
- 
+
         </span>
         <ul class="meta-group">
           {{#if post.editor}}
@@ -108,7 +108,7 @@
         </a>
       {{/with}}
     </div>
-        <div class="post-content">
+    <div class="post-content">
       <div class="post-body">{{post.details}}</div>
     </div>
     {{#if settings.show_post_sharing}}
@@ -128,8 +128,6 @@
         {{/if}}
       </footer>
     {{/if}}
-  </div>
-  </div>
   </div>
 </section>
 <section class="section-container-body comment-overview" id="comment-overview">
@@ -288,24 +286,22 @@
 
 
 
-{{pagination}}
-          {{#form 'comment' class='comment-form'}}
-    <div class="avatar comment-avatar">
-      {{user_avatar class='user-avatar'}}
-    </div>
-    <div class="comment-container">
-      {{wysiwyg 'body'}}
-      <div class="comment-form-controls">
-        {{checkbox 'official'}}
-        {{label 'official'}}
-        {{input type='submit' class="button secondary-button"}}
+        {{pagination}}
+        {{#form 'comment' class='comment-form'}}
+          <div class="avatar comment-avatar">
+            {{user_avatar class='user-avatar'}}
+          </div>
+          <div class="comment-container">
+            {{wysiwyg 'body'}}
+            <div class="comment-form-controls">
+              {{checkbox 'official'}}
+              {{label 'official'}}
+              {{input type='submit' class="button secondary-button"}}
+            </div>
+          </div>
+        {{/form}}
+        <p class="comment-callout mt-5">{{comment_callout}}</p>
       </div>
     </div>
-  {{/form}}
-  <p class="comment-callout mt-5">{{comment_callout}}</p>
-        </div>
-    </div>
   </div>
-
 </section>
-
