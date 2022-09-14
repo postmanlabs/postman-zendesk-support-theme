@@ -1,25 +1,24 @@
 <h1 class="visibility-hidden">{{ help_center.name }}</h1>
 
 <!-- Hero -->
-<section id="main-content" class="section">
+<section class="section-container">
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-6 d-flex align-items-center">
                 <div class="w-100 text-lg-left">
-                    <h1 class="">Postman Support Center</h1>
-                    <div class="">
-                        <p>Need help? Check out our FAQ, documentation or submit a request.</p>
-                        <div class="d-flex">
-                            {{search submit=false instant=settings.instant_search class='search search-full'}}
-                            <button class="primary-button" type="button">Search</button>
-                        </div>
-                        <div class="mt-3 d-flex">
-                            <p id="statusReport"/>
-                                            <a href="https://status.postman.com/">
-                                    Learn More
-                                </a>
-                        </div>
+                    <h1 class="mb-3">Postman Support Center</h1>
+
+                    <p class="subtitle">Need help? Check out our FAQ, documentation or submit a request.</p>
+
+                    {{search submit=false instant=settings.instant_search class='search search-full'}}
+
+                    <div class="mt-4 d-flex">
+                        <p id="pm-status" />
+                        <a href="https://status.postman.com/" target="_blank" rel="noopener">
+                            Learn More →
+                        </a>
                     </div>
+
                 </div>
             </div>
             <div class="col-12 col-lg-6 d-flex align-items-center justify-content-center">
@@ -30,22 +29,19 @@
         </div>
     </div>
 </section>
-
+<div class="container">
+    <hr />
+</div>
 <!-- Section: Useful links  -->
-<section>
+<section class="section-container">
     <div class="container">
         <div class="row">
-            <div class="col-12 text-left">
-                <h3>Useful links </h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-lg-4 pr-md-5 flex-column justify-content-between">
+            <div class="col-sm-6 col-lg-4 pr-md-5 mb-5 flex-column justify-content-between">
                 <div>
                     <div class="icon"
-                        style="background-image:url('https://voyager.postman.com/icon/support-life-ring-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
+                        style="background-image:url('https://voyager.postman.com/icon/learning-documentation-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
                     </div>
-                    <h3 class="h4 card-title mb-4">Getting Started</h3>
+                    <h3 class="h4 card-title mb-3">Getting started</h3>
                     <div>
                         <p>Get started with Postman with our docs, tutorials, videos, and more!</p>
                     </div>
@@ -54,88 +50,86 @@
                         Center →</a>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-4 pr-md-5 flex-column justify-content-between">
+            <div class="col-sm-6 col-lg-4 pr-md-5 mb-5 flex-column justify-content-between">
                 <div>
                     <div class="icon"
                         style="background-image:url('https://voyager.postman.com/icon/solution-puzzle-answers-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
                     </div>
-                    <h3 class="h4 card-title mb-4">Resolve issues</h3>
+                    <h3 class="h4 card-title mb-3">Resolve issues</h3>
                     <div>
                         <p>Get help with common issues and unexpected behavior in Postman. </p>
                     </div>
                 </div>
-                <div><a href="https://github.com/postmanlabs/postman-app-support/issues"
-                        rel="noopener noreferrer nofollow" target="_blank">Visit GitHub →</a></div>
+                <div><a href="https://support.postman.com/hc/en-us/categories/8177562535703-Resolve-issues-"
+                        rel="noopener noreferrer nofollow" target="_blank">Visit Postman Answers →</a></div>
             </div>
-            <div class="col-sm-6 col-lg-4 pr-md-5 flex-column justify-content-between">
+            <div class="col-sm-6 col-lg-4 pr-md-5 mb-5 flex-column justify-content-between">
                 <div>
                     <div class="icon"
-                        style="background-image:url('https://voyager.postman.com/icon/roadmap-pin-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
+                        style="background-image:url('https://voyager.postman.com/icon/api-logging-checklist-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
                     </div>
-                    <h3 class="h4 card-title mb-4">Public Roadmap</h3>
+                    <h3 class="h4 card-title mb-3">Github issue tracker</h3>
                     <div>
-                        <p>Take a look at our Public Roadmap and find out more about newly released features.</p>
+                        <p>GitHub repository of known issues and feature requests reported by the Postman community.</p>
                     </div>
                 </div>
-                <div><a href="https://github.com/postmanlabs/postman-app-support/projects/45?fullscreen=true"
-                        rel="noopener noreferrer" target="_blank">Visit Public
-                        Roadmap →</a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 pr-md-5 flex-column justify-content-between">
-                <div>
-                    <div class="icon"
-                        style="background-image:url('https://voyager.postman.com/icon/bug-error-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
-                    </div>
-                    <h3 class="h4 card-title mb-4">Bug Reports and feature requests</h3>
-                    <div>
-                        <p>Find existing bugs and feature requests.</p>
-                    </div>
-                </div>
-                <div><a href="https://www.postman.com/postman/workspace/postman-answers/overview">Visit Postman Answers
+                <div><a href="https://github.com/postmanlabs/postman-app-support/issues">Go to the GitHub issue tracker
                         →</a>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-4 pr-md-5 flex-column justify-content-between">
+            <div class="col-sm-6 col-lg-4 pr-md-5 mb-5 flex-column justify-content-between">
                 <div>
                     <div class="icon"
-                        style="background-image:url('https://voyager.postman.com/icon/bug-error-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
+                        style="background-image:url('https://voyager.postman.com/icon/career-growth-book-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
                     </div>
-                    <h3 class="h4 card-title mb-4">FAQs</h3>
+                    <h3 class="h4 card-title mb-3">FAQs</h3>
                     <div>
-                        <p>Find the answer to your question by seeing the most common questions.</p>
+                        <p>Find the answer to your question in our the FAQs.</p>
                     </div>
                 </div>
-                <div><a href="https://github.com/postmanlabs/postman-app-support/issues"
-                        rel="noopener noreferrer nofollow" target="_blank">Visit (Need Link) →</a></div>
+                <div><a href="/hc/en-us/categories/8180165300503-FAQs" rel="noopener noreferrer nofollow"
+                        target="_blank">Read Articles →</a></div>
             </div>
-            <div class="col-sm-6 col-lg-4 pr-md-5 flex-column justify-content-between">
+            <div class="col-sm-6 col-lg-4 pr-md-5 mb-5 flex-column justify-content-between">
                 <div>
                     <div class="icon"
-                        style="background-image:url('https://voyager.postman.com/icon/bug-error-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
+                        style="background-image:url('https://voyager.postman.com/icon/access-control-postman-icon.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
                     </div>
                     <h3 class="h4 card-title mb-4">Billing</h3>
                     <div>
                         <p>Get help with billing, subscriptions and payments.</p>
                     </div>
                 </div>
-                <div><a href="https://support.postman.com/hc/en-us/categories/115000609205-Billing-and-Payment"
-                        rel="noopener noreferrer nofollow" target="_blank">Visit Billing →</a></div>
+                <div><a href="/hc/en-us/categories/115000609205" rel="noopener noreferrer nofollow"
+                        target="_blank">Visit Billing →</a></div>
             </div>
-
+            <div class="col-sm-6 col-lg-3 pr-md-5 flex-column justify-content-between">
+                <div>
+                    <div class="icon"
+                        style="background-image:url('https://voyager.postman.com/icon/postman-trust-center-icon.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
+                    </div>
+                    <h3 class="h4 card-title mb-4">Trust and security</h3>
+                    <div>
+                        <p>Our Trust Center provides you with access to information about security, compliance, privacy,
+                            and
+                            reliability at Postman.</p>
+                    </div>
+                </div>
+                <div><a href="https://www.postman.com/trust/">Go to the Trust Center →</a></div>
+            </div>
         </div>
     </div>
 </section>
+<div class="container">
+    <hr />
+</div>
 <!-- Section: Still need help  -->
-<section>
+<section class="section-container">
     <div class="container">
         <div class="row">
             <div class="col-12 text-left">
-                <h3>Still need help?</h3>
+                <h2 class="mb-3">Still need help?</h2>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-8"></div>
         </div>
         <div class="row">
             <div class="col-sm-6 col-lg-3 pr-md-5 flex-column justify-content-between">
@@ -143,7 +137,7 @@
                     <div class="icon"
                         style="background-image:url('https://voyager.postman.com/icon/community-three-people-icon-postman.svg'); background-size:contain;background-repeat:no-repeat;background-position:center left">
                     </div>
-                    <h3 class="h4 card-title mb-4">Postman Community</h3>
+                    <h3 class="h4 card-title mb-4">Postman community</h3>
                     <div>
                         <p>Ask questions, leave feedback, and learn from other users in the Postman community.</p>
                     </div>
@@ -157,7 +151,7 @@
                     <div class="icon"
                         style="background-image:url('https://voyager.postman.com/icon/support-life-ring-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
                     </div>
-                    <h3 class="h4 card-title mb-4">Support Request</h3>
+                    <h3 class="h4 card-title mb-4">Support request</h3>
                     <div>
                         <p>Submit a support request and our support teams will get back to you ASAP. </p>
                     </div>
@@ -165,45 +159,6 @@
                 <div><a href="https://go.pstmn.io/help-center-signin-newrequest" rel="noopener noreferrer nofollow"
                         target="_blank">Submit a request →</a></div>
             </div>
-            <div class="col-sm-6 col-lg-3 pr-md-5 flex-column justify-content-between">
-                <div>
-                    <div class="icon"
-                        style="background-image:url('https://voyager.postman.com/icon/api-security-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
-                    </div>
-                    <h3 class="h4 card-title mb-4">Security and Compliance</h3>
-                    <div>
-                        <p>Our Trust Center provides you with access to information about security, compliance, privacy,
-                            and
-                            reliability at Postman.</p>
-                    </div>
-                </div>
-                <div><a href="https://www.postman.com/trust/">Visit Trust Center →</a></div>
-            </div>
-            <div class="col-sm-6 col-lg-3 pr-md-5 flex-column justify-content-between">
-                <div>
-                    <div class="icon"
-                        style="background-image:url('https://voyager.postman.com/icon/bug-error-icon-postman.svg');background-size:contain;background-repeat:no-repeat;background-position:center left">
-                    </div>
-                    <h3 class="h4 card-title mb-4">Twitter</h3>
-                    <div>
-                        <p>If you’re more active on Twitter share your concern or question to our support handle.</p>
-                    </div>
-                </div>
-                <div><a href="https://twitter.com/getpostman" rel="noopener noreferrer nofollow" target="_blank">Visit
-                        Twitter →</a></div>
-            </div>
         </div>
     </div>
 </section>
-
-<script type="text/javascript" src="https://cdn.statuspage.io/se-v2.js"></script>
-<script>
-    let postmanStatusAPI = new StatusPage.page({ page: 'ms1frkqnsp7r' });
-    postmanStatusAPI.status({
-        success: function (data) {
-            const { description } = data.status;
-            let statusReport = document.getElementById('statusReport')
-            statusReport.prepend(`${description}. `);
-        }
-    });
-</script>

@@ -1,0 +1,12 @@
+{
+  "name": "postman-zendesk-support-theme",
+  "version": "1.0.2",
+  "private": true,
+  "scripts": {
+    "dev": "zat theme preview",
+    "nvmrc": "echo $(node -p -e 'require(\"./package\").engines.node.split(\">=\").join(\"\")') > .nvmrc"
+  },
+  "engines": {
+    "node": "14.17.1"
+  }
+}
