@@ -9,7 +9,8 @@
     "nvmrc": "echo $(node -p -e 'require(\"./package\").engines.node.split(\">=\").join(\"\")') > .nvmrc"
   },
   "devDependencies": {
-    "prettier": "^3.0.0-alpha.0"
+    "prettier": "^3.0.0-alpha.0",
+    "semantic-release": "^19.0.5"
   },
   "engines": {
     "node": "14.17.1"

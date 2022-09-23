@@ -1,0 +1,25 @@
+name: Release
+on:
+  push:
+    branches: 
+      - develop
+      - production
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: zendesk/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: zendesk/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install dependencies
+        run: npm install --frozen-lockfile
+      - name: Release
+        run: npx semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
