@@ -4,9 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "zat theme preview",
+    "prettier:write": "prettier --write \"./**/*.{js,json,css,hbs}\"",
+    "prettier:verify": "prettier --check \"./**/*.{js,json,css,hbs}\"",
     "nvmrc": "echo $(node -p -e 'require(\"./package\").engines.node.split(\">=\").join(\"\")') > .nvmrc"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0-alpha.0"
   },
   "engines": {
     "node": "14.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/postmanlabs/postman-zendesk-support-theme"
   }
 }
