@@ -256,7 +256,7 @@ template {
   display: none;
 }
 
-/***** Font settings start *****/
+/************************* Font Family *************************/
 * {
   box-sizing: border-box;
 }
@@ -306,7 +306,7 @@ h6 {
   color: #212121;
 }
 
-
+/************************* Font Sizing Desktop *************************/
 h1,
 .h1 {
   font-size: 48px !important;
@@ -318,7 +318,6 @@ h2,
 .h2 {
   font-size: 36px !important;
   line-height: 1.1666666667;
-  /* 42px */
 }
 
 h3 {
@@ -344,7 +343,7 @@ h6 {
   margin: 0 0 8px 0;
 }
 
-/* Mobile */
+/************************* Font Sizing Mobile *************************/
 @media (max-width: 576px) {
 
   h1,
@@ -380,9 +379,9 @@ li {
   color: #212121;
 }
 
-/***** Font settings end *****/
+/************************* Font Settings End *************************/
 
-/***** Spacing start *****/
+/************************* Layout Start*************************/
 section.section-container {
   padding: 80px 0;
 }
@@ -398,6 +397,13 @@ section.grey {
 
 div.row {
   margin-bottom: 24px;
+}
+
+div.container.small {
+  color: rgb(107, 107, 107);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.57143;
 }
 
 .seperator {
@@ -417,7 +423,7 @@ hr {
   border-top: 1px solid rgba(0, 0, 0, .1) !important;
 }
 
-/***** Spacing end *****/
+/************************* Layout End *************************/
 
 a {
   text-decoration: none !important;
@@ -522,7 +528,7 @@ ul.space {
   white-space: nowrap;
 }
 
-/***** Buttons *****/
+/************************* Buttons *************************/
 .button,
 .split-button button,
 .section-subscribe button,
@@ -742,7 +748,8 @@ button.isDisabled {
   border-bottom-right-radius: unset;
 }
 
-/***** Tables *****/
+
+/************************* Tables *************************/
 .table {
   width: 100%;
   table-layout: fixed;
@@ -807,7 +814,7 @@ button.isDisabled {
   }
 }
 
-/***** Forms *****/
+/************************* Forms *************************/
 .form {
   max-width: 650px;
 }
@@ -923,8 +930,6 @@ button.isDisabled {
   color: #0265D2;
 }
 
-
-
 .skip-navigation {
   align-items: center;
   background-color: black;
@@ -962,105 +967,7 @@ button.isDisabled {
   right: auto;
 }
 
-/***** User avatar *****/
-.user-avatar {
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.avatar {
-  display: inline-block;
-  position: relative;
-}
-
-.avatar img {
-  height: 40px;
-  width: 40px;
-}
-
-.avatar .icon-agent {
-  color: #FF6C37;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  bottom: -4px;
-  background-color: #212121;
-  font-size: 17px;
-  height: 17px;
-  line-height: 17px;
-  position: absolute;
-  right: -2px;
-  text-align: center;
-  width: 17px;
-}
-
-
-
-/***** Breadcrumbs *****/
-.breadcrumbs-nav {
-  margin-bottom: 24px;
-  color: #A6A6A6;
-}
-
-@media (min-width: 768px) {
-  .breadcrumbs-nav {
-    flex-direction: row;
-  }
-}
-
-.breadcrumbs-nav .search-container {
-  max-width: 300px;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .breadcrumbs-nav .search-container {
-    flex: 0 1 300px;
-  }
-}
-
-.breadcrumbs-nav input[type="search"]::after {
-  font-size: 14px;
-}
-
-.breadcrumbs {
-  margin: 0 0 15px 0;
-  padding: 0;
-}
-
-@media (min-width: 768px) {
-  .breadcrumbs {
-    margin: 0;
-  }
-}
-
-.breadcrumbs li {
-  color: #A6A6A6;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial !important;
-  display: inline;
-  font-size: 14px;
-  max-width: 450px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.breadcrumbs li+li::before {
-  content: "/";
-  margin: 0 4px;
-}
-
-.breadcrumbs li a {
-  color: #969696;
-}
-
-.breadcrumbs li a:visited {
-  color: #A6A6A6;
-}
-
-/***** Search field *****/
+/************************* Search Field *************************/
 
 /* <form role="search"> from zendesk */
 .search {
@@ -1221,7 +1128,105 @@ button.clear-button:hover {
   right: 15px;
 }
 
-/***** Hero component *****/
+
+/************************* User Avatar *************************/
+.user-avatar {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.avatar {
+  display: inline-block;
+  position: relative;
+}
+
+.avatar img {
+  height: 40px;
+  width: 40px;
+}
+
+.avatar .icon-agent {
+  color: #FF6C37;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  bottom: -4px;
+  background-color: #212121;
+  font-size: 17px;
+  height: 17px;
+  line-height: 17px;
+  position: absolute;
+  right: -2px;
+  text-align: center;
+  width: 17px;
+}
+
+/************************* Breadcrumbs *************************/
+.breadcrumbs-nav {
+  margin-bottom: 24px;
+  color: #A6A6A6;
+}
+
+@media (min-width: 768px) {
+  .breadcrumbs-nav {
+    flex-direction: row;
+  }
+}
+
+.breadcrumbs-nav .search-container {
+  max-width: 300px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .breadcrumbs-nav .search-container {
+    flex: 0 1 300px;
+  }
+}
+
+.breadcrumbs-nav input[type="search"]::after {
+  font-size: 14px;
+}
+
+.breadcrumbs {
+  margin: 0 0 15px 0;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .breadcrumbs {
+    margin: 0;
+  }
+}
+
+.breadcrumbs li {
+  color: #A6A6A6;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial !important;
+  display: inline;
+  font-size: 14px;
+  max-width: 450px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.breadcrumbs li+li::before {
+  content: "/";
+  margin: 0 4px;
+}
+
+.breadcrumbs li a {
+  color: #969696;
+}
+
+.breadcrumbs li a:visited {
+  color: #A6A6A6;
+}
+
+
+/************************* Breadcrumbs *************************/
 .hero {
   background-image: url($homepage_background_image);
   background-position: center;
@@ -1230,14 +1235,6 @@ button.clear-button:hover {
   padding: 0 20px;
   text-align: center;
   width: 100%;
-}
-
-.hero-inner {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  max-width: 610px;
-  margin: 0 auto;
 }
 
 .page-header {
@@ -1294,7 +1291,7 @@ button.clear-button:hover {
 
 
 
-/***** Blocks *****/
+/************************* Blocks *************************/
 /* Used in Homepage#categories and Community#topics */
 .blocks-list {
   display: flex;
@@ -1395,7 +1392,9 @@ button.clear-button:hover {
 
 
 
-/***** Promoted articles *****/
+/************************* Promoted Articles *************************/
+/* Community Post and Topic pages */
+
 .promoted-articles {
   display: flex;
   flex-direction: column;
@@ -1450,7 +1449,7 @@ button.clear-button:hover {
   }
 }
 
-/***** Community section in homepage *****/
+/************************* Community section (homepage) *************************/
 .community {
   text-align: center;
 }
@@ -1485,7 +1484,7 @@ button.clear-button:hover {
   padding: 30px 0;
 }
 
-/***** Recent activity *****/
+/************************* Recent Activity *************************/
 .recent-activity-header {
   margin-bottom: 10px;
   text-align: center;
@@ -1611,7 +1610,7 @@ button.clear-button:hover {
   margin-right: 3px;
 }
 
-/***** Category pages *****/
+/************************* Category pages *************************/
 .category-container {
   display: flex;
   justify-content: flex-end;
@@ -1730,8 +1729,8 @@ button.clear-button:hover {
 
 
 
-/***** Attachments *****/
-/* Styles attachments inside posts, articles and comments */
+/***** Attachments Section *****/
+/* Styles for posts, articles and comments */
 .attachments .attachment-item {
   padding-left: 20px;
   position: relative;
@@ -1765,8 +1764,8 @@ button.clear-button:hover {
 
 
 
-/***** Comments *****/
-/* Styles comments inside articles, posts and requests */
+/************************* Comments Section *************************/
+/* Styles for articles, posts and requests */
 .comment {
   border-bottom: 1px solid #ddd;
   padding: 20px 0;
@@ -2046,8 +2045,7 @@ button.clear-button:hover {
   display: inline-block;
 }
 
-/***** Vote *****/
-/* Used in article comments, post comments and post */
+/************************* Vote Feature *************************/
 .vote {
   display: flex;
   flex-direction: column;
@@ -2104,12 +2102,11 @@ button.clear-button:hover {
   color: darken(#FF6C37, 20%);
 }
 
-/***** Actions *****/
-/* Styles admin and en user actions(edit, delete, change status) in comments and posts */
+/************************* Actions *************************/
+/* Styles for admin actions(edit, delete, change status) in comments and posts */
 .actions {
   text-align: center;
   flex-shrink: 0;
-  /*Avoid collapsing elements in Safari*/
 }
 
 .actions button {
@@ -2126,7 +2123,7 @@ button.clear-button:hover {
   justify-content: center;
 }
 
-/***** Community *****/
+/************************* Community section *************************/
 .community-hero {
   background-image: url($community_background_image);
   margin-bottom: 10px;
@@ -2169,7 +2166,7 @@ button.clear-button:hover {
   }
 }
 
-/* Community topics grid */
+/************************* Community topics grid section *************************/
 .topics {
   max-width: none;
   width: 100%;
@@ -2180,7 +2177,7 @@ button.clear-button:hover {
   margin-top: 20px;
 }
 
-/* Community topic page */
+/************************* Community topics page section *************************/
 .topic-header {
   border-bottom: 1px solid #ddd;
   font-size: 13px;
@@ -2290,7 +2287,7 @@ button.clear-button:hover {
   padding: 0 10px 0 0;
 }
 
-/***** Striped list *****/
+/************************* Striped list *************************/
 /* Used in community posts list and requests list */
 .striped-list {
   padding: 0;
@@ -2379,7 +2376,6 @@ button.clear-button:hover {
 }
 
 /***** Status labels *****/
-/* Styles labels used in posts, articles and requests */
 .status-label {
   background-color: #038153;
   border-radius: 4px;
@@ -4295,13 +4291,6 @@ button.clear-button:hover {
   }
 }
 
-/* .search-results-sidebar .sidenav-item {
-  border-radius: 4px;
-
-  margin-bottom: 4px;
-  color: #212121;
-} */
-
 .search-results-sidebar .sidenav-item:hover,
 .search-results-sidebar .sidenav-item.current {
   background-color: #e9ebed;
@@ -4796,9 +4785,9 @@ html[dir="rtl"] .notification-left-aligned {
   vertical-align: middle;
 }
 
-/* 
-Custom Styling  */
+/********************************* Zendesk Styling End *************************/
 
+/********************************* Custom Styling *************************/
 
 div.icon {
   height: 50px;
@@ -4813,7 +4802,7 @@ a {
 }
 
 
-/********* Buttons and a tags *********/
+/******** Buttons and link tags ********/
 button,
 a.primary-button,
 input.primary-button,
@@ -4842,7 +4831,7 @@ input.primary-button {
   border: none !important;
 }
 
-/* Primary Button */
+/******** Primary Button ********/
 button.primary-button,
 input.primary-button,
 a.primary-button {
@@ -4879,34 +4868,8 @@ a.primary-button:hover {
 a.button.secondary-button {
   color: #212121;
 }
-/* caret / chevron */
-.caret {
-	display: inline-block;
-	width: 15px;
-	color: #666666;
-	-webkit-transition: transform 0.25s linear;
-	-o-transition: transform 0.25s linear;
-	transition: transform 0.25s linear;
-	-webkit-transform: -webkit-transform 0.25s linear;
-	-ms-transform: rotate(0deg);
-	-webkit-transform: rotate(0deg);
-	transform: rotate(0deg);
-}
-.pm-icon-chevron-down:before {
-	content: '\e905';
-}
 
-.open > i {
-	display: inline-block;
-	transition: transform 0.25s linear 0s;
-	transform: rotate(-180deg);
-}
-
-.icon-caret {
-	top: 3;
-}
-
-/* Secondary Button */
+/******** Secondary Button ********/
 button.secondary-button,
 actions.secondary-button
 a.button.secondary-button {
@@ -4934,7 +4897,7 @@ a.button.secondary-buttonn:hover {
   text-decoration: none;
 }
 
-/********* Navbar component *********/
+/*************************** Navbar component ***************************/
 nav.pm-navbar {
   background-color: #ffffff !important;
   border-bottom: 1px solid #e6e6e6;
@@ -4955,10 +4918,10 @@ nav.pm-navbar .navbar-brand .navbar-logo-container {
 nav.navbar-logo-container img {
   border-style: none;
 }
+/**************** Nav mobile ****************/
 
 @media (max-width: 991px) {
-
-  /* Global Nav */
+/******** Global Nav ********/
   #navbarSupportedContent.navbar-collapse {
     -webkit-overflow-scrolling: touch;
     top: 55px;
@@ -4989,7 +4952,7 @@ nav.navbar-logo-container img {
     height: 100vh !important;
   }
 
-  /* Secondary Nav */
+/******** Secondary Nav ********/
   #navbarSupportedContentBottom.navbar-collapse {
     position: absolute;
     right: 0;
@@ -5004,7 +4967,7 @@ nav.navbar-logo-container img {
     transition: all 0.2s ease;
   }
 }
-
+/******** Nav General ********/
 .primary-nav {
   z-index: 100!important;
   background-color: #ffffff !important;
@@ -5031,6 +4994,13 @@ nav.navbar-logo-container img {
 	width: 100%;
 }
 
+/******** Secondary Nav ********/
+.uber-nav {
+  padding: 4px 16px !important;
+  font-size: 14px;
+}
+
+/******** Secondary Nav Left Link ********/
 span.contextual-home-link {
   color: #212121 !important;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial, sans-serif;
@@ -5056,6 +5026,7 @@ span.contextual-home-link:active {
    }
 }
 
+/******** Mobile Button ********/
 .navbar-toggler {
   padding: 0 !important;
   font-size: 12.5px;
@@ -5076,7 +5047,7 @@ span.contextual-home-link:active {
     margin-bottom: 24px;
   }
 }
-
+/******** Nav Links********/
 .nav-link {
   font-weight: 600;
   font-size: 14px;
@@ -5098,7 +5069,6 @@ span.contextual-home-link:active {
   margin: auto 0;
 }
 
-/* Hide Default Arrow */
 .nav-link::after {
   display: none !important;
 }
@@ -5117,7 +5087,7 @@ span.contextual-home-link:active {
   transform: rotate(0deg);
 }
 
-/* Arrow Transitions Up on .show */
+/* Arrow Transitions on .show */
 .nav-link > svg.show {
   display: inline-block;
   transform: rotate(180deg);
@@ -5154,9 +5124,8 @@ span.contextual-home-link:active {
   color: #6b6b6b !important;
 }
 
-/* Icon Transition to X start*/
+/******** Navbar mobile icon transitions ********/
 span.navbar-toggler-icon {
-  /* background image none removes the bars */
   background-image: none !important;
   display: inline-block;
   width: 1.5em;
@@ -5252,12 +5221,7 @@ div.icon-bar.open>span:nth-child(4) {
   visibility: hidden;
 }
 
-/* Icon Transition to X end */
-.uber-nav {
-  padding: 4px 16px !important;
-  font-size: 14px;
-}
-
+/******** Navbar dropdown menus ********/
 .dropdown-menu {
   padding: 20px !important;
   font-size: 14px !important;
@@ -5308,8 +5272,6 @@ a.nav-link.uber-nav,
 a.nav-link.uber-nav:active {
   font-weight: 400;
 }
-
-/* Postman Logo and Home Logo switching */
 
 .navbar-global .navbar-brand {
   align-items: center;
@@ -5396,6 +5358,8 @@ a.nav-link.uber-nav:active {
     margin-top: 5px;
   }
 }
+
+/******** Navbar Mobile Full Height ********/
 @media screen and (max-width: 992px) {
   /* Used for Global Nav */
   body.lock {
@@ -5416,7 +5380,7 @@ a.nav-link.uber-nav:active {
   }
 }
 
-/* Navbar buttons */
+/******** Navbar Buttons ********/
 #icon-wrap-two {
   margin-top: 8px;
 	margin-left: 0px;
@@ -5439,9 +5403,7 @@ a.nav-link.uber-nav:active {
 	transition: 0.3s ease-in;
 }
 
-
-
-/********* Footer component *********/
+/******** Footer Section ********/
 section#footer {
   background-color: rgb(255, 255, 255);
   padding-top: 40px !important;
@@ -5453,14 +5415,6 @@ section#footer {
     padding-top: 80px !important;
     padding-bottom: 80px !important;
   }
-}
-
-div.container.small {
-
-  color: rgb(107, 107, 107);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.57143;
 }
 
 .footer-img {
@@ -5551,7 +5505,7 @@ div.container.small {
   color: lighten(#212121, 20%);
 }
 
-/***** Social share links *****/
+/******** Social Share Links ********/
 
 ul.share {
   display: flex;
@@ -5567,10 +5521,8 @@ ul.share a svg {
   color: #C2C2C2;
 }
 
-/***** Article *****/
+/******** Article page ********/
 
-
-/* Author + Follow button */
 .article-author {
   margin-bottom: 10px;
 }
@@ -5615,7 +5567,7 @@ ul.article-last-updated li {
   color: #6B6B6B;
 }
 
-/* Article copy */
+/******** Article page copy ********/
 .article-body a {
   color: #0265D2;
   text-decoration: underline;
@@ -5807,9 +5759,7 @@ ul.article-last-updated li {
   margin-bottom: 15px;
 }
 
-/******* Postman Status Icons 
-https://status.postman.com/api 
-*******/
+/******* Postman Status Icons (https://status.postman.com/api) *******/
 .icon-indicator {
   margin-right: 8px;
   display: inline-block;
@@ -5832,6 +5782,7 @@ https://status.postman.com/api
 .icon-indicator.status-blue {
   color: #097bed;
 }
+
 p[dir="auto"] {
   padding: 12px 0;
   margin: 0;
