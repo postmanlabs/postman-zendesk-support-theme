@@ -1,4 +1,4 @@
-![Postman logo](https://assets.getpostman.com/common-share/postman-github-logo.png "Postman logo")
+![Postman logo](https://assets.getpostman.com/common-share/postman-github-logo.png 'Postman logo')
 
 # Postman Zendesk Support Center
 
