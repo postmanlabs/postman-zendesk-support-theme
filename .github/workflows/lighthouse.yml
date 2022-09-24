@@ -10,7 +10,7 @@ jobs:
       - run: "zip --exclude=*.git* -r theme.zip ."
       - uses: zendesk/setup-ruby@v1
         with:
-          ruby-version: '3.1.0p0'
+          ruby-version: '3.1.2'
       - run: gem install faraday -v 2.5.2
       - run: gem install faraday_middleware -v 1.2.0
       - run: npm install puppeteer@18.0.5
