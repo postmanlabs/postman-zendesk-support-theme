@@ -10,10 +10,10 @@ jobs:
       - run: "zip --exclude=*.git* -r theme.zip ."
       - uses: zendesk/setup-ruby@v1
         with:
-          ruby-version: '2.6'
-      - run: gem install faraday -v 0.16.0
-      - run: gem install faraday_middleware -v 0.13.1
-      - run: npm install puppeteer@2.1.1
+          ruby-version: '3.1.0p0'
+      - run: gem install faraday -v 2.5.2
+      - run: gem install faraday_middleware -v 1.2.0
+      - run: npm install puppeteer@18.0.5
       - run: ruby ./.github/workflows/theme_upload.rb
         env:
           zendesk_email: ${{ secrets.zendesk_email }}
