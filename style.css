@@ -5561,6 +5561,9 @@ ul.article-last-updated li {
 }
 
 /******** Article page copy ********/
+.article-body h2 {
+  margin-bottom: 24px !important;
+}
 .article-body a {
   color: #0265d2;
   text-decoration: underline;
