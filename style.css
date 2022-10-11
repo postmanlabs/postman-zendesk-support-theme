@@ -394,7 +394,7 @@ section.section-container {
 
 /***** Spacing start *****/
 section.section-container-body {
-  padding: 40px 0;
+  padding: 24px 0;
 }
 
 section.grey {
@@ -1638,13 +1638,11 @@ button.clear-button:hover {
 }
 
 .section-tree-title {
-  margin-bottom: 0;
-  font-size: 18px;
-  font-weight: 600;
+  margin-bottom: 8px;
 }
 
 .section-tree-title a {
-  color: #212121;
+  color: #212121 !important;
 }
 
 .section-tree .see-all-articles {
@@ -1653,12 +1651,28 @@ button.clear-button:hover {
 }
 
 .article-list-item {
-  font-size: 16px;
-  padding: 15px 0;
+  margin: 1.4rem 0;
+  display: list-item;
+  list-style-type: none;
+  background-image: url(https://voyager.postman.com/icon/starburst-four-point.svg);
+  background-position: 0px 6px;
+  background-size: 10px;
+  background-repeat: no-repeat;
+  position: relative;
+  padding-left: 32px;
 }
 
 .article-list-item a {
-  color: #212121;
+  color: rgb(2, 101, 210);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.article-list-item a:hover{
+  text-decoration: none;
+  border-bottom: 1px solid rgb(2, 101, 210);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out 0s;
 }
 
 .icon-star {
@@ -5632,7 +5646,7 @@ ul.article-last-updated li {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 40px 40px 40px 0;
+  padding: 24px 0;
 }
 
 .article-comment-count {
