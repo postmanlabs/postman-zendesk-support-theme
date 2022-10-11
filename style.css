@@ -5607,6 +5607,7 @@ ul.article-last-updated li {
 
 .article-body ul {
   list-style-type: disc;
+  margin: 0;
 }
 
 .article-body :not(pre) > code {
@@ -5635,6 +5636,18 @@ ul.article-last-updated li {
 
 .article-body > p:last-child {
   margin-bottom: 0;
+}
+
+.article-body li {
+  margin: 1.4rem 0;
+  display: list-item;
+  list-style-type: none;
+  background-image: url(https://voyager.postman.com/icon/starburst-four-point.svg);
+  background-position: 0px 6px;
+  background-size: 10px;
+  background-repeat: no-repeat;
+  position: relative;
+  padding-left: 32px;
 }
 
 .article-content {
