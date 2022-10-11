@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-lg-8 col-12">
         <article>
-          <header class="mb-4">
+          <header>
             <h1 title="{{article.title}}">
               {{article.title}}
               {{#if article.internal}}
@@ -84,17 +84,18 @@
           <hr />
 
           <div class="article-footer">
-            {{#with article}}
-              <div class="article-votes">
-                <span class="article-votes-question" id="article-votes-label">
-                  <h6 class="mb-3">{{t 'was_this_article_helpful'}}</h6>
-                </span>
-                <div role="group" aria-labelledby="article-votes-label">
-                  {{vote 'up' role='radio' class='button article-vote article-vote-up'  class="secondary-button text-left"}}
-                  {{vote 'down' role='radio' class='button article-vote article-vote-down'  class="secondary-button text-left"}}
-                </div>
-              </div>
-            {{/with}}
+                    {{#with article}}
+          <div class="article-votes">
+            <span class="article-votes-question" id="article-votes-label">            <h6 class="mb-3">{{t 'was_this_article_helpful'}}</h6></span>
+            <div class="article-votes-controls" role="group" aria-labelledby="article-votes-label">
+              {{vote 'up' role='radio' class='button article-vote article-vote-up' selected_class="button-primary"}}
+              {{vote 'down' role='radio' class='button article-vote article-vote-down' selected_class="button-primary"}}
+            </div>
+            <small class="article-votes-count d-none">
+              {{vote 'label' class='article-vote-label'}}
+            </small>
+          </div>
+        {{/with}}
             {{#if settings.show_article_sharing}}
               <div class="article-share">
                 <h6 class="mb-3">Share this article</h6>{{share}}
