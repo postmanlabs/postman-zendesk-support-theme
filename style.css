@@ -507,10 +507,10 @@ textarea:focus {
 }
 
 ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  padding-left: 0 !important;
+list-style: none;
+margin: 0;
+padding: 0;
+padding-left: 0 !important;
 }
 
 ul.space {
@@ -1638,7 +1638,7 @@ button.clear-button:hover {
 }
 
 .section-tree-title {
-  margin-bottom: 8px;
+  margin-bottom: 24px;
 }
 
 .section-tree-title a {
@@ -1647,11 +1647,11 @@ button.clear-button:hover {
 
 .section-tree .see-all-articles {
   display: block;
-  padding: 15px 0;
+  padding: 16px 0;
 }
 
 .article-list-item {
-  margin: 1.4rem 0;
+  margin: 12px 0;
   display: list-item;
   list-style-type: none;
   background-image: url(https://voyager.postman.com/icon/starburst-four-point.svg);
@@ -1660,6 +1660,7 @@ button.clear-button:hover {
   background-repeat: no-repeat;
   position: relative;
   padding-left: 32px;
+  line-height: 1.625;
 }
 
 .article-list-item a {
@@ -5517,7 +5518,7 @@ ul.share a svg {
 /******** Article page ********/
 
 .article-author {
-  margin-bottom: 10px;
+  margin-bottom: 24px;
 }
 
 .icon-lock {
@@ -5586,17 +5587,9 @@ ul.article-last-updated li {
 
 .article-body ul,
 .article-body ol {
-  padding-left: 20px;
-  list-style-position: outside;
-  margin: 20px 0 20px 20px;
-}
-
-[dir='rtl'] .article-body ul,
-[dir='rtl'] .article-body ol {
-  padding-right: 20px;
   padding-left: 0;
-  margin-left: 0;
-  margin-right: 20px;
+  list-style-position: outside;
+  margin: 12px 0 !important;
 }
 
 .article-body ul > ul,
@@ -5642,7 +5635,7 @@ ul.article-last-updated li {
 }
 
 .article-body li {
-  margin: 1.4rem 0;
+  margin: 12px 0;
   display: list-item;
   list-style-type: none;
   background-image: url(https://voyager.postman.com/icon/starburst-four-point.svg);
