@@ -5634,16 +5634,29 @@ ul.article-last-updated li {
   margin-bottom: 0;
 }
 
-.article-body li {
-  margin: 12px 0;
-  display: list-item;
+.article-body ul li {
+  margin: 24px 0;
   list-style-type: none;
   background-image: url(https://voyager.postman.com/icon/starburst-four-point.svg);
   background-position: 0px 6px;
   background-size: 10px;
   background-repeat: no-repeat;
-  position: relative;
   padding-left: 32px;
+}
+
+.article-body ul li ol li {
+  list-style-type: decimal;
+  list-style: inside;
+}
+
+.article-body ol li {
+  color: rgb(33, 33, 33);
+  line-height: 1.5;
+  position: relative;
+  display: list-item;
+  padding-left: 32px;
+  margin-left: 1rem;
+  margin-bottom: 24px;
 }
 
 .article-content {
