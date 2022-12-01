@@ -5606,6 +5606,11 @@ ul.article-last-updated li {
   margin: 0;
 }
 
+.article-body ol {
+  list-style-type: decimal;
+  margin: 0;
+}
+
 .article-body :not(pre) > code {
   background: darken(#ffffff, 3%);
   border: 1px solid #ddd;
@@ -5654,7 +5659,7 @@ ul.article-last-updated li {
   line-height: 1.5;
   position: relative;
   display: list-item;
-  padding-left: 32px;
+  padding-left: 16px;
   margin-left: 1rem;
   margin-bottom: 24px;
 }
