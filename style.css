@@ -298,6 +298,7 @@ h3 {
   line-height: 1.16667;
   letter-spacing: 0.48px;
   margin: 0px 0px 16px;
+  font-weight: 600 !important;
   color: #212121;
   font-feature-settings: 'kern', 'ss01', 'salt';
 }
