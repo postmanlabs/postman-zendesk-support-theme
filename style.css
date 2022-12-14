@@ -297,7 +297,7 @@ h3 {
     Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
   line-height: 1.16667;
   letter-spacing: 0.48px;
-  margin: 0px 0px 16px;
+  margin: 0px 0px 16px !important;
   font-weight: 600 !important;
   color: #212121;
   font-feature-settings: 'kern', 'ss01', 'salt';
@@ -329,7 +329,7 @@ h2,
 }
 
 h3 {
-  font-size: 28px 36px !important;
+  font-size: 28px!important;
 }
 
 h3.h4 {
@@ -357,25 +357,25 @@ h6 {
     font-size: 36px !important;
     line-height: 1;
     letter-spacing: 0.64px;
-    margin: 0 0 16px 0;
+    margin: 0 0 16px 0 !important;
   }
 
   h2 {
     font-size: 28px !important;
     line-height: 1.1428571429;
     letter-spacing: 0.48px;
-    margin: 0 0 16px 0;
+    margin: 0 0 16px 0 !important;
   }
 
   h3 {
-    font-size: 24px;
+    font-size: 24px !important;
     line-height: 1.5;
     letter-spacing: 0.64px;
-    margin: 0 0 16px 0;
+    margin: 0 0 16px 0 !important;
   }
 
   h3.h4 {
-    font-size: 24px;
+    font-size: 24px !important;
     line-height: 1.2;
   }
 }
