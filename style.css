@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'Degular Display Semibold';
-  src: url('./assets/fonts/Degular-display-semibold.woff2') format('woff2');
+  src: url('./assets/fonts/Degular-display-semibold.woff2');
   font-weight: 600;
   font-style: normal;
   font-display: block;
@@ -16,7 +16,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url('./assets/fonts/Inter-regular.woff2') format('woff2');
+  src: url('./assets/fonts/Inter-regular.woff2');
 }
 
 @font-face {
@@ -24,7 +24,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: block;
-  src: url('./assets/fonts/Inter-semibold.woff2') format('woff2');
+  src: url('./assets/fonts/Inter-semibold.woff2');
 }
 
 @font-face {
@@ -32,7 +32,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: block;
-  src: url('./assets/fonts/Ibm-Plex-Mono-v7-Latin-Regular.woff2') format('woff2');
+  src: url('./assets/fonts/Ibm-Plex-Mono-v7-Latin-Regular.woff2');
 }
 
 /**** Base *****/
@@ -288,6 +288,16 @@ p.small,
 a.small {
   font-size: 14px;
   color: #6b6b6b;
+}
+
+p.note {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid rgb(237, 237, 237);
+  border-radius: 10px;
+  padding: 16px 24px;
+  background-color: rgb(249, 249, 249);
+  margin-left: 0;
 }
 
 h1,
