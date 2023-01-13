@@ -5449,8 +5449,8 @@ section#footer {
 
 .footer-col-title {
   line-height: 1.4;
-  margin-bottom: 8px;
-  font-family: 'Inter Semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
+  margin-bottom: 8px !important;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
     Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
   font-weight: 600;
   color: rgb(112, 112, 112);
