@@ -643,8 +643,8 @@ document.addEventListener('DOMContentLoaded', function () {
   //  animations finish
 });
 
-// MW-Notification Banner
-if (window.location.href == "https://support.postman.com/hc/en-us/") {
+// Notification Banner
+if (window.location.href == "https://support.postman.com/hc/en-us") {
   document.addEventListener('DOMContentLoaded', async function () {
     // Article label to be considered for the alerts
     const label = 'alert'
@@ -677,8 +677,9 @@ if (window.location.href == "https://support.postman.com/hc/en-us/") {
         <div class="ns-box ns-bar ns-effect-slidetop ns-type-notice ns-show">
           <div class="ns-box-inner">
             ${showArticleBody ? `<p>${body}</p>` : ''} 
+            <span class="ns-close">
+            </span>
           </div>
-          <span class="ns-close"></span>
         </div>
       `
   
