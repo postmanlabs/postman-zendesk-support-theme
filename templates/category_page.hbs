@@ -21,16 +21,13 @@
 </section>
 <section class="section-container-body">
   <div class="container">
-
     <div class="row">
       {{#each sections}}
-
         <div class="col-12 col-lg-5 mb-5">
           <h2 class="section-tree-title">
             <a href="{{url}}">{{name}}</a>
           </h2>
           {{#if articles}}
-
             <ul>
               {{#each articles}}
                 <li class="article-list-item{{#if promoted}} article-promoted{{/if}}">
@@ -52,14 +49,11 @@
                 </li>
               {{/each}}
             </ul>
-
-
             {{#if more_articles}}
             <div class="mt-3">
               <a href="{{url}}" class="see-all-articles">
                 {{t 'show_all_articles' count=article_count}} →
-              </a>
-                            
+              </a>                   
             </div>
             {{/if}}
         </div>
