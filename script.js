@@ -647,7 +647,7 @@ document.addEventListener('DOMContentLoaded', function () {
 if (window.location.href == "https://support.postman.com/hc/en-us") {
   document.addEventListener('DOMContentLoaded', async function () {
     // Article label to be considered for the alerts
-    const label = 'alert'
+    const label = 'Alert'
   
     // Show the article body within the alertbox? (Boolean: true/false)
     const showArticleBody = true
