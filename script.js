@@ -673,7 +673,7 @@ if (window.location.href == "https://support.postman.com/hc/en-us") {
       const title = articles[i].title
       const body = articles[i].body
   
-      const html = `
+      const html = body !== null ? (`
         <div class="ns-box ns-bar ns-effect-slidetop ns-type-notice ns-show">
           <div class="ns-box-inner">
             ${showArticleBody ? `<p>${body}</p>` : ''} 
@@ -681,7 +681,7 @@ if (window.location.href == "https://support.postman.com/hc/en-us") {
             </span>
           </div>
         </div>
-      `
+      `) : `<div class='d-none no-alert'/>`
   
       // Append current alert to the alertbox container
       document.querySelector('.alertbox').insertAdjacentHTML('beforeend', html)
@@ -709,4 +709,4 @@ jQuery(document).ready(function () {
   window.pmt('scalp', ['pm-analytics', 'load', document.location.pathname]);
   window.pmt('trackClicks', []);
 
-});
+})
