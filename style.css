@@ -32,8 +32,8 @@
   font-style: normal;
   font-weight: 600;
   font-display: block;
-  src:   url('https://voyager.postman.com/font/inter/Inter-SemiBoldr.woff2') format('woff2'),
-  url('https://voyager.postman.com/font/inter/Inter-SemiBoldr.woff') format('woff'), 
+  src:   url('https://voyager.postman.com/font/inter/Inter-SemiBold.woff2') format('woff2'),
+  url('https://voyager.postman.com/font/inter/Inter-SemiBold.woff') format('woff'), 
 }
 
 @font-face {
