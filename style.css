@@ -3,9 +3,15 @@
 /***** Normalize.css *****/
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
+
 @font-face {
   font-family: 'Degular Display Semibold';
-  src: url('./assets/fonts/Degular-display-semibold.woff2');
+  
+  src:   
+  url('https://voyager.postman.com/font/degular/Degular_Display-Semibold.ttf') format('ttf'),
+  url('https://voyager.postman.com/font/degular/Degular_Display-Semibold.woff2') format('woff2'),
+  url('https://voyager.postman.com/font/degular/Degular_Display-Semibold.woff2') format('woff'), 
+  ;
   font-weight: 600;
   font-style: normal;
   font-display: block;
@@ -16,7 +22,9 @@
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url('./assets/fonts/Inter-regular.woff2');
+  src:   
+  url('https://voyager.postman.com/font/inter/Inter-Regular.woff2') format('woff2'),
+  url('https://voyager.postman.com/font/inter/Inter-Regular.woff') format('woff'), 
 }
 
 @font-face {
@@ -24,7 +32,8 @@
   font-style: normal;
   font-weight: 600;
   font-display: block;
-  src: url('./assets/fonts/Inter-semibold.woff2');
+  src:   url('https://voyager.postman.com/font/inter/Inter-SemiBoldr.woff2') format('woff2'),
+  url('https://voyager.postman.com/font/inter/Inter-SemiBoldr.woff') format('woff'), 
 }
 
 @font-face {
@@ -32,7 +41,8 @@
   font-style: normal;
   font-weight: 600;
   font-display: block;
-  src: url('./assets/fonts/Ibm-Plex-Mono-v7-Latin-Regular.woff2');
+  src:   url('https://voyager.postman.com/font/plexMono/ibm-plex-mono-v7-latin-regular.woff2') format('woff2'),
+  url('https://voyager.postman.com/font/plexMono/ibm-plex-mono-v7-latin-regular.woff') format('woff'), 
 }
 
 /**** Base *****/
