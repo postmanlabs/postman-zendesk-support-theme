@@ -8,10 +8,11 @@
   font-family: 'Degular Display Semibold';
   
   src:   
+  local('//assets/Degular-display-semibold.woff2')
   url('https://voyager.postman.com/font/degular/Degular_Display-Semibold.ttf') format('ttf'),
   url('https://voyager.postman.com/font/degular/Degular_Display-Semibold.woff2') format('woff2'),
   url('https://voyager.postman.com/font/degular/Degular_Display-Semibold.woff2') format('woff'), 
-  ;
+;
   font-weight: 600;
   font-style: normal;
   font-display: block;
@@ -22,7 +23,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src:   
+  src:  
+  local('//assets/Inter-regular.woff2') 
   url('https://voyager.postman.com/font/inter/Inter-Regular.woff2') format('woff2'),
   url('https://voyager.postman.com/font/inter/Inter-Regular.woff') format('woff'), 
 }
@@ -32,7 +34,9 @@
   font-style: normal;
   font-weight: 600;
   font-display: block;
-  src:   url('https://voyager.postman.com/font/inter/Inter-SemiBold.woff2') format('woff2'),
+  
+  src:   local('//assets/Inter-semibold.woff2') 
+    url('https://voyager.postman.com/font/inter/Inter-SemiBold.woff2') format('woff2'),
   url('https://voyager.postman.com/font/inter/Inter-SemiBold.woff') format('woff'), 
 }
 
@@ -41,7 +45,8 @@
   font-style: normal;
   font-weight: 600;
   font-display: block;
-  src:   url('https://voyager.postman.com/font/plexMono/ibm-plex-mono-v7-latin-regular.woff2') format('woff2'),
+  src: local('//assets/Ibm-Plex-Mono-v7-Latin-Regular.woff2')
+     url('https://voyager.postman.com/font/plexMono/ibm-plex-mono-v7-latin-regular.woff2') format('woff2'),
   url('https://voyager.postman.com/font/plexMono/ibm-plex-mono-v7-latin-regular.woff') format('woff'), 
 }
 
@@ -847,9 +852,12 @@ button.isDisabled {
 .form-field label {
   color: rgb(107, 107, 107);
   font-size: 14px;
+  font-weight: 600;
   margin: 4px 0px;
   text-align: left !important;
   width: 100% !important;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial !important;
 }
 
 .form-field input {
