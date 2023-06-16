@@ -558,7 +558,7 @@ document.addEventListener('DOMContentLoaded', function () {
       success: function (data) {
         const { indicator, description } = data.status;
         if (indicator === 'none') {
-          statusResponse.prepend(`${description}. `);
+          statusResponse.prepend(`All systems operational. `);
           setStatusIcon(`icon-indicator fa-solid fa-check status-green`);
         } else if (indicator === 'minor') {
           statusResponse.prepend(`${description}. `);
