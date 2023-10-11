@@ -20,40 +20,130 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
-          aria-expanded="false">
+      
+    <li class="nav-item dropdown">
+    <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdownProductMenuLink"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
           Product
-          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
-            fill="#6b6b6b">
+          <svg
+            class="arrow-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="#6b6b6b"
+          >
             <g>
-              <path
-                d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z" />
+              <path d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z" />
             </g>
           </svg>
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="https://www.postman.com/product/what-is-postman/">
-            What is Postman?
-          </a>
-          <a class="dropdown-item" href="https://www.postman.com/product/api-repository/">
-            API Repository
-          </a>
-          <a class="dropdown-item" href="https://www.postman.com/product/tools/">
-            Tools
-          </a>
-          <a class="dropdown-item" href="https://www.postman.com/product/governance/">
-            Governance
-          </a>
-          <a class="dropdown-item" href="https://www.postman.com/product/workspaces/">
-            Workspaces
-          </a>
-          <a class="dropdown-item" href="https://www.postman.com/product/integrations/">
-            Integrations
-          </a>
-          <a class="dropdown-item app-cta" href="https://www.postman.com/downloads/">
-            Get Started Free →
-          </a>
+        <div
+          class="dropdown-menu"
+          aria-labelledby="navbarDropdownProductMenuLink"
+        >
+          <div class="row dropdown-col-menu">
+            <div class="col-12 col-sm-6 col-md-4 dropdown-col">
+              <h6 class="dropdown-header">Getting Started</h6>
+              <a 
+                class="dropdown-item" 
+                href="https://www.postman.com/product/what-is-postman/" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'what-is-postman');"
+              >
+                What is Postman?
+              </a>
+              <a 
+                class="dropdown-item" 
+                href="https://www.postman.com/customers/" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'customers');"
+              >
+                Customer Stories
+              </a>
+              <a 
+                class="dropdown-item app-cta" 
+                href="https://www.postman.com/downloads/" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'download-postman');"
+              >
+                Download Postman →
+              </a>
+            </div>
+            <div class="col-12 col-md-4 dropdown-col">
+              <h6 class="dropdown-header">
+                API Platform
+              </h6>
+              <a 
+                class="dropdown-item" 
+                href="https://www.postman.com/product/workspaces/" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'collaborate-in-workspaces');"
+              >
+                Collaborate in Workspaces
+              </a>
+              <a 
+                class="dropdown-item" 
+                href="https://www.postman.com/collection/" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'collection');"
+              >
+                Organize with Collections
+              </a>
+              <a 
+                class="dropdown-item" 
+                href="https://www.postman.com/product/api-client" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'product-api-client');"
+              >
+                Explore the API Client
+              </a>
+              <a 
+                class="dropdown-item" 
+                href="https://www.postman.com/product/flows" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'build-postman-flows');"
+              >
+                Build Postman Flows
+              </a>
+              <a
+                class="dropdown-item"
+                href="https://www.postman.com/product/postbot" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'work-smarter-with-postbot');"
+              >
+                Work smarter with Postbot
+              </a>
+              <a
+                class="dropdown-item"
+                href="https://www.postman.com/product/tools/" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'browse-api-tools');"
+              >
+                Browse API Tools
+              </a>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 dropdown-col">
+              <h6 class="dropdown-header">Enterprise Solutions</h6>
+              <a 
+                class="dropdown-item" 
+                href="https://www.postman.com/solutions/enterprise-essentials/" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'enterprise-essentials');"
+              >
+                Enterprise Essentials 
+              </a>
+              <a
+                class="dropdown-item"
+                href="https://www.postman.com/solutions/api-test-automation/" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'api-test-automation');"
+              >
+                API Test Automation
+              </a>
+              <a
+                class="dropdown-item"
+                href="https://www.postman.com/solutions/internal-api-management/" 
+                onClick="ga('send', 'event', 'global-navbar', 'Click', 'internal-api-management');"
+              >
+                Internal API Management
+              </a>
+            </div>
+          </div>
         </div>
       </li>
       <li class="nav-item">
@@ -61,50 +151,10 @@
           Pricing
         </a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
-          aria-expanded="false">
+        <li class="nav-item">
+        <a class="nav-link" href="https://www.postman.com/postman-enterprise/">
           Enterprise
-          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
-            fill="#6b6b6b">
-            <g>
-              <path
-                d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z" />
-            </g>
-          </svg>
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <div class="row dropdown-col-menu mb-0">
-            <div class="col-sm-6 col-md-6 dropdown-col">
-              <h6 class="dropdown-header">Learn More</h6>
-              <a class="dropdown-item" href="https://www.postman.com/postman-enterprise/">
-                Postman Enterprise
-              </a>
-              <a class="dropdown-item" href="https://www.postman.com/customers/">
-                Customers
-              </a>
-              <a class="dropdown-item" href="https://www.postman.com/company/contact-sales/">
-                Contact Sales
-              </a>
-            </div>
-            <div class="col-sm-6 col-md-6 dropdown-col">
-              <h6 class="dropdown-header">Solutions</h6>
-              <a class="dropdown-item" href="https://www.postman.com/solutions/enterprise-essentials/"
-                onClick="ga('send', 'event', 'global-navbar', 'Click', 'enterprise-essentials');">
-                Enterprise Essentials
-              </a>
-              <a class="dropdown-item" href="https://www.postman.com/solutions/api-test-automation/"
-                onClick="ga('send', 'event', 'global-navbar', 'Click', 'api-test-automation');">
-                Postman for API Test Automation
-              </a>
-              <a class="dropdown-item" href="https://www.postman.com/solutions/internal-api-management/"
-                onClick="ga('send', 'event', 'global-navbar', 'Click', 'internal-api-management');" target="_blank"
-                rel="noreferrer">
-                Postman for Internal API Management
-              </a>
-            </div>
-          </div>
-        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown"
@@ -194,11 +244,15 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="https://www.postman.com/explore">
-          Explore
+          Public API Network
         </a>
       </li>
     </ul>
     <div class="form-inline my-2 my-lg-0 ms-auto">
+      <a class="button secondary-button" href="/" title="Contact Sales"
+        onClick="ga('send', 'event', 'global-navbar', 'Click', 'contact-sales');">
+        Contact Sales
+      </a>
       <a class="button secondary-button d-none nav-sign-in-button" href="/" title="Sign in"
         onClick="ga('send', 'event', 'global-navbar', 'Click', 'sign-in');">
         Sign In
@@ -214,8 +268,6 @@
   </div>
   </div>
 </nav>
-
-
 <!-- Support Center Secondary Navbar -->
 <nav class="pm-navbar navbar sticky navbar-expand-lg navbar-light nav-secondary">
   <a class="navbar-brand" href="/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'support-center-home');">

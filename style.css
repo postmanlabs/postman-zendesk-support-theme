@@ -342,22 +342,25 @@ h6 {
 }
 
 /************************* Font Sizing Desktop *************************/
-h1,
-.h1 {
-  font-size: 48px !important;
+h1, .h1 {
+  font-size: 48px;
   line-height: 1;
-  margin: 0 0 24px 0;
+  letter-spacing: 0.64px;
+  margin: 0px 0px 24px;
+}
+h2, .h2 {
+  font-size: 36px;
+  letter-spacing: 0.48px;
+  line-height: 1.16667;
+  margin: 0px 0px 16px;
+}
+h3, .h3 {
+  font-size: 28px;
+  letter-spacing: 0.64px;
+  line-height: 1.14286;
+  margin: 0px 0px 16px;
 }
 
-h2,
-.h2 {
-  font-size: 36px !important;
-  line-height: 1.1666666667;
-}
-
-h3 {
-  font-size: 28px !important;
-}
 
 h3.h4 {
   font-size: 20px !important;
@@ -411,6 +414,7 @@ h6 {
 p,
 li {
   color: #212121;
+  line-height: 1.625;
 }
 
 /************************* Font Settings End *************************/
@@ -1071,7 +1075,7 @@ button.clear-button {
   position: absolute;
   right: 20px;
   z-index: 0;
-  top: 20px;
+  top: 22px;
 }
 
 @media screen and (max-width: 992px) {
@@ -4842,7 +4846,7 @@ a.primary-button,
 input.primary-button,
 a.secondary-button,
 a.third-button {
-  padding: 4px 12px;
+  padding: 6px 12px;
   text-align: center;
   white-space: nowrap;
   border-radius: 5px;
@@ -5305,6 +5309,9 @@ a.dropdown-item.app-cta {
   color: #303030 !important;
   background-color: #f8f9fa !important;
 }
+.dropdown-item:hover {
+  background-color: #f8f9fa !important;
+}
 
 a.nav-link.uber-nav,
 a.nav-link.uber-nav:active {
@@ -5328,7 +5335,7 @@ a.nav-link.uber-nav:active {
 
 @media screen and (min-width: 992px) {
   .dropdown-col-menu {
-    width: 600px;
+    width: 48em;
   }
 
   .dropdown-col {
@@ -5337,7 +5344,7 @@ a.nav-link.uber-nav:active {
 }
 
 .dropdown-header {
-  color: rgb(91, 91, 91);
+  color: #212121 !important;
   font-size: 16px !important;
   padding: 8px 16px !important;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
@@ -5691,6 +5698,7 @@ ul.article-last-updated li {
 .article-body ul li ol li {
   list-style-type: decimal;
   list-style: inside;
+  
 }
 /* unordered lists with stars */
 .article-body ul li {
