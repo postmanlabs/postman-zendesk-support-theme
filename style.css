@@ -5335,7 +5335,7 @@ a.nav-link.uber-nav:active {
 
 @media screen and (min-width: 992px) {
   .dropdown-col-menu {
-    width: 48em;
+    width: 50em;
   }
 
   .dropdown-col {
