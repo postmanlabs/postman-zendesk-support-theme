@@ -5312,6 +5312,9 @@ a.dropdown-item.app-cta {
 .dropdown-item:hover {
   background-color: #f8f9fa !important;
 }
+a.nav-link:focus {
+ outline: 0 !important;
+}
 
 a.nav-link.uber-nav,
 a.nav-link.uber-nav:active {
