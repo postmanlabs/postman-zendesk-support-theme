@@ -34,10 +34,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: block;
-  
-  src:   local('//assets/Inter-semibold.woff2') 
-    url('https://voyager.postman.com/font/inter/Inter-SemiBold.woff2') format('woff2'),
-  url('https://voyager.postman.com/font/inter/Inter-SemiBold.woff') format('woff'), 
+  src:local('//assets/Inter-semibold.woff2') 
 }
 
 @font-face {
@@ -1012,10 +1009,12 @@ input.search {
   height: 40px;
 }
 
+/* Search on Homepage Hero */
 .search-full input[type='search'] {
   appearance: none;
   border: none;
   border-radius: 5px;
+  font-size: 13px;
   -webkit-appearance: none;
   box-sizing: border-box;
   color: #212121;
@@ -1025,11 +1024,25 @@ input.search {
   line-height: 20px;
   margin: 0;
   outline: 0;
-  padding: 4px 12px 4px 12px !important;
+  padding: 4px 16px 4px 32px;
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   -webkit-appearance: none;
   width: 256px;
 }
+
+/* Navbar Search */ 
+.search-full.nav-search__form input[type='search'] {
+  background-color: transparent;
+  font-size: 13px;
+  color: #212121;
+  padding: 4px 24px 4px 26px !important;
+  height: auto !important;
+  margin: 0px;
+  width: 256px;
+  border-radius: 5px;
+}
+
+
 
 @media screen and (max-width: 992px) {
   .search-full input[type='search'] {
@@ -1041,6 +1054,10 @@ input.search {
   border: 1px solid rgb(116, 174, 246);
   box-shadow: rgb(116 174 246) 0px 0px 0px 2px;
   outline: none;
+}
+
+input button.clear-button{
+  display: none;
 }
 
 .search input[type='search']::-webkit-search-decoration,
@@ -1059,38 +1076,7 @@ input.search {
 }
 
 button.clear-button {
-  background: rgb(255, 255, 255);
-  border: none;
-  box-sizing: border-box;
-  box-shadow: none;
-  color: rgb(166, 166, 166);
-  font-size: 14px;
-  height: 10px;
-  line-height: 20px;
-  margin: 0px;
-  outline: 0px;
-  padding: 0px 12px;
-  transition: border-color 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
-  appearance: none;
-  position: absolute;
-  right: 20px;
-  z-index: 0;
-  top: 22px;
-}
-
-@media screen and (max-width: 992px) {
-  button.clear-button {
-    top: 96px;
-  }
-}
-
-button.clear-button:hover {
-  background-color: transparent;
-  color: #212121;
-}
-
-.search .clear-button:focus {
-  outline: 0;
+  display: none !important;
 }
 
 [dir='ltr'] .search input[type='search'] {
@@ -4939,7 +4925,7 @@ a.button.secondary-buttonn:hover {
 nav.pm-navbar {
   background-color: #ffffff !important;
   border-bottom: 1px solid #e6e6e6;
-  padding: 6px 16px;
+  padding: 8px 16px;
 }
 
 nav.navbar-brand {
@@ -4955,6 +4941,21 @@ nav.pm-navbar .navbar-brand .navbar-logo-container {
 
 nav.navbar-logo-container img {
   border-style: none;
+}
+
+.nav-search__icon {
+  position: relative;
+    bottom: auto;
+    left: 24px;
+}
+
+@media (max-width: 991px) {
+  .nav-search__icon {
+    left: 8px;
+    top: auto;
+    bottom: -24px
+  }
+  
 }
 
 /**************** Nav mobile ****************/
@@ -5071,7 +5072,7 @@ span.contextual-home-link:active {
 .navbar-toggler {
   padding: 0 !important;
   font-size: 12.5px;
-  margin-right: 8px !important;
+  margin-right: 0px !important;
   border-color: none !important;
 }
 
@@ -5107,7 +5108,7 @@ span.contextual-home-link:active {
 }
 
 .navbar-toggler-icon {
-  width: 24px;
+  /* width: 24px; */
   margin: auto 0;
 }
 
@@ -5143,7 +5144,7 @@ span.contextual-home-link:active {
 @media screen and (max-width: 992px) {
   .nav-link>svg {
     float: right;
-    margin-right: 12px;
+    margin-right: 0px;
     position: relative;
     top: 8px;
   }
@@ -5155,7 +5156,7 @@ span.contextual-home-link:active {
 
   .nav-link:link {
     padding: 6px 16px 6px 0 !important;
-  }
+  } 
 
   .nav-link.uber-nav-link {
     padding: 6px 16px !important;
@@ -5170,8 +5171,8 @@ span.contextual-home-link:active {
 span.navbar-toggler-icon {
   background-image: none !important;
   display: inline-block;
-  width: 1.5em;
-  height: 1.5em;
+  width: 23px;
+  height: 32px;
   vertical-align: middle;
   content: '';
   background: no-repeat 50%;
@@ -5269,15 +5270,14 @@ div.icon-bar.open>span:nth-child(4) {
   padding: 16px !important;
   font-size: 14px !important;
   line-height: 20px;
-  /* padding: 8px 16px; */
   border-radius: 8px;
   background-color: #ffffff;
   border: none !important;
   box-shadow: none;
 }
 
-.dropdown-menu.show {
-  padding: 16px !important;
+.dropdown-menu[data-bs-popper] {
+  margin-top: 0 !important;
 }
 
 @media screen and (min-width: 992px) {
@@ -5330,6 +5330,7 @@ a.nav-link.uber-nav:active {
 
 .dropdown-col-menu {
   width: 100%;
+  margin-bottom: 0 !important;
 }
 
 .dropdown-col {
