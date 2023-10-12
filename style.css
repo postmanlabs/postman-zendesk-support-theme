@@ -5091,13 +5091,6 @@ span.contextual-home-link:active {
   vertical-align: middle;
 }
 
-.nav-link:link,
-.nav-link:active {
-  font-weight: 600;
-  font-size: 14px;
-  padding: 6px 6px 6px 16px !important;
-}
-
 .navbar-toggler-icon {
   /* width: 24px; */
   margin: auto 0;
@@ -5330,7 +5323,7 @@ a.nav-link.uber-nav:active {
 
 @media screen and (min-width: 992px) {
   .dropdown-col-menu {
-    width: 50em;
+    width: 48em;
   }
 
   .dropdown-col {
