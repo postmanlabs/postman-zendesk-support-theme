@@ -644,13 +644,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Notification Banner
-if (window.location.href.includes("support.postman.com/hc/en-us")) {
+if (window.location.href.includes("support.postman.com")) {
   document.addEventListener('DOMContentLoaded', async function () {
     // Article label to be considered for the alerts
     const label = 'Alert'
   
     // Show the article body within the alertbox? (Boolean: true/false)
-    const showArticleBody = true
+    const showArticleBody = true;
   
     // Get current help center locale
     const locale = document
@@ -663,6 +663,7 @@ if (window.location.href.includes("support.postman.com/hc/en-us")) {
   
     // Raw data collected from the endpoint above
     const data = await (await fetch(url)).json()
+    console.log(data)
     // List of articles returned
     const articles = (data && data.articles) || []
   
@@ -672,10 +673,10 @@ if (window.location.href.includes("support.postman.com/hc/en-us")) {
       const title = articles[i].title
       const body = articles[i].body
   
-      const html = body !== null ? (`
+      const html = body ? (`
         <div class="ns-box ns-bar ns-effect-slidetop ns-type-notice ns-show">
           <div class="ns-box-inner">
-            ${showArticleBody ? `<p>${body}</p>` : ''} 
+            ${showArticleBody ? `<p><strong>${title}</strong></p>${body}` : ''} 
             <span class="ns-close">
             </span>
           </div>
