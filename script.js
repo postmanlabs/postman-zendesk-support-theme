@@ -663,7 +663,6 @@ if (window.location.href.includes("support.postman.com")) {
   
     // Raw data collected from the endpoint above
     const data = await (await fetch(url)).json()
-    console.log(data)
     // List of articles returned
     const articles = (data && data.articles) || []
   
