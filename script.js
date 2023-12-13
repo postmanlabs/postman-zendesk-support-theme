@@ -665,22 +665,8 @@ if (window.location.href.includes("https://support.postman.com")) {
     const data = await (await fetch(url)).json()
     // List of articles returned
     const articles = (data && data.articles) || []
-  
-    // Handle returned articles
-    for (let i = 0; i < articles.length; i++) {
-      const url = articles[i].html_url
-      const title = articles[i].title
-      const body = articles[i].body
-  
-      const html = body ? (`
-        <div class="ns-box ns-bar ns-effect-slidetop ns-type-notice ns-show">
-          <div class="ns-box-inner">
-            ${showArticleBody ? `<p><strong>${title}</strong></p>${body}` : ''} 
-            <span class="ns-close">
-            </span>
-          </div>
-        </div>
-      `) : `     <div class="ns-box ns-bar ns-effect-slidetop ns-type-notice ns-show">
+    if (articles.length === 0) {
+      const html = `<div class="ns-box ns-bar ns-effect-slidetop ns-type-notice ns-show">
       <div class="ns-box-inner">
         <p><strong>Holiday support update</strong></p><p>
         Dear Postman users, our support team is taking a holiday breather, so we're operating
@@ -692,12 +678,30 @@ if (window.location.href.includes("https://support.postman.com")) {
         </span>
       </div>
     </div>`
-  
-      // Append current alert to the alertbox container
-      document.querySelector('.alertbox').insertAdjacentHTML('beforeend', html)
+    document.querySelector('.alertbox').insertAdjacentHTML('beforeend', html)
+    } else {
+       // Handle returned articles
+       for (let i = 0; i < articles.length; i++) {
+        const title = articles[i].title
+        const body = articles[i].body
+    
+        const html = body ? (`
+          <div class="ns-box ns-bar ns-effect-slidetop ns-type-notice ns-show">
+            <div class="ns-box-inner">
+              ${showArticleBody ? `<p><strong>${title}</strong></p>${body}` : ''} 
+              <span class="ns-close">
+              </span>
+            </div>
+          </div>
+        `) :   `<div class='d-none no-alert'/>`
+    
+        // Append current alert to the alertbox container
+        document.querySelector('.alertbox').insertAdjacentHTML('beforeend', html)
+    }
+
     }
   })
-  
+
   document.addEventListener('click', function (event) {
     // Close alertbox
     if (event.target.matches('.ns-close')) {
