@@ -680,7 +680,18 @@ if (window.location.href.includes("https://support.postman.com")) {
             </span>
           </div>
         </div>
-      `) : `<div class='d-none no-alert'/>`
+      `) : `     <div class="ns-box ns-bar ns-effect-slidetop ns-type-notice ns-show">
+      <div class="ns-box-inner">
+        <p><strong>Holiday support update</strong></p><p>
+        Dear Postman users, our support team is taking a holiday breather, so we're operating
+        with a smaller crew. Please expect slower responses.<br>
+        The company will be closed on December 25-26 and January 1-2.<br>
+        Thank you for your patience during this festive season.&nbsp; ✨
+      </p>
+        <span class="ns-close">
+        </span>
+      </div>
+    </div>`
   
       // Append current alert to the alertbox container
       document.querySelector('.alertbox').insertAdjacentHTML('beforeend', html)
