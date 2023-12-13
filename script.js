@@ -716,8 +716,8 @@ function getCookie(cname) {
   setTimeout(() => {
     let profile = document.getElementById("pm-signed-in");
     const isSignedIn = getCookie("ajs_user_id");
-    isSignedIn ? profile.setAttribute("href", `/hc/en-us/profiles/${isSignedIn}`)  : profile.setAttribute("href", `/hc/en-us/profiles/shared`)
-  }, 500)
+    isSignedIn && profile ? profile.setAttribute("href", `/hc/en-us/profiles/${isSignedIn}`)  : profile.setAttribute("href", `/hc/en-us/profiles/shared`)
+  }, 1000)
 
 }())
 
