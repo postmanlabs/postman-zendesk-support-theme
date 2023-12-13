@@ -716,7 +716,7 @@ function getCookie(cname) {
   setTimeout(() => {
     let profile = document.getElementById("pm-signed-in");
     const isSignedIn = getCookie("ajs_user_id");
-    isSignedIn && profile ? profile.setAttribute("href", `/hc/en-us/profiles/${isSignedIn}`)  : profile.setAttribute("href", `/hc/en-us/profiles/shared`)
+    isSignedIn && profile ? profile.setAttribute("href", `/hc/en-us/profiles/${isSignedIn}`)  : profile.setAttribute("href", `/hc/en-us/signin?return_to=https%3A%2F%2Fsupport.postman.com%2Fhc%2Fen-us&amp;locale=en-us`)
   }, 1000)
 
 }())
