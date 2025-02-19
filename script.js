@@ -734,17 +734,41 @@ jQuery(document).ready(function () {
   // RampMetrics
   // Check failure: Code scanning/ CodeQL: Incomplete string escaping or encoding [High]
 
-  // Mountain
-  (function(){"use strict";var e=null,b="4.0.0",
-  n="37044",
-  additional="term=value",
-  t,r,i;try{t=top.document.referer!==""?encodeURIComponent(top.document.referrer.substring(0,2048)):""}catch(o){t=document.referrer!==null?document.referrer.toString().substring(0,2048):""}try{r=window&&window.top&&document.location&&window.top.location===document.location?document.location:window&&window.top&&window.top.location&&""!==window.top.location?window.top.location:document.location}catch(u){r=document.location}try{i=parent.location.href!==""?encodeURIComponent(parent.location.href.toString().substring(0,2048)):""}catch(a){try{i=r!==null?encodeURIComponent(r.toString().substring(0,2048)):""}catch(f){i=""}}var l,c=document.createElement("script"),h=null,p=document.getElementsByTagName("script"),d=Number(p.length)-1,v=document.getElementsByTagName("script")[d];if(typeof l==="undefined"){l=Math.floor(Math.random()*1e17)}h="dx.mountain.com/spx?"+"dxver="+b+"&shaid="+n+"&tdr="+t+"&plh="+i+"&cb="+l+additional;c.type="text/javascript";c.src=("https:"===document.location.protocol?"https://":"http://")+h;v.parentNode.insertBefore(c,v)})()
+  // Demandbase
+  (function(d,b,a,s,e){ var t = b.createElement(a),
+    fs = b.getElementsByTagName(a)[0]; t.async=1; t.id=e; t.src=s;
+    fs.parentNode.insertBefore(t, fs); })
+  (window,document,'script','https://tag.demandbase.com/5bd5afc6abd4af8f.min.js','demandbase_js_lib');
 
-  // MetaData
-  (function(options) { var s = document.createElement("script"); s.async = true; s.src = "https://cdn.metadata.io/site-script.js"; s.onload = function() { window.Metadata.siteScript.init(options); var minutes = 30; var setCookie = function (name, value) { var expires = new Date(Date.now() + minutes * 60 * 1000).toUTCString(); document.cookie = name + "=" + encodeURIComponent(value) + "; path=/; expires=" + expires; }; var cid = new URLSearchParams(window.location.search).get("metadata_cid"); if (cid) { setCookie("metadata_cid", cid); } }; document.head.appendChild(s); })({ accountId: 1837 });
+  // Reddit
+  !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_g2a9uyehu26u');rdt('track', 'PageVisit');
 
-  // ZoomInfo
-  window[(function(_zye,_8H){var _qs='';for(var _JY=0;_JY<_zye.length;_JY++){var _kz=_zye[_JY].charCodeAt();_kz!=_JY;_kz-=_8H;_8H>7;_kz+=61;_kz%=94;_kz+=33;_qs==_qs;_qs+=String.fromCharCode(_kz)}return _qs})(atob('ZlVcfnt2cW8iV3En'), 12)] = '4d19c234931682700596';     var zi = document.createElement('script');     (zi.type = 'text/javascript'),     (zi.async = true),     (zi.src = (function(_PdF,_pu){var _K8='';for(var _67=0;_67<_PdF.length;_67++){var _F3=_PdF[_67].charCodeAt();_F3-=_pu;_F3+=61;_F3%=94;_K8==_K8;_F3+=33;_F3!=_67;_pu>2;_K8+=String.fromCharCode(_F3)}return _K8})(atob('MT09OTxhVlYzPFVDMlQ8LDsyOT08VSw4NlZDMlQ9KjBVMzw='), 39)),     document.readyState === 'complete'?document.body.appendChild(zi):     window.addEventListener('load', function(){         document.body.appendChild(zi)     });
+  // Bing
+  (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97152766", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+
+  // LinkedIn
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push("4496132");
+  (function(l) {
+  if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+  window.lintrk.q=[]}
+  var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript";b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);})(window.lintrk);
+
+  // Facebook
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '402119569597383');
+  fbq('track', 'PageView');
 
   // Amplitude
   (function(opts) { var env = (!!document.location.host.match('localhost') && 'DEV') || (!!document.location.host.match('beta') && 'BETA') || (!!document.location.host.match('stage') && 'STAGE') || (!!document.location.host.match('preview') && 'PREV') || (!!document.location.host.match('postman.com') && 'PROD'); var s = document.createElement('script'); s.async = true; s.src = 'https://cdn.amplitude.com/libs/analytics-browser-2.10.0-min.js.gz'; s.onload = function() { window.amplitude.init(((env === 'PROD' && opts.prod) || opts.dev), { autocapture: { elementInteractions: true } }); }; document.head.appendChild(s);})({prod: '56d4a7f42486e1c4ec95a892fd96c402', dev: '0cc34f31d293487891b42be4c7b3fcd2'});
@@ -795,44 +819,14 @@ jQuery(document).ready(function () {
     }, 2000);
   })();
 
-  // OneTrust
-  (function(opts) {var env = (!!document.location.host.match('localhost') && 'DEV') || (!!document.location.host.match('beta') && 'BETA') || (!!document.location.host.match('stage') && 'STAGE') || (!!document.location.host.match('preview') && 'PREV') || (!!document.location.host.match('postman.com') && 'PROD');var s = document.createElement('script');s.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';s.setAttribute('data-domain-script', ((env === 'PROD' && opts.prod) || opts.dev));document.head.appendChild(s);})({prod: '1cef3369-6d07-4928-b977-2d877eb670c4',dev: 'ab69d0c9-1a87-42f7-92b5-b0cfbe8b098d'});
+  // MetaData
+  (function(options) { var s = document.createElement("script"); s.async = true; s.src = "https://cdn.metadata.io/site-script.js"; s.onload = function() { window.Metadata.siteScript.init(options); var minutes = 30; var setCookie = function (name, value) { var expires = new Date(Date.now() + minutes * 60 * 1000).toUTCString(); document.cookie = name + "=" + encodeURIComponent(value) + "; path=/; expires=" + expires; }; var cid = new URLSearchParams(window.location.search).get("metadata_cid"); if (cid) { setCookie("metadata_cid", cid); } }; document.head.appendChild(s); })({ accountId: 1837 });
 
-  // Bing
-  (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97152766", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
-
-  // Reddit
-  !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_g2a9uyehu26u');rdt('track', 'PageVisit');
-
-  // Demandbase
-  (function(d,b,a,s,e){ var t = b.createElement(a),
-    fs = b.getElementsByTagName(a)[0]; t.async=1; t.id=e; t.src=s;
-    fs.parentNode.insertBefore(t, fs); })
-  (window,document,'script','https://tag.demandbase.com/5bd5afc6abd4af8f.min.js','demandbase_js_lib');
-
-  // Facebook
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '402119569597383');
-  fbq('track', 'PageView');  
-
-  // LinkedIn
-  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-  window._linkedin_data_partner_ids.push("4496132");
-  (function(l) {
-  if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-  window.lintrk.q=[]}
-  var s = document.getElementsByTagName("script")[0];
-  var b = document.createElement("script");
-  b.type = "text/javascript";b.async = true;
-  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-  s.parentNode.insertBefore(b, s);})(window.lintrk);
+  // Mountain
+  (function(){"use strict";var e=null,b="4.0.0",
+  n="37044",
+  additional="term=value",
+  t,r,i;try{t=top.document.referer!==""?encodeURIComponent(top.document.referrer.substring(0,2048)):""}catch(o){t=document.referrer!==null?document.referrer.toString().substring(0,2048):""}try{r=window&&window.top&&document.location&&window.top.location===document.location?document.location:window&&window.top&&window.top.location&&""!==window.top.location?window.top.location:document.location}catch(u){r=document.location}try{i=parent.location.href!==""?encodeURIComponent(parent.location.href.toString().substring(0,2048)):""}catch(a){try{i=r!==null?encodeURIComponent(r.toString().substring(0,2048)):""}catch(f){i=""}}var l,c=document.createElement("script"),h=null,p=document.getElementsByTagName("script"),d=Number(p.length)-1,v=document.getElementsByTagName("script")[d];if(typeof l==="undefined"){l=Math.floor(Math.random()*1e17)}h="dx.mountain.com/spx?"+"dxver="+b+"&shaid="+n+"&tdr="+t+"&plh="+i+"&cb="+l+additional;c.type="text/javascript";c.src=("https:"===document.location.protocol?"https://":"http://")+h;v.parentNode.insertBefore(c,v)})();
 
   /* pmtConfig
   ***********************************************************************/
