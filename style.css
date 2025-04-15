@@ -5289,13 +5289,16 @@ a.dropdown-item.app-cta {
 }
 
 span.dropdown__badge {
-  margin-left: 0.5rem; /* ml-2 */
-    border-radius: 0.25rem; /* rounded */
-    border: 1px solid #e4d8f6; /* border border-[#e4d8f6] */
-    padding: 0.5rem; /* px-1 */
-    font-size: 10px; /* text-[10px] */
-    text-transform: uppercase; /* uppercase */
-    color: #623497; /* text-[#623497] */
+  margin-left: 0.8rem; 
+  border-radius: 0.5rem;
+  border: 1px solid #6f2cba;
+  padding: 3px 9px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #6f2cba;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
 }
 
 .dropdown-item.active,
