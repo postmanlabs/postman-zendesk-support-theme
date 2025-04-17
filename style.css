@@ -5288,6 +5288,19 @@ a.dropdown-item.app-cta {
   font-weight: 600;
 }
 
+span.dropdown__badge {
+  margin-left: 0.8rem; 
+  border-radius: 0.5rem;
+  border: 1px solid #6f2cba;
+  padding: 3px 9px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #6f2cba;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+}
+
 .dropdown-item.active,
 .dropdown-item:active {
   color: #303030 !important;
