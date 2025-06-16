@@ -5288,19 +5288,6 @@ a.dropdown-item.app-cta {
   font-weight: 600;
 }
 
-span.dropdown__badge {
-  margin-left: 0.8rem; 
-  border-radius: 0.5rem;
-  border: 1px solid #6f2cba;
-  padding: 3px 9px;
-  font-size: 10px;
-  text-transform: uppercase;
-  color: #6f2cba;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 18px;
-}
-
 .dropdown-item.active,
 .dropdown-item:active {
   color: #303030 !important;
@@ -5455,14 +5442,14 @@ a.nav-link.uber-nav:active {
 }
 
 /******** Footer Section ********/
-section#footer {
+section#Footer {
   background-color: rgb(255, 255, 255);
   padding-top: 40px !important;
   padding-bottom: 40px !important;
 }
 
 @media (min-width: 769px) {
-  section#footer {
+  section#Footer {
     padding-top: 80px !important;
     padding-bottom: 80px !important;
   }
@@ -5470,28 +5457,16 @@ section#footer {
 
 .footer-img {
   height: auto;
-  width: 174px;
+  width: 100px !important;
   aspect-ratio: attr(width) / attr(height);
 }
 
-@media (min-width: 768px) {
-  .footer-img {
-    filter: grayscale(100%);
-    transition: all 0.2s ease-in-out 0s;
-    height: auto !important;
-    width: 174px !important;
-  }
 
-  .footer-img:hover {
-    filter: grayscale(0);
-    transition: all 0.2s ease-in-out;
-  }
+.copyright>p {
+	color: #707070 !important;
+	font-size: 14px
 }
 
-.copyright {
-  color: #707070;
-  font-size: 12px;
-}
 
 .footer-col-title {
   line-height: 1.4;
@@ -5506,7 +5481,9 @@ section#footer {
 .footer-ul {
   padding-left: 0;
 }
-
+.footer-column-row li {
+  color: #707070 !important;
+}
 .footer-li-item {
   list-style-type: none;
   margin-bottom: 0;
@@ -5516,6 +5493,7 @@ section#footer {
   color: rgb(112, 112, 112);
   text-transform: none;
   text-decoration: none;
+  font-size: 14px;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
     Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif !important;
   font-weight: 400;
@@ -5540,14 +5518,24 @@ section#footer {
 
 .footer-social-svg {
   display: inline-block;
-  margin-right: 8px;
+  margin-right: 12px;
   width: 16px;
   height: 16px;
 }
 
 .footer-social-svg > svg {
   max-height: 100%;
-  width: auto;
+	width: auto;
+	opacity: 0.7;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    transition: 0.2s ease-in-out;
+}
+
+.footer-social-svg>svg:hover {
+	opacity: 1;
+	filter: grayscale(0%);
+	-webkit-filter: grayscale(0%);
 }
 
 .powered-by-zendesk a,
@@ -6075,3 +6063,15 @@ p[dir='auto'] {
   }
 }
 
+span.dropdown__badge {
+	margin-left: 8px; 
+	border-radius: 5px;
+	border: 1px solid #6f2cba;
+	padding: 4px 10px;
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #6f2cba;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 18px;
+  }
