@@ -6,7 +6,8 @@
 @font-face {
   font-family: 'Degular Display Semibold';
 
-  src: local('//assets/Degular-display-semibold.woff2')
+  src:
+    local('//assets/Degular-display-semibold.woff2')
       url('https://voyager.postman.com/font/degular/Degular_Display-Semibold.ttf') format('ttf'),
     url('https://voyager.postman.com/font/degular/Degular_Display-Semibold.woff2') format('woff2'),
     url('https://voyager.postman.com/font/degular/Degular_Display-Semibold.woff2') format('woff');
@@ -20,7 +21,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: local('//assets/Inter-regular.woff2')
+  src:
+    local('//assets/Inter-regular.woff2')
       url('https://voyager.postman.com/font/inter/Inter-Regular.woff2') format('woff2'),
     url('https://voyager.postman.com/font/inter/Inter-Regular.woff') format('woff');
 }
@@ -38,7 +40,8 @@
   font-style: normal;
   font-weight: 600;
   font-display: block;
-  src: local('//assets/Ibm-Plex-Mono-v7-Latin-Regular.woff2')
+  src:
+    local('//assets/Ibm-Plex-Mono-v7-Latin-Regular.woff2')
       url('https://voyager.postman.com/font/plexMono/ibm-plex-mono-v7-latin-regular.woff2')
       format('woff2'),
     url('https://voyager.postman.com/font/plexMono/ibm-plex-mono-v7-latin-regular.woff')
@@ -64,7 +67,13 @@ pre {
   background-color: #ededed;
   border-radius: 4px;
   color: #212121;
-  font-family: 'IBM Plex Mono', SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+  font-family:
+    'IBM Plex Mono',
+    SFMono-Regular,
+    Consolas,
+    Liberation Mono,
+    Menlo,
+    monospace !important;
   font-size: 16px;
   line-height: 1.625;
   /* 26px */
@@ -91,7 +100,13 @@ code {
   background-color: #ededed !important;
   border-radius: 4px !important;
   color: #212121 !important;
-  font-family: 'IBM Plex Mono', SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+  font-family:
+    'IBM Plex Mono',
+    SFMono-Regular,
+    Consolas,
+    Liberation Mono,
+    Menlo,
+    monospace !important;
   font-size: 16px !important;
   box-shadow: none;
   border-radius: 0;
@@ -133,8 +148,20 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial !important;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica,
+    Arial !important;
   font-size: 100%;
   line-height: 1.15;
   margin: 0;
@@ -168,7 +195,9 @@ button,
   user-select: none;
   text-align: center;
   margin: 0px;
-  transition: background-color 50ms ease-in-out 0s, border-color 50ms ease-in-out 0s;
+  transition:
+    background-color 50ms ease-in-out 0s,
+    border-color 50ms ease-in-out 0s;
 }
 
 [type='submit'] {
@@ -187,7 +216,9 @@ button,
   background-color: rgb(255, 108, 55);
   text-align: center;
   margin: 0px;
-  transition: background-color 50ms ease-in-out 0s, border-color 50ms ease-in-out 0s;
+  transition:
+    background-color 50ms ease-in-out 0s,
+    border-color 50ms ease-in-out 0s;
   color: rgb(255, 255, 255);
 }
 
@@ -279,8 +310,20 @@ template {
 body {
   background-color: #ffffff;
   color: #212121;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    Helvetica,
+    Arial,
+    sans-serif;
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -289,8 +332,20 @@ body {
 p {
   font-size: 16px;
   margin-bottom: 24px !important;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    Helvetica,
+    Arial,
+    sans-serif;
 }
 
 p.subtitle {
@@ -316,8 +371,20 @@ p.note {
 h1,
 h2,
 h3 {
-  font-family: 'Degular Display Semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
+  font-family:
+    'Degular Display Semibold',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    Helvetica,
+    Arial,
+    sans-serif;
   line-height: 1.16667;
   letter-spacing: 0.48px;
   margin: 0px 0px 16px !important;
@@ -328,8 +395,20 @@ h3 {
 h4,
 h5,
 h6 {
-  font-family: 'Inter Semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
-    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif !important;
+  font-family:
+    'Inter Semibold',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    Helvetica,
+    Arial,
+    sans-serif !important;
   margin-top: 0;
   margin: 0px 0px 16px;
   font-weight: 600 !important;
@@ -361,8 +440,20 @@ h3,
 
 h3.h4 {
   font-size: 20px !important;
-  font-family: 'Inter Semibold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
-    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif !important;
+  font-family:
+    'Inter Semibold',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    Helvetica,
+    Arial,
+    sans-serif !important;
 }
 
 h4 {
@@ -578,8 +669,20 @@ ul.space {
   border-radius: 4px;
   cursor: pointer;
   display: inline-block;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial !important;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica,
+    Arial !important;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.5;
@@ -854,8 +957,20 @@ button.isDisabled {
   margin: 4px 0px;
   text-align: left !important;
   width: 100% !important;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial !important;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica,
+    Arial !important;
 }
 
 .form-field input {
@@ -869,7 +984,9 @@ button.isDisabled {
   height: 40px;
   margin: 0px;
   padding: 8px 1px 8px 14px;
-  transition: border-color 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
+  transition:
+    border-color 0.2s ease-in-out 0s,
+    box-shadow 0.2s ease-in-out 0s;
   width: 100%;
 }
 
@@ -1022,7 +1139,9 @@ input.search {
   margin: 0;
   outline: 0;
   padding: 4px 16px 4px 32px;
-  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition:
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
   -webkit-appearance: none;
   width: 256px;
 }
@@ -1214,8 +1333,20 @@ button.clear-button {
 
 .breadcrumbs li {
   color: #a6a6a6;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial !important;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica,
+    Arial !important;
   display: inline;
   font-size: 14px;
   max-width: 450px;
@@ -2562,8 +2693,20 @@ button.clear-button {
 }
 
 .post-content {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial !important;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica,
+    Arial !important;
   line-height: 1.6;
   word-break: break-word;
 }
@@ -4519,8 +4662,20 @@ html[lang|='zh'] .search-results-description em {
 .notification {
   border: 1px solid;
   display: table;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial !important;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica,
+    Arial !important;
   font-size: 12px;
   padding: 13px 15px;
   transition: height 0.2s;
@@ -4869,8 +5024,20 @@ a.primary-button:hover {
   border-radius: 4px;
   cursor: pointer;
   display: inline-block;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial !important;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica,
+    Arial !important;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.5;
@@ -4894,8 +5061,20 @@ actions.secondary-button a.button.secondary-button {
   border-radius: 4px;
   cursor: pointer;
   display: inline-block;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial !important;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica,
+    Arial !important;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.5;
@@ -5035,8 +5214,20 @@ nav.navbar-logo-container img {
 /******** Secondary Nav Left Link ********/
 span.contextual-home-link {
   color: #212121 !important;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica, Arial, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica,
+    Arial,
+    sans-serif;
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.25px;
@@ -5276,6 +5467,7 @@ div.icon-bar.open > span:nth-child(4) {
 
 a.dropdown-item {
   padding: 8px 16px;
+  width: 10.5rem !important;
 }
 
 a.dropdown-item.small {
@@ -5325,7 +5517,7 @@ a.nav-link.uber-nav:active {
   .dropdown-col-menu {
     width: 34em;
   }
-  
+
   .dropdown-col-menu.colWidth {
     width: 36rem;
   }
@@ -5338,8 +5530,20 @@ a.nav-link.uber-nav:active {
   color: #212121 !important;
   font-size: 16px !important;
   padding: 8px 16px !important;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif !important;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    Helvetica,
+    Arial,
+    sans-serif !important;
   letter-spacing: -0.24px;
   line-height: 1.4;
   font-weight: 600 !important;
@@ -5461,18 +5665,28 @@ section#Footer {
   aspect-ratio: attr(width) / attr(height);
 }
 
-
-.copyright>p {
-	color: #707070 !important;
-	font-size: 14px
+.copyright > p {
+  color: #707070 !important;
+  font-size: 14px;
 }
-
 
 .footer-col-title {
   line-height: 1.4;
   margin-bottom: 8px !important;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    Helvetica,
+    Arial,
+    sans-serif;
   font-weight: 600;
   color: rgb(112, 112, 112);
   font-size: 16px !important;
@@ -5480,6 +5694,11 @@ section#Footer {
 
 .footer-ul {
   padding-left: 0;
+}
+@media (max-width: 768px) {
+  .footer-column-row {
+    width: 16rem !important;
+  }
 }
 .footer-column-row li {
   color: #707070 !important;
@@ -5494,8 +5713,20 @@ section#Footer {
   text-transform: none;
   text-decoration: none;
   font-size: 14px;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', Helvetica, Arial, sans-serif !important;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    Helvetica,
+    Arial,
+    sans-serif !important;
   font-weight: 400;
   display: block;
   line-height: 1.7;
@@ -5525,17 +5756,17 @@ section#Footer {
 
 .footer-social-svg > svg {
   max-height: 100%;
-	width: auto;
-	opacity: 0.7;
-    filter: grayscale(100%);
-    -webkit-filter: grayscale(100%);
-    transition: 0.2s ease-in-out;
+  width: auto;
+  opacity: 0.7;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  transition: 0.2s ease-in-out;
 }
 
-.footer-social-svg>svg:hover {
-	opacity: 1;
-	filter: grayscale(0%);
-	-webkit-filter: grayscale(0%);
+.footer-social-svg > svg:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
 }
 
 .powered-by-zendesk a,
@@ -6064,14 +6295,14 @@ p[dir='auto'] {
 }
 
 span.dropdown__badge {
-	margin-left: 8px; 
-	border-radius: 5px;
-	border: 1px solid #6f2cba;
-	padding: 4px 10px;
-	font-size: 10px;
-	text-transform: uppercase;
-	color: #6f2cba;
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 18px;
-  }
+  margin-left: 8px;
+  border-radius: 5px;
+  border: 1px solid #6f2cba;
+  padding: 4px 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #6f2cba;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+}
