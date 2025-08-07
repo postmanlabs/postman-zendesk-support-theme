@@ -5054,7 +5054,7 @@ a.button.secondary-button {
 /******** Secondary Button ********/
 button.secondary-button,
 actions.secondary-button a.button.secondary-button {
-  background: #dadada;
+  background: rgba(43, 43, 43, .2);
   border: 1px solid #212121;
   font-size: 16px;
   color: rgb(59, 59, 59) !important;
