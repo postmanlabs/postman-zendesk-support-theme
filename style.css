@@ -5054,8 +5054,8 @@ a.button.secondary-button {
 /******** Secondary Button ********/
 button.secondary-button,
 actions.secondary-button a.button.secondary-button {
-  background: #ffffff;
-  border: 1px solid rgb(166, 166, 166);
+  background: rgba(138, 138, 138, 0.1);
+  border: 1px solid #CFCFCF;
   font-size: 16px;
   color: rgb(59, 59, 59) !important;
   border-radius: 4px;
@@ -5089,6 +5089,8 @@ a.button.secondary-buttonn:hover {
   border: 1px solid rgb(59, 59, 59);
   opacity: 0.7;
   text-decoration: none;
+  color: #ffffff;
+  background: #212121;
 }
 
 /*************************** Navbar component ***************************/
