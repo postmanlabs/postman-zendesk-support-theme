@@ -807,7 +807,7 @@ jQuery(document).ready(function () {
 
     const transcendScript = {
       'data-px': '<!-- Transcend -->',
-      src: `https://transcend-cdn.com/${location.hostname === 'blog.postman.com' ? 'cm' : 'cm-test'}/${p['TR']}/airgap.js`,
+      src: `https://transcend-cdn.com/cm/${p['TR']}/airgap.js`,
       'data-cfasync': 'false',
       'data-local-sync': 'allow-network-observable',
       async: true,
