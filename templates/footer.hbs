@@ -200,14 +200,6 @@
                                                 onClick="ga('send', 'event', 'global-footer', 'Click', 'trust-and-safety');">Trust
                                                 and Safety</a></li>
                                         <li class="footer-column-row"><a class="footer-link"
-                                                href="https://www.postman.com/legal/privacy-policy/" id="privacy-policy"
-                                                onClick="ga('send', 'event', 'global-footer', 'Click', 'privacy-policy');">Privacy
-                                                policy</a></li>
-                                        <li class="footer-column-row"><a class="footer-link"
-                                                href="https://www.postman.com/legal/cookies/" id="cookie-notice"
-                                                onClick="ga('send', 'event', 'global-footer', 'Click', 'cookie-notice');">Cookie
-                                                notice</a></li>
-                                                 <li class="footer-column-row"><a class="footer-link"
                                                 href="https://www.postman.com/legal/postman-website-terms-of-use/" id="website-terms-of-use"
                                                 onClick="ga('send', 'event', 'global-footer', 'Click', 'website-terms-of-use');">Website Terms of Use</a></li>
                                     </ul>
@@ -327,17 +319,22 @@
                                 onClick="ga('send', 'event', 'global-footer', 'Click', 'download-postman');">Download
                                 Postman</a>
                         </div>
-                        <div class="col-12 col-lg-3 text-lg-start text-center mb-2 mb-lg-0 p-0">
-                            <a class="footer-link py-0" href="https://www.postman.com/legal/privacy-choices/"
-                                id="privacy-choices"
-                                onClick="ga('send', 'event', 'global-footer', 'Click', 'privacy-choices');">
-                                Your privacy choices
-                                <img src="https://voyager.postman.com/icon/privacyoptions.svg" alt="" width="24"
-                                    height="10" className="" />
-                            </a>
+                         <div class="col-12 col-lg-2 text-lg-start text-center mb-2 mb-lg-0 p-0">
+                            <a href="https://privacy.postman.com/policies/" class="dynamic-link__external"
+                                onClick="ga('send', 'event', 'global-footer', 'Click', 'privacy-policy');">Privacy Policy</a>
+                        </div>
+                        <div class="col-12 col-lg-4 text-lg-start text-center mb-2 mb-lg-0 pl-lg-1">
+                             <button
+                                onclick="handleDoNotSellClick()"
+                                aria-label="Manage your privacy settings"
+                                class="privacy-consent-btn"
+                                style="background: none; border: none; padding: 0; cursor: pointer; color: #0d6efd; font-weight: 400;"
+                                >
+                                Do Not Sell or Share My Personal Information
+                            </button>
                         </div>
 
-                        <div class="col-12 col-lg-7 text-lg-end text-center p-0">
+                        <div class="col-12 col-lg-4 text-lg-end text-center p-0">
                             <span class="copyright">
                                 <p class="mb-0">© <span id="current-year">2024</span> Postman, Inc.</p>
                             </span>
@@ -351,6 +348,16 @@
                     yearElement.textContent = new Date().getFullYear();
                 }
             });
+        </script>
+        <script>
+            // Privacy consent manager function
+            function handleDoNotSellClick() {
+                if (typeof window !== 'undefined' && window.transcend) {
+                    window.transcend.showConsentManager({ viewState: 'DoNotSellExplainer' });
+                } else {
+                    console.warn('Transcend consent manager not available');
+                }
+            }
         </script>
     </footer>
 </div>
