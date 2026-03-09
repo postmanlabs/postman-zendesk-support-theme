@@ -314,3 +314,22 @@
     {{search submit=false instant=settings.instant_search placeholder='Search Postman support center' class='search search-full nav-search__form ml-5 mr-4'}}
   </div>
 </nav>
+
+<!-- GPC Opt-Out Notice (MKTG-9235) -->
+<script>
+(self.airgap={readyQueue:[],ready(cb){this.readyQueue.push(cb);},...self.airgap}).ready(function(airgap){
+  var hasGPC=airgap.getPrivacySignals().has('GPC');
+  var purposes=[...airgap.getRegimePurposes()];
+  var types=airgap.getPurposeTypes();
+  var affected=hasGPC&&purposes.some(function(p){return types[p].optOutSignals.includes('GPC');});
+  if(affected){
+    var h=document.querySelector('.nav-secondary');
+    var hHeight=h?h.offsetHeight:0;
+    var n=document.createElement('div');
+    n.style.cssText='background:#1c1c1c;color:#fff;text-align:center;padding:12px;font-size:16px;position:fixed;top:'+hHeight+'px;left:0;width:100%;z-index:99999;box-sizing:border-box;';
+    n.setAttribute('role','status');
+    n.innerHTML='Global Privacy Control Honored <button onclick="this.parentElement.remove();try{sessionStorage.setItem(\'gpc-banner-dismissed\',\'1\')}catch(e){}" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:24px;cursor:pointer;" aria-label="Dismiss GPC notice">&times;</button>';
+    try{if(!sessionStorage.getItem('gpc-banner-dismissed')){document.body.appendChild(n);}}catch(e){document.body.appendChild(n);}
+  }
+});
+</script>
