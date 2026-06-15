@@ -1,0 +1,37 @@
+Postman Zendesk Support Center theme ("post-zen")
+Copyright 2022-2026 Postman, Inc.
+
+This product is licensed under the Apache License, Version 2.0. A copy of the
+license is provided in the LICENSE file at the root of this repository.
+
+------------------------------------------------------------------------------
+Third-party and adapted materials
+------------------------------------------------------------------------------
+
+This theme uses or adapts the following components. Each remains under its own
+license; the references below are provided for attribution.
+
+- normalize.css (v8.0.1)
+  MIT License
+  https://github.com/necolas/normalize.css
+  (bundled, inlined at the top of style.css)
+
+- Bootstrap (v5)
+  MIT License
+  https://github.com/twbs/bootstrap
+  (loaded at runtime from a CDN; not redistributed in this repository)
+
+- jQuery (v3.6.1)
+  MIT License
+  https://github.com/jquery/jquery
+  (loaded at runtime from a CDN; not redistributed in this repository)
+
+------------------------------------------------------------------------------
+Internal provenance
+------------------------------------------------------------------------------
+
+Portions of the global navigation markup (templates/header.hbs) and styles
+(style.css) were adapted from Postman's internal marketing blog theme
+("postmodern"), a first-party Postman project. That navigation design is
+original Postman authorship and is included here under the Apache License,
+Version 2.0, as part of this Postman-owned project.
