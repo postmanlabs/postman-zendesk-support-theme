@@ -1,7 +1,8 @@
 {
   "name": "postman-zendesk-support-theme",
   "version": "1.28.0",
-  "author": "Brandon Castillo",
+  "author": "Marketing Tech Team, Product Engineering, Postman, Inc.",
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "dev": "zat theme preview",

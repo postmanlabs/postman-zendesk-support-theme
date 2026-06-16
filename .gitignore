@@ -3,3 +3,5 @@ style.css.map
 node_modules/
 .zat
 .DS_Store
+CLAUDE.local.md
+.nvmrc
