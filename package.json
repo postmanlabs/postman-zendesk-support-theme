@@ -1,10 +1,12 @@
 {
   "name": "postman-zendesk-support-theme",
   "version": "1.28.0",
-  "author": "Brandon Castillo",
+  "author": "Marketing Tech Team, Product Engineering, Postman, Inc.",
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "dev": "zat theme preview",
+    "restart": "lsof -ti:4567 | xargs kill",
     "prettier:write": "prettier --write \"./**/*.{js,json,css,hbs}\"",
     "prettier:verify": "prettier --check \"./**/*.{js,json,css,hbs}\"",
     "nvmrc": "echo $(node -p -e 'require(\"./package\").engines.node.split(\">=\").join(\"\")') > .nvmrc"
