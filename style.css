@@ -5584,6 +5584,14 @@ a.dropdown-item.small {
 a.dropdown-item.app-cta {
 	color: #0265D2;
 	font-weight: 400;
+	border-bottom: 1px solid transparent;
+}
+
+/* Download CTA: no grey hover box — show a bottom border instead */
+a.dropdown-item.app-cta:hover {
+	background-color: transparent;
+	border-radius: 0;
+	border-bottom-color: #0265D2;
 }
 
 /* Gradient hover animation for What's new link */
@@ -5668,6 +5676,21 @@ a.nav-link.uber-nav:active {
 
 	.dropdown-col {
 		margin-bottom: 0px;
+	}
+
+	/* Resources dropdown: keep all 4 columns on one row, wide enough that
+	   labels like "Enterprise Onboarding" / "Postman Best Practices" don't wrap. */
+	.dropdown-col-menu.row {
+		width: auto;
+		flex-wrap: nowrap;
+	}
+
+	.dropdown-col-menu.row .dropdown-col {
+		flex: 0 0 200px;
+		width: 200px;
+		max-width: 200px;
+		padding-left: 0;
+		padding-right: 0;
 	}
 }
 
