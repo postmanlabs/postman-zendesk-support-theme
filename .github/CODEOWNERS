@@ -1,0 +1,11 @@
+# Code owners for postman-zendesk-support-theme
+# https://docs.github.com/articles/about-code-owners
+#
+# Listed owners are requested for review automatically on any PR that
+# touches a matching path. Ownership is tracked by team here; individual
+# contribution history lives in git.
+#
+# NOTE: confirm this team slug exists in the `postmanlabs` org and has
+# write access to this repo, otherwise GitHub ignores the rule.
+
+* @brandonmcastillo @ch264 @oswish @tristandenyer @OlliesWorld @Kcorb95
