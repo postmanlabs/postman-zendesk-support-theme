@@ -5581,17 +5581,23 @@ a.dropdown-item.small {
 	color: #212121;
 }
 
-a.dropdown-item.app-cta {
-	color: #0265D2;
-	font-weight: 400;
-	border-bottom: 1px solid transparent;
+.dropdown-download-cta {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+a.app-cta {
+color: #0265D2;
+border-bottom: 1px solid transparent;
+margin: 0;
+font-weight: 400;
+
 }
 
 /* Download CTA: no grey hover box — show a bottom border instead */
-a.dropdown-item.app-cta:hover {
+a.app-cta:hover {
 	background-color: transparent;
-	border-radius: 0;
-	border-bottom-color: #0265D2;
+	border-bottom: 1px solid #0265D2;
 }
 
 /* Gradient hover animation for What's new link */
