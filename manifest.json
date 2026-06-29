@@ -1,7 +1,7 @@
 {
   "name": "post-zen",
   "author": "Postman Product Engineering",
-  "version": "1.41.0",
+  "version": "1.41.1",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
