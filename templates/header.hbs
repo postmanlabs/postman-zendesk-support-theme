@@ -1,413 +1,1624 @@
 <div class="alertbox"></div>
-<nav class="navbar-v6 navbar navbar-expand-xl navbar-light nav-primary" aria-label="Main" style="z-index: 10000">
-  <a class="navbar-brand" href="https://www.postman.com/" aria-label="Home">
-    <div class="navbar-logo-container">
-      <img src="https://voyager.postman.com/logo/postman-logo-icon-orange.svg" alt="Postman" width="32" height="32" />
-    </div>
-  </a>
-  <button
-    id="postman-primary-nav"
-    class="mobile-icon-button navbar-toggler"
-    type="button"
-    data-test="navbar-mobile-icon"
-    data-bs-toggle="collapse"
-    data-bs-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation menu">
-    <span class="navbar-toggler-icon mobile-icon_span">
-      <div id="icon-wrap-one" class="icon-bar mobile-icon" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto">
+{{!--
+  GLOBAL NAVBAR — GENERATED, do not hand-edit.
 
-      <!-- Product -->
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="Nav-Product"
-          data-bs-toggle="dropdown"
-          data-bs-display="static"
+  Prerendered <postman-navbar> from postman-eng/marketing-global-navbar-footer,
+  inlined verbatim. Refresh on a version bump with:
+
+    curl -fsS https://global-navbar-footer.postman-account2009.workers.dev/v1/navbar.foreign.en.html
+
+  ...then re-insert the two slot blocks below the markup and update the version
+  and integrity hash in templates/document_head.hbs. No build step, no npm, no
+  Node — the artifact is static HTML.
+
+  It is inlined rather than client-mounted so the navbar is SERVER-RENDERED:
+  Zendesk emits this template, so the browser's parser sees the
+  <template shadowrootmode> and attaches the shadow root. That keeps the markup
+  and its links in the initial HTML. (Assigning it with innerHTML on the client
+  would attach no shadow root at all.)
+
+  `foreign` variant: support.postman.com is not www-family, so internal links
+  resolve to absolute https://www.postman.com/... URLs, matching what the
+  hand-written nav did.
+
+  Verified safe for Handlebars: the fragment contains zero {{ or }} sequences,
+  so nothing in it is parsed as a Handlebars expression.
+
+  The support-specific secondary nav below — Sign in / My requests / Discord and
+  the {{search}} helper — is unchanged and stays a sibling.
+--}}
+<!--lit-part BQm9WKKK8Pc=--><!--lit-node 0--><postman-navbar {{#if signed_in}}signed-in {{/if}}locale="en"><template shadowroot="open" shadowrootmode="open"><style>
+    /* Design tokens match www.postman.com's GlobalNavbar (Inter, white bar,
+       54px tall, grey→#212121 triggers, white rounded mega-menu panel). */
+    :host {
+      display: block;
+      font-family: var(--pm-font, 'Inter', system-ui, -apple-system, sans-serif);
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 55;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      height: 54px;
+      background: var(--pm-nav-bg, #fff);
+      border-bottom: 1px solid var(--pm-nav-border, #e6e6e6);
+      padding: 0.8rem 1.6rem;
+    }
+    /* Default account controls (slot fallback). Plain shadow CSS, no utility
+       classes: Fern's custom-header compiler silently no-ops Tailwind arbitrary
+       values and screen variants, so anything relying on them would compute to
+       defaults there. */
+    .acct-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .acct-group.acct-mobile {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.6rem;
+      width: 100%;
+    }
+    .acct {
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      line-height: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+    .acct-secondary {
+      color: var(--pm-nav-fg, #212121);
+      border-color: var(--pm-nav-border, #e6e6e6);
+    }
+    .acct-secondary:hover {
+      border-color: var(--pm-nav-fg, #212121);
+    }
+    .acct-primary {
+      background: var(--pm-nav-accent, #ff6c37);
+      color: #fff;
+    }
+    .acct-primary:hover {
+      background: var(--pm-nav-accent-hover, #e35c2c);
+    }
+    .acct:focus-visible {
+      outline: 2px solid var(--pm-nav-accent, #ff6c37);
+      outline-offset: 2px;
+    }
+
+    /* Default logo (slot fallback). A host that projects its own into
+       slot="logo" replaces this entirely, so these rules stop applying — style
+       the projected element from the host page instead. */
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      flex: none;
+      margin-right: 1.6rem;
+      border: 0;
+      text-decoration: none;
+    }
+    .logo img {
+      display: block;
+      width: 32px;
+      height: 32px;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .menubar {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .trigger,
+    .top-link {
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+      letter-spacing: normal;
+      color: var(--pm-nav-link, #6b6b6b);
+      background: none;
+      border: 0;
+      padding: 0 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+    .trigger[aria-expanded='true'],
+    .trigger:hover,
+    .top-link:hover {
+      color: var(--pm-nav-link-hover, #212121);
+    }
+    .chevron {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.2s ease-in-out;
+      transform: scale(0.85);
+    }
+    .trigger[aria-expanded='true'] .chevron {
+      transform: rotate(180deg) scale(0.85);
+    }
+    :focus-visible {
+      outline: 2px solid var(--pm-focus-ring, #ff6c37);
+      outline-offset: 2px;
+    }
+    .item {
+      position: relative;
+      /* Source wraps each top-level item in mx-[8px]; combined with the
+         trigger's 15px padding this gives the bar its item spacing. */
+      margin: 0 8px;
+    }
+    /* A closed panel is [hidden]. The UA display:none must win over the
+       author display:flex on .panel.has-brands (same specificity), or the
+       Product dropdown stays visible on load. */
+    .panel[hidden] {
+      display: none !important;
+    }
+    .panel {
+      position: absolute;
+      top: 100%;
+      left: -14px;
+      z-index: 2147483647;
+      margin-top: 0.8rem;
+      width: max-content;
+      box-sizing: border-box;
+      background: var(--pm-panel-bg, #fff);
+      border: 1px solid var(--pm-panel-border, #e6e6e6);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+    /* Source has NO gap between columns: spacing comes from fixed column
+       widths + each item's 10px padding. */
+    .columns {
+      display: flex;
+      gap: 0;
+      align-items: flex-start;
+    }
+    .col {
+      box-sizing: border-box;
+    }
+    .col.w210 {
+      width: 210px;
+    }
+    .col.w180 {
+      width: 180px;
+    }
+    /* Product's Platform/Explore column: narrower, rendered last, with a
+       20px gap (margin) + divider separating it from the icon columns. */
+    .col.left-nav {
+      width: 190px;
+      margin-left: 20px;
+      border-left: 1px solid #e6e6e6;
+      padding-left: 20px;
+    }
+    /* Solutions: all items in one 2-column grid, equal-height rows. */
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 410px;
+      max-width: 100%;
+    }
+    .col-title,
+    .section-header {
+      margin: 0 0 10px 10px;
+      font-family: var(--pm-mono, 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace);
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--pm-nav-section, #e05320);
+    }
+    .section-header {
+      margin-top: 30px;
+    }
+    .menu-item {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 10px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #212121;
+      transition: background-color 0.15s ease-in-out;
+    }
+    .menu-item:hover {
+      background: var(--pm-nav-hover-bg, #efefef);
+    }
+    .menu-item .title {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #212121;
+    }
+    .menu-item .desc {
+      display: block;
+      font-size: 12px;
+      color: #5c5c5c;
+    }
+    .menu-item img {
+      width: 22px;
+      height: 22px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+    .menu-item.app-cta .title {
+      color: #0265d2;
+      font-weight: 400;
+    }
+    .menu-item.app-cta:hover {
+      background: none;
+    }
+    /* Featured "AI cards" row: full-width grey cards below the columns. */
+    .featured {
+      margin-top: 10px;
+      padding-top: 20px;
+      border-top: 1px solid #e6e6e6;
+    }
+    .card-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px;
+    }
+    .card-row > li {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .featured .menu-item {
+      height: 100%;
+      box-sizing: border-box;
+      background: #f9f9f9;
+    }
+    /* Cards carry an inline gradient; hover keeps it and adds the ring +
+       a subtle darken (mirrors the source's ring + brightness hover). */
+    .featured .feat-card {
+      box-shadow: 0 0 0 0.5px transparent;
+      transition:
+        box-shadow 0.15s ease-in-out,
+        filter 0.15s ease-in-out;
+    }
+    .featured .feat-card:hover {
+      background: inherit;
+      box-shadow: 0 0 0 1px var(--ring, #efefef);
+      filter: brightness(0.98);
+    }
+    /* "More from Postman": grey shell + white inner panel + grey brands
+       sidebar, mirroring the live Product mega-menu (NavDropdownMenu). */
+    .panel.has-brands {
+      display: flex;
+      flex-direction: row;
+      padding: 0;
+      background: var(--pm-brands-bg, #f9f8f7);
+    }
+    .panel-inner {
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      /* Fixed width (like the source's xl:w-[895px]) so the featured card row
+         can't expand the panel past the column grid: content width 861px =
+         3×210 icon columns + the 190px Platform column with its 20px gap +
+         20px pad + 1px divider. This makes the 4 flex cards ≈210px each, so
+         they line up under the columns above. */
+      width: 901px;
+      background: var(--pm-panel-bg, #fff);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    .brands-panel {
+      display: flex;
+      flex-direction: column;
+      width: 220px;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      padding: 20px;
+    }
+    .brand-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #212121;
+      transition: opacity 0.15s ease-in-out;
+    }
+    .brand-item:hover {
+      opacity: 0.8;
+    }
+    .brand-item img {
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+    .brand-item .title {
+      display: inline-flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: #212121;
+    }
+    .brand-item .desc {
+      display: block;
+      font-size: 12px;
+      color: #5c5c5c;
+    }
+    .brand-arrow {
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+      margin-left: 5px;
+      position: relative;
+      top: -1px;
+    }
+    .brand-arrow .bar {
+      height: 1px;
+      width: 7px;
+      background-color: currentColor;
+      transition: width 0.2s ease-in-out;
+    }
+    .brand-arrow .chev {
+      display: block;
+      margin-left: -4px;
+    }
+    .brand-item:hover .brand-arrow .bar,
+    .brand-item:focus .brand-arrow .bar {
+      width: 12px;
+    }
+    .hamburger {
+      display: none;
+      font: inherit;
+      background: none;
+      border: 1px solid var(--pm-nav-border, #e6e6e6);
+      border-radius: 6px;
+      padding: 0.4rem 0.6rem;
+      cursor: pointer;
+      color: #212121;
+    }
+    .actions {
+      margin-left: auto;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    /* Host controls for the MOBILE drawer. The "account" slot renders in the
+       top bar, which has no room on a phone — and a named slot can only be
+       projected once, so the drawer needs its own. Hidden above the mobile
+       breakpoint so hosts can supply both without double-rendering.
+       (Never use a backtick in this file's CSS comments — the whole block is a
+       css tagged template literal, so a stray one terminates it.) */
+    .mobile-account {
+      display: none;
+    }
+
+    @media (max-width: 1200px) {
+      /* The open menu needs a row of its own BELOW the bar. Without wrapping,
+         .menubar{width:100%} can't break to a new line — it just takes the
+         leftover space beside the logo and hamburger (~300px on a phone) — and
+         the bar's fixed 54px height clips it. So: allow wrapping, and let the
+         bar grow once the menu is open while keeping 54px as the closed height. */
+      nav {
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 54px;
+        align-content: flex-start;
+      }
+      /* Host-supplied slot content (auth buttons, switchers) must not force the
+         bar wider than the viewport — it's authored by the consumer and can be
+         any width. Let it shrink and wrap rather than overflow the page. */
+      .actions {
+        min-width: 0;
+        flex-wrap: wrap;
+      }
+      .hamburger {
+        display: inline-block;
+        order: 2;
+      }
+      .mobile-account {
+        display: block;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--pm-nav-border, #e6e6e6);
+        margin-top: 0.25rem;
+      }
+      .menubar {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        order: 3;
+      }
+      .menubar[data-mobile-open='true'] {
+        display: flex;
+      }
+      .panel {
+        position: static;
+        width: auto;
+        max-width: none;
+        margin-top: 0;
+        box-shadow: none;
+        border: 0;
+        border-radius: 0;
+        padding: 0.5rem 0 0.5rem 1rem;
+      }
+      .columns {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      /* Stack the brands sidebar below the columns on small screens. */
+      .panel.has-brands {
+        flex-direction: column;
+        background: none;
+        padding: 0.5rem 0 0.5rem 1rem;
+      }
+      .panel-inner {
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+      }
+      .brands-panel {
+        width: auto;
+        padding: 0.5rem 0 0;
+        margin-top: 10px;
+        border-top: 1px solid #e6e6e6;
+      }
+    }
+  </style><!--lit-part xCEnq2tI3o8=-->
+      <nav part="navbar" aria-label="Primary">
+        <slot name="logo"><!--lit-part SvgRjkC8tbs=--><!--lit-node 0--><a class="logo" part="logo" href="https://www.postman.com/" aria-label="Home">
+      <!-- alt="" because the anchor carries the accessible name; a filled alt
+           here would make screen readers announce it twice. -->
+      <img src="https://voyager.postman.com/logo/postman-logo-icon-orange.svg" alt="" width="32" height="32" />
+    </a><!--/lit-part--></slot>
+        <!--lit-node 3--><button
+          class="hamburger"
           aria-expanded="false"
-          aria-haspopup="true">
-          Product
-          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="#6b6b6b">
-            <g><path d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z" /></g>
-          </svg>
-        </a>
-        <div class="dropdown-menu dropdown-menu-with-brands" aria-labelledby="Nav-Product">
-          <div class="dropdown-with-brands">
-            <div class="dropdown-inner">
-              <!-- Inner panel -->
-              <div class="dropdown-right-column dropdown-col-menu dropdown-col-menu-wide">
-                <div class="dropdown-right-col-items">
-
-                  <div class="right-col">
-                    <p class="h6 dropdown-header mb-0">DESIGN &amp; BUILD</p>
-                    <a class="dropdown-item dropdown-item-icon" href="https://www.postman.com/product/spec-hub/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'spec-hub');">
-                      <span class="nav-icon" style="background-image: url('https://voyager.postman.com/icon/spec-hub-icon-2.svg');" aria-hidden="true"></span>
-                      <span class="nav-item-text">
-                        <span class="nav-item-title">Spec Hub</span>
-                        <span class="dropdown-description">Manage specifications</span>
-                      </span>
-                    </a>
-                    <a class="dropdown-item dropdown-item-icon" href="https://www.postman.com/product/workspaces/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'collaborate-in-workspaces');">
-                      <span class="nav-icon" style="background-image: url('https://voyager.postman.com/icon/workspaces-icon-2.svg');" aria-hidden="true"></span>
-                      <span class="nav-item-text">
-                        <span class="nav-item-title">Workspaces</span>
-                        <span class="dropdown-description">Collaborate with teams</span>
-                      </span>
-                    </a>
-                    <a class="dropdown-item dropdown-item-icon" href="https://www.postman.com/product/mock-servers/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'mock-servers');">
-                      <span class="nav-icon" style="background-image: url('https://voyager.postman.com/icon/local-mock-servers-icon-2.svg');" aria-hidden="true"></span>
-                      <span class="nav-item-text">
-                        <span class="nav-item-title">Mock Servers</span>
-                        <span class="dropdown-description">Simulate API behavior</span>
-                      </span>
-                    </a>
-                    <a class="dropdown-item dropdown-item-icon" href="https://www.postman.com/product/sdk-generator/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'sdk-generator');">
-                      <span class="nav-icon" style="background-image: url('https://voyager.postman.com/icon/sdk-generator-icon-2.svg');" aria-hidden="true"></span>
-                      <span class="nav-item-text">
-                        <span class="nav-item-title">SDK Generator</span>
-                        <span class="dropdown-description">Create SDKs instantly</span>
-                      </span>
-                    </a>
-                    <a class="dropdown-item dropdown-item-icon" href="https://www.postman.com/product/flows/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'flows');">
-                      <span class="nav-icon" style="background-image: url('https://voyager.postman.com/icon/flows-local-icon-2.svg');" aria-hidden="true"></span>
-                      <span class="nav-item-text">
-                        <span class="nav-item-title">Flows</span>
-                        <span class="dropdown-description">Create visual workflows</span>
-                      </span>
-                    </a>
-                  </div>
-
-                  <div class="right-col">
-                    <p class="h6 dropdown-header mb-0">TEST &amp; VALIDATE</p>
-                    <a class="dropdown-item dropdown-item-icon" href="https://www.postman.com/product/api-client/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'product-api-client');">
-                      <span class="nav-icon" style="background-image: url('https://voyager.postman.com/icon/api-client-2.svg');" aria-hidden="true"></span>
-                      <span class="nav-item-text">
-                        <span class="nav-item-title">API Client</span>
-                        <span class="dropdown-description">Send API requests</span>
-                      </span>
-                    </a>
-                    <a class="dropdown-item dropdown-item-icon" href="https://www.postman.com/product/collection-runner/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'collection-runner');">
-                      <span class="nav-icon" style="background-image: url('https://voyager.postman.com/icon/collection-runner-2.svg');" aria-hidden="true"></span>
-                      <span class="nav-item-text">
-                        <span class="nav-item-title">Collection Runner</span>
-                        <span class="dropdown-description">Automate API workflows</span>
-                      </span>
-                    </a>
-                    <a class="dropdown-item dropdown-item-icon" href="https://www.postman.com/product/monitors/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'api-monitoring');">
-                      <span class="nav-icon" style="background-image: url('https://voyager.postman.com/icon/monitors-icon-2.svg');" aria-hidden="true"></span>
-                      <span class="nav-item-text">
-                        <span class="nav-item-title">Monitors</span>
-                        <span class="dropdown-description">Validate performance</span>
-                      </span>
-                    </a>
-                    <a class="dropdown-item dropdown-item-icon" href="https://www.postman.com/product/webhooks/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'webhooks');">
-                      <span class="nav-icon" style="background-image: url('https://voyager.postman.com/icon/webhooks-icon.svg');" aria-hidden="true"></span>
-                      <span class="nav-item-text">
-                        <span class="nav-item-title">Webhooks</span>
-                        <span class="dropdown-description">First-class webhook support</span>
-                      </span>
-                    </a>
-                  </div>
-
-                  <div class="right-col">
-                    <p class="h6 dropdown-header mb-0">MANAGE &amp; OPERATE</p>
-                    <a class="dropdown-item dropdown-item-icon" href="https://www.postman.com/product/api-catalog/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'api-catalog');">
-                      <span class="nav-icon" style="background-image: url('https://voyager.postman.com/icon/api-catalog-2.svg');" aria-hidden="true"></span>
-                      <span class="nav-item-text">
-                        <span class="nav-item-title">API Catalog</span>
-                        <span class="dropdown-description">Know every API and service</span>
-                      </span>
-                    </a>
-                    <a class="dropdown-item dropdown-item-icon" href="https://www.postman.com/product/postman-insights/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'postman-insights');">
-                      <span class="nav-icon" style="background-image: url('https://voyager.postman.com/icon/insights-icon-2.svg');" aria-hidden="true"></span>
-                      <span class="nav-item-text">
-                        <span class="nav-item-title">Insights</span>
-                        <span class="dropdown-description">Track every endpoint</span>
-                      </span>
-                    </a>
-                  </div>
-
-                  <!-- Platform -->
-                  <aside class="dropdown-left-column">
-                    <p class="h6 dropdown-header mb-0">PLATFORM</p>
-                    <a class="dropdown-item" href="https://www.postman.com/new-postman/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'whats-new');">
-                      What's New
-                      <span class="gradient"></span>
-                    </a>
-                    <a class="dropdown-item" href="https://www.postman.com/security/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'security');">
-                      Security
-                    </a>
-                    <a class="dropdown-item" href="https://www.postman.com/product/integrations/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'integrations');">
-                      Integrations
-                    </a>
-
-                    <p class="h6 dropdown-header mb-0">EXPLORE</p>
-                    <a class="dropdown-item" href="https://www.postman.com/explore" onClick="ga('send', 'event', 'global-navbar', 'Click', 'explore');">
-                      Postman API Network
-                    </a>
-                    <a class="dropdown-item" href="https://www.postman.com/explore/mcp-servers" onClick="ga('send', 'event', 'global-navbar', 'Click', 'mcp-servers');">
-                      MCP Server Catalog
-                    </a>
-                    <div class="dropdown-download-cta">
-                    <a class="app-cta" href="https://www.postman.com/downloads/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'download-postman');">
-                      Download Postman →
-                    </a>
-                    </div>
-                  </aside>
-
-                </div>
-
-                <!-- Footer cards -->
-                <div class="nav-footer-block">
-                  <div class="nav-footer-row product-footer-row">
-                    <a class="footer-card footer-card--pink" href="https://www.postman.com/product/ai-engineer/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'ai-engineer');">
-                      <span class="footer-card-bg" aria-hidden="true"></span>
-                      <span class="footer-card-content">
-                        <span class="nav-icon nav-icon--dark" style="background-image: url('https://voyager.postman.com/icon/postman-ai-engineer-icon-3.svg');" aria-hidden="true"></span>
-                        <span class="nav-item-text">
-                          <span class="nav-item-title">AI Engineer</span>
-                          <span class="dropdown-description">AI Engineer is ready to help</span>
-                        </span>
-                      </span>
-                    </a>
-                    <a class="footer-card footer-card--orange" href="https://www.postman.com/product/agent-mode/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'agent-mode');">
-                      <span class="footer-card-bg" aria-hidden="true"></span>
-                      <span class="footer-card-content">
-                        <span class="nav-icon nav-icon--dark" style="background-image: url('https://voyager.postman.com/icon/postman-agent-mode-icon-2.svg');" aria-hidden="true"></span>
-                        <span class="nav-item-text">
-                          <span class="nav-item-title">Agent Mode</span>
-                          <span class="dropdown-description">Automate API workflows with native AI</span>
-                        </span>
-                      </span>
-                    </a>
-                    <a class="footer-card footer-card--yellow" href="https://www.postman.com/product/postman-cli/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'postman-cli');">
-                      <span class="footer-card-bg" aria-hidden="true"></span>
-                      <span class="footer-card-content">
-                        <span class="nav-icon nav-icon--dark" style="background-image: url('https://voyager.postman.com/icon/postman-cli-icon-2.svg');" aria-hidden="true"></span>
-                        <span class="nav-item-text">
-                          <span class="nav-item-title">Postman CLI</span>
-                          <span class="dropdown-description">Work with Postman from the command line</span>
-                        </span>
-                      </span>
-                    </a>
-                    <a class="footer-card footer-card--purple" href="https://www.postman.com/product/mcp-server/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'mcp-server');">
-                      <span class="footer-card-bg" aria-hidden="true"></span>
-                      <span class="footer-card-content">
-                        <span class="nav-icon nav-icon--dark" style="background-image: url('https://voyager.postman.com/icon/postman-mcp-icon-2.svg');" aria-hidden="true"></span>
-                        <span class="nav-item-text">
-                          <span class="nav-item-title">Postman MCP Server</span>
-                          <span class="dropdown-description">Give API context to your AI agents</span>
-                        </span>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Brands -->
-            <aside class="dropdown-brands-panel">
-              <p class="h6 dropdown-header dropdown-brands-header mb-0">MORE FROM POSTMAN</p>
-              <a class="brand-item" href="https://astropods.com/" rel="noopener noreferrer" target="_blank" onClick="ga('send', 'event', 'global-navbar', 'Click', 'astro-ai');">
-                <span class="nav-icon nav-icon--passthrough" style="background-image: url('https://voyager.postman.com/icon/external/astro-ai-logo-icon.svg');" aria-hidden="true"></span>
-                <span class="nav-item-text">
-                  <span class="nav-item-title">
-                    Astro AI
-                    <span class="brand-arrow" aria-hidden="true">
-                      <span class="brand-arrow-bar"></span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="9 0 5 8" fill="currentColor" class="brand-arrow-chevron">
-                        <path d="M13.3536 4.03553C13.5488 3.84027 13.5488 3.52369 13.3536 3.32843L10.1716 0.146447C9.97631 -0.0488155 9.65973 -0.0488155 9.46447 0.146447C9.2692 0.341709 9.2692 0.658291 9.46447 0.853554L12.2929 3.68198L9.46447 6.51041C9.2692 6.70567 9.2692 7.02225 9.46447 7.21751C9.65973 7.41278 9.97631 7.41278 10.1716 7.21751L13.3536 4.03553Z"/>
-                      </svg>
-                    </span>
-                  </span>
-                  <span class="dropdown-description">Manage and control AI agents in production</span>
-                </span>
-              </a>
-              <a class="brand-item" href="https://buildwithfern.com/" rel="noopener noreferrer" target="_blank" onClick="ga('send', 'event', 'global-navbar', 'Click', 'fern');">
-                <span class="nav-icon nav-icon--passthrough" style="background-image: url('https://voyager.postman.com/icon/external/fern-docs-leaf-icon.svg');" aria-hidden="true"></span>
-                <span class="nav-item-text">
-                  <span class="nav-item-title">
-                    Fern
-                    <span class="brand-arrow" aria-hidden="true">
-                      <span class="brand-arrow-bar"></span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="9 0 5 8" fill="currentColor" class="brand-arrow-chevron">
-                        <path d="M13.3536 4.03553C13.5488 3.84027 13.5488 3.52369 13.3536 3.32843L10.1716 0.146447C9.97631 -0.0488155 9.65973 -0.0488155 9.46447 0.146447C9.2692 0.341709 9.2692 0.658291 9.46447 0.853554L12.2929 3.68198L9.46447 6.51041C9.2692 6.70567 9.2692 7.02225 9.46447 7.21751C9.65973 7.41278 9.97631 7.41278 10.1716 7.21751L13.3536 4.03553Z"/>
-                      </svg>
-                    </span>
-                  </span>
-                  <span class="dropdown-description">Instantly generate API docs and SDKs</span>
-                </span>
-              </a>
-            </aside>
-
-          </div>
+          aria-controls="menubar"
+          
+        >
+          Menu
+        </button>
+        <!--lit-node 4--><ul
+          id="menubar"
+          class="menubar"
+          part="menubar"
+          role="menubar"
+          aria-label="Primary"
+          aria-orientation="horizontal"
+          data-mobile-open="false"
+          
+        >
+          <!--lit-part--><!--lit-part 6jR3+WBNtW4=--><li class="item" role="none">
+                  <!--lit-part Ag/IPlHBETg=--><!--lit-node 0--><button
+      id="trigger-product"
+      class="trigger"
+      part="menu-trigger"
+      role="menuitem"
+      tabindex="0"
+      aria-expanded="false"
+      aria-haspopup="true"
+      aria-controls="panel-product"
+      
+    >
+      <span><!--lit-part-->Product<!--/lit-part--></span>
+      <svg
+        class="chevron"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="currentColor"
+      >
+        <path
+          d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z"
+        ></path>
+      </svg>
+    </button><!--/lit-part--><!--lit-part 8LrBfkHG42Q=--><!--lit-node 0--><div
+      id="panel-product"
+      part="panel"
+      class="panel has-brands"
+      role="region"
+      aria-label="Product"
+      hidden
+      
+    >
+      <!--lit-part 1m7IJyrRrSQ=-->
+              <div class="panel-inner"><!--lit-part r9tjawXZNgc=-->
+      <!--lit-part b19ok/bgW/U=--><div class="columns">
+        <!--lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w210">
+      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Design &amp; Build<!--/lit-part--></p><!--/lit-part-->
+      <ul>
+        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/spec-hub/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/spec-hub-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Spec Hub<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Manage specifications<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/workspaces/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/workspaces-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Workspaces<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Collaborate with teams<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/mock-servers/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/local-mock-servers-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Mock Servers<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Simulate API behavior<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/sdk-generator/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/sdk-generator-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->SDK Generator<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Create SDKs instantly<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/flows/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/flows-local-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Flows<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Create visual workflows<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+      </ul>
+    </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w210">
+      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Test &amp; Validate<!--/lit-part--></p><!--/lit-part-->
+      <ul>
+        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/api-client/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/api-client-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->API Client<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Send API requests<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/collection-runner/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/collection-runner-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Collection Runner<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Automate API workflows<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/monitors/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/monitors-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Monitors<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Validate performance<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/webhooks/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/webhooks-icon.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Webhooks<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->First-class webhook support<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+      </ul>
+    </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w210">
+      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Manage &amp; Operate<!--/lit-part--></p><!--/lit-part-->
+      <ul>
+        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/api-catalog/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/api-catalog-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->API Catalog<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Know every API and service<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/postman-insights/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/insights-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Insights<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Track every endpoint<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+      </ul>
+    </div><!--/lit-part--><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col left-nav">
+      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Platform<!--/lit-part--></p><!--/lit-part-->
+      <ul>
+        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/new-postman/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->What&#39;s New<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/security/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Security<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/integrations/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Integrations<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part MkpDcwos3Mo=--><li class="section-header" role="presentation"><!--lit-part-->Explore<!--/lit-part--></li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/explore"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Postman API Network<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/explore/mcp-servers"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->MCP Server Catalog<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item app-cta "
+        part="nav-link"
+        
+        href="https://www.postman.com/downloads/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Download Postman →<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+      </ul>
+    </div><!--/lit-part-->
+      </div><!--/lit-part-->
+      <!--lit-part +ra7spn/DWQ=--><div class="featured">
+              <ul class="card-row">
+                <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  feat-card"
+        part="nav-link"
+        style="background:linear-gradient(99deg, #FFCCFC 0%, rgba(207, 207, 207, 0.00) 100%);--ring:#F37FFE"
+        href="https://www.postman.com/product/ai-engineer/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/postman-ai-engineer-icon-3.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->AI Engineer<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->AI Engineer is ready to help<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  feat-card"
+        part="nav-link"
+        style="background:linear-gradient(275deg, rgba(161, 161, 161, 0.00) 0%, rgba(255, 108, 55, 0.20) 100%);--ring:#FF6C37"
+        href="https://www.postman.com/product/agent-mode/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/postman-agent-mode-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Agent Mode<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Automate API workflows with native AI<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  feat-card"
+        part="nav-link"
+        style="background:linear-gradient(275deg, rgba(207, 207, 207, 0.00) 0%, rgba(255, 216, 117, 0.20) 100%);--ring:#FFA90A"
+        href="https://www.postman.com/product/postman-cli/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/postman-cli-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Postman CLI<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Work with Postman from the command line<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  feat-card"
+        part="nav-link"
+        style="background:linear-gradient(275deg, rgba(207, 207, 207, 0.00) 0%, rgba(179, 135, 245, 0.20) 100%);--ring:#7A24F0"
+        href="https://www.postman.com/product/mcp-server/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/postman-mcp-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Postman MCP Server<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Give API context to your AI agents<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+              </ul>
+            </div><!--/lit-part-->
+    <!--/lit-part--></div>
+              <aside class="brands-panel" part="brands">
+                <p class="col-title">More from Postman</p>
+                <!--lit-part--><!--lit-part 8REdX04aCUw=--><!--lit-node 0--><a
+      class="brand-item"
+      part="nav-link"
+      href="https://www.postman.com/fabric-gateway/"
+      
+      
+      
+    >
+      <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/logo/fabric-gateway-mark-gradient.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+      <span class="text">
+        <span class="title"
+          ><!--lit-part-->Fabric Gateway<!--/lit-part-->
+          <span class="brand-arrow" aria-hidden="true">
+            <span class="bar"></span>
+            <svg
+              class="chev"
+              xmlns="http://www.w3.org/2000/svg"
+              width="5"
+              height="9"
+              viewBox="9 0 5 8"
+              fill="currentColor"
+            >
+              <path
+                d="M13.3536 4.03553C13.5488 3.84027 13.5488 3.52369 13.3536 3.32843L10.1716 0.146447C9.97631 -0.0488155 9.65973 -0.0488155 9.46447 0.146447C9.2692 0.341709 9.2692 0.658291 9.46447 0.853554L12.2929 3.68198L9.46447 6.51041C9.2692 6.70567 9.2692 7.02225 9.46447 7.21751C9.65973 7.41278 9.97631 7.41278 10.1716 7.21751L13.3536 4.03553Z"
+              ></path>
+            </svg>
+          </span>
+        </span>
+        <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Route, govern, and observe your AI traffic<!--/lit-part--></span><!--/lit-part-->
+      </span>
+    </a><!--/lit-part--><!--lit-part 8REdX04aCUw=--><!--lit-node 0--><a
+      class="brand-item"
+      part="nav-link"
+      href="https://buildwithfern.com/"
+      
+      
+      
+    >
+      <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/external/fern-docs-leaf-icon.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+      <span class="text">
+        <span class="title"
+          ><!--lit-part-->Fern<!--/lit-part-->
+          <span class="brand-arrow" aria-hidden="true">
+            <span class="bar"></span>
+            <svg
+              class="chev"
+              xmlns="http://www.w3.org/2000/svg"
+              width="5"
+              height="9"
+              viewBox="9 0 5 8"
+              fill="currentColor"
+            >
+              <path
+                d="M13.3536 4.03553C13.5488 3.84027 13.5488 3.52369 13.3536 3.32843L10.1716 0.146447C9.97631 -0.0488155 9.65973 -0.0488155 9.46447 0.146447C9.2692 0.341709 9.2692 0.658291 9.46447 0.853554L12.2929 3.68198L9.46447 6.51041C9.2692 6.70567 9.2692 7.02225 9.46447 7.21751C9.65973 7.41278 9.97631 7.41278 10.1716 7.21751L13.3536 4.03553Z"
+              ></path>
+            </svg>
+          </span>
+        </span>
+        <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Instantly generate API docs and SDKs<!--/lit-part--></span><!--/lit-part-->
+      </span>
+    </a><!--/lit-part--><!--lit-part 8REdX04aCUw=--><!--lit-node 0--><a
+      class="brand-item"
+      part="nav-link"
+      href="https://astropods.com/"
+      
+      
+      
+    >
+      <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/external/astro-ai-logo-icon.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+      <span class="text">
+        <span class="title"
+          ><!--lit-part-->Astro AI<!--/lit-part-->
+          <span class="brand-arrow" aria-hidden="true">
+            <span class="bar"></span>
+            <svg
+              class="chev"
+              xmlns="http://www.w3.org/2000/svg"
+              width="5"
+              height="9"
+              viewBox="9 0 5 8"
+              fill="currentColor"
+            >
+              <path
+                d="M13.3536 4.03553C13.5488 3.84027 13.5488 3.52369 13.3536 3.32843L10.1716 0.146447C9.97631 -0.0488155 9.65973 -0.0488155 9.46447 0.146447C9.2692 0.341709 9.2692 0.658291 9.46447 0.853554L12.2929 3.68198L9.46447 6.51041C9.2692 6.70567 9.2692 7.02225 9.46447 7.21751C9.65973 7.41278 9.97631 7.41278 10.1716 7.21751L13.3536 4.03553Z"
+              ></path>
+            </svg>
+          </span>
+        </span>
+        <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Manage and control AI agents in production<!--/lit-part--></span><!--/lit-part-->
+      </span>
+    </a><!--/lit-part--><!--/lit-part-->
+              </aside>
+            <!--/lit-part-->
+    </div><!--/lit-part-->
+                </li><!--/lit-part--><!--lit-part 6jR3+WBNtW4=--><li class="item" role="none">
+                  <!--lit-part Ag/IPlHBETg=--><!--lit-node 0--><button
+      id="trigger-solutions"
+      class="trigger"
+      part="menu-trigger"
+      role="menuitem"
+      tabindex="-1"
+      aria-expanded="false"
+      aria-haspopup="true"
+      aria-controls="panel-solutions"
+      
+    >
+      <span><!--lit-part-->Solutions<!--/lit-part--></span>
+      <svg
+        class="chevron"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="currentColor"
+      >
+        <path
+          d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z"
+        ></path>
+      </svg>
+    </button><!--/lit-part--><!--lit-part 8LrBfkHG42Q=--><!--lit-node 0--><div
+      id="panel-solutions"
+      part="panel"
+      class="panel "
+      role="region"
+      aria-label="Solutions"
+      hidden
+      
+    >
+      <!--lit-part r9tjawXZNgc=-->
+      <!--lit-part 93yI3VTwxwY=--><ul class="solutions-grid">
+        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/solutions/api-governance/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->API Governance<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Enforce API standards at scale<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/solutions/partner-api-management/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Partner API Management<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Onboard partners in days, not months<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/solutions/api-lifecycle-management/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->API Lifecycle Management<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Run every stage as one connected system<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/solutions/sdlc-automation/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->SDLC Automation<!--/lit-part--></span>
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Embed quality into every delivery stage<!--/lit-part--></span><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+      </ul><!--/lit-part-->
+      <!--lit-part--><!--/lit-part-->
+    <!--/lit-part-->
+    </div><!--/lit-part-->
+                </li><!--/lit-part--><!--lit-part CD4CAwJpRgY=--><li class="item" role="none"><!--lit-part IVugGeXMSMo=--><!--lit-node 0--><a
+      class="top-link"
+      part="nav-link"
+      role="menuitem"
+      tabindex="-1"
+      href="https://www.postman.com/pricing/"
+      
+      
+      
+      ><!--lit-part-->Pricing<!--/lit-part--></a
+    ><!--/lit-part--></li><!--/lit-part--><!--lit-part CD4CAwJpRgY=--><li class="item" role="none"><!--lit-part IVugGeXMSMo=--><!--lit-node 0--><a
+      class="top-link"
+      part="nav-link"
+      role="menuitem"
+      tabindex="-1"
+      href="https://www.postman.com/postman-enterprise/"
+      
+      
+      
+      ><!--lit-part-->Enterprise<!--/lit-part--></a
+    ><!--/lit-part--></li><!--/lit-part--><!--lit-part 6jR3+WBNtW4=--><li class="item" role="none">
+                  <!--lit-part Ag/IPlHBETg=--><!--lit-node 0--><button
+      id="trigger-resources"
+      class="trigger"
+      part="menu-trigger"
+      role="menuitem"
+      tabindex="-1"
+      aria-expanded="false"
+      aria-haspopup="true"
+      aria-controls="panel-resources"
+      
+    >
+      <span><!--lit-part-->Resources<!--/lit-part--></span>
+      <svg
+        class="chevron"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="currentColor"
+      >
+        <path
+          d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z"
+        ></path>
+      </svg>
+    </button><!--/lit-part--><!--lit-part 8LrBfkHG42Q=--><!--lit-node 0--><div
+      id="panel-resources"
+      part="panel"
+      class="panel "
+      role="region"
+      aria-label="Resources"
+      hidden
+      
+    >
+      <!--lit-part r9tjawXZNgc=-->
+      <!--lit-part b19ok/bgW/U=--><div class="columns">
+        <!--lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w180">
+      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Learn<!--/lit-part--></p><!--/lit-part-->
+      <ul>
+        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/learn/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Learning Hub<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://learning.postman.com"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Docs<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://academy.postman.com/page/enterprise-implementation-onboarding-guide"
+        target="_blank"
+        rel="noopener noreferrer"
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Enterprise Onboarding<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://academy.postman.com"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Postman Academy<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/customer-stories/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Customer Stories<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/postman-best-practices/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Postman Best Practices<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+      </ul>
+    </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w180">
+      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Connect<!--/lit-part--></p><!--/lit-part-->
+      <ul>
+        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://community.postman.com"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Community<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/events/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Events<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://discord.gg/58aNNsRBGR"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Discord<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/mcp-server/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Postman MCP Server<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/partner-program/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Partner Program<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+      </ul>
+    </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w180">
+      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Tools<!--/lit-part--></p><!--/lit-part-->
+      <ul>
+        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools/spechub-visualizer-and-linter"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Spec editor and visualizer<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools/api-health-check"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Check API health<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools/is-it-up"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Check site uptime<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools/site-speed-checker"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Check site speed<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools/curl-to-code"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->cURL to code<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->See all tools →<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+      </ul>
+    </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w180">
+      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Get Support<!--/lit-part--></p><!--/lit-part-->
+      <ul>
+        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://support.postman.com/hc/en-us/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Support Center<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/release-notes/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Release Notes<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://status.postman.com"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Postman Status<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/security/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Security<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+      </ul>
+    </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w180">
+      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Postman<!--/lit-part--></p><!--/lit-part-->
+      <ul>
+        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://blog.postman.com"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Blog<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/company/press-media/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Press and Media<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  "
+        part="nav-link"
+        
+        href="https://www.postman.com/company/about-postman/"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->About Postman<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+      </ul>
+    </div><!--/lit-part--><!--/lit-part-->
+      </div><!--/lit-part-->
+      <!--lit-part--><!--/lit-part-->
+    <!--/lit-part-->
+    </div><!--/lit-part-->
+                </li><!--/lit-part--><!--/lit-part-->
+          <li class="item mobile-account" role="none">
+            <slot name="account-mobile"><!--lit-part KiZeL1tOw0U=--><!--lit-node 0--><div class="acct-group acct-mobile">
+      <!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-secondary" part="account-link" href="https://www.postman.com/company/contact-sales/"><!--lit-part-->Contact Sales<!--/lit-part--></a><!--/lit-part-->
+      <!--lit-part--><!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-secondary" part="account-link" href="https://identity.getpostman.com/login"><!--lit-part-->Sign In<!--/lit-part--></a><!--/lit-part--><!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-primary" part="account-link" href="https://identity.getpostman.com/signup"><!--lit-part-->Sign Up for Free<!--/lit-part--></a><!--/lit-part--><!--/lit-part-->
+    </div><!--/lit-part--></slot>
+          </li>
+        </ul>
+        <div class="actions">
+          <slot name="search"></slot>
+          <slot name="local-nav"></slot>
+          <slot name="account"><!--lit-part KiZeL1tOw0U=--><!--lit-node 0--><div class="acct-group ">
+      <!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-secondary" part="account-link" href="https://www.postman.com/company/contact-sales/"><!--lit-part-->Contact Sales<!--/lit-part--></a><!--/lit-part-->
+      <!--lit-part--><!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-secondary" part="account-link" href="https://identity.getpostman.com/login"><!--lit-part-->Sign In<!--/lit-part--></a><!--/lit-part--><!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-primary" part="account-link" href="https://identity.getpostman.com/signup"><!--lit-part-->Sign Up for Free<!--/lit-part--></a><!--/lit-part--><!--/lit-part-->
+    </div><!--/lit-part--></slot>
         </div>
-      </li>
-
-      <!-- Solutions -->
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="Nav-Solutions"
-          data-bs-toggle="dropdown"
-          data-bs-display="static"
-          aria-expanded="false"
-          aria-haspopup="true">
-          Solutions
-          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="#6b6b6b">
-            <g><path d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z" /></g>
-          </svg>
-        </a>
-        <div class="dropdown-menu dropdown-menu-solutions" aria-labelledby="Nav-Solutions">
-          <div class="solutions-grid">
-            <a class="dropdown-item" href="https://www.postman.com/solutions/api-governance/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'api-governance');">
-              <span class="nav-item-title">API Governance</span>
-              <span class="dropdown-description">Enforce API standards at scale</span>
-            </a>
-            <a class="dropdown-item" href="https://www.postman.com/solutions/api-lifecycle-management/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'api-lifecycle-management');">
-              <span class="nav-item-title">API Lifecycle Management</span>
-              <span class="dropdown-description">Run every stage as one connected system</span>
-            </a>
-            <a class="dropdown-item" href="https://www.postman.com/solutions/partner-api-management/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'partner-api-management');">
-              <span class="nav-item-title">Partner API Management</span>
-              <span class="dropdown-description">Onboard partners in days, not months</span>
-            </a>
-            <a class="dropdown-item" href="https://www.postman.com/solutions/sdlc-automation/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'sdlc-automation');">
-              <span class="nav-item-title">SDLC Automation</span>
-              <span class="dropdown-description">Embed quality into every delivery stage</span>
-            </a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Pricing -->
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          id="Nav-Pricing"
-          href="https://www.postman.com/pricing/"
-          onClick="ga('send', 'event', 'global-navbar', 'Click', 'pricing');">
-          Pricing
-        </a>
-      </li>
-
-      <!-- Enterprise -->
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          id="Nav-Enterprise"
-          href="https://www.postman.com/postman-enterprise/"
-          onClick="ga('send', 'event', 'global-navbar', 'Click', 'postman-enterprise');">
-          Enterprise
-        </a>
-      </li>
-
-      <!-- Resources -->
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="Nav-Resources"
-          data-bs-toggle="dropdown"
-          data-bs-display="static"
-          aria-expanded="false"
-          aria-haspopup="true">
-          Resources
-          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="#6b6b6b">
-            <g><path d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z" /></g>
-          </svg>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="Nav-Resources">
-          <div class="row dropdown-col-menu">
-            <div class="col-sm-6 col-md-3 dropdown-col">
-              <p class="h6 dropdown-header mb-0">LEARN</p>
-              <a class="dropdown-item" href="https://www.postman.com/learn/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'learn');">Learning Hub</a>
-              <a class="dropdown-item" href="https://learning.postman.com/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'docs');">Docs</a>
-              <a class="dropdown-item" href="https://academy.postman.com/page/enterprise-implementation-onboarding-guide" onClick="ga('send', 'event', 'global-navbar', 'Click', 'enterprise-onboarding');" rel="noreferrer" target="_blank">Enterprise Onboarding</a>
-              <a class="dropdown-item" href="https://academy.postman.com/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'postman-academy');" rel="noreferrer" target="_blank">Postman Academy</a>
-              <a class="dropdown-item" href="https://www.postman.com/templates/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'postman-templates');" rel="noreferrer" target="_blank">Templates</a>
-              <a class="dropdown-item" href="https://www.postman.com/customer-stories/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'customer-stories');" rel="noreferrer" target="_blank">Customer Stories</a>
-              <a class="dropdown-item" href="https://www.postman.com/postman-best-practices/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'postman-best-practices');" rel="noreferrer" target="_blank">Postman Best Practices</a>
-            </div>
-            <div class="col-sm-6 col-md-3 dropdown-col">
-              <p class="h6 dropdown-header mb-0">CONNECT</p>
-              <a class="dropdown-item" href="https://community.postman.com/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'community');">Community</a>
-              <a class="dropdown-item" href="https://www.postman.com/events/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'events');">Events</a>
-              <a class="dropdown-item" href="https://discord.gg/58aNNsRBGR" onClick="ga('send', 'event', 'global-navbar', 'Click', 'discord');" rel="noreferrer noopener" target="_blank">Discord</a>
-              <a class="dropdown-item" href="https://www.postman.com/product/mcp-server/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'mcp-server');">Postman MCP Server</a>
-            </div>
-            <div class="col-sm-6 col-md-3 dropdown-col">
-              <p class="h6 dropdown-header mb-0">GET SUPPORT</p>
-              <a class="dropdown-item" href="https://support.postman.com/hc/en-us/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'support-center');">Support Center</a>
-              <a class="dropdown-item" href="https://www.postman.com/release-notes/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'release-notes');">Release Notes</a>
-              <a class="dropdown-item" href="https://status.postman.com/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'postman-status');" target="_blank" rel="noreferrer">Postman Status</a>
-              <a class="dropdown-item" href="https://www.postman.com/security/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'trust-and-security');" id="Nav-Resources-Security" target="_blank" rel="noreferrer">Security</a>
-            </div>
-            <div class="col-sm-6 col-md-3 dropdown-col">
-              <p class="h6 dropdown-header mb-0">POSTMAN</p>
-              <a class="dropdown-item" href="https://blog.postman.com/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'blog');">Blog</a>
-              <a class="dropdown-item" href="https://www.postman.com/company/press-media/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'press-media');">Press and Media</a>
-              <a class="dropdown-item" href="https://www.postman.com/company/about-postman/" onClick="ga('send', 'event', 'global-navbar', 'Click', 'about-postman');">About Postman</a>
-            </div>
-          </div>
-        </div>
-      </li>
-
-    </ul>
-
-    <!-- Auth buttons -->
-    <div class="form-inline my-2 my-lg-0 ms-0">
-      <a
-        class="button-secondary nav-link uber-nav-link uber-nav_right contact-sales-button"
-        href="https://www.postman.com/company/contact-sales/"
-        title="Contact Sales"
-        aria-label="Contact Sales"
-        onClick="ga('send', 'event', 'global-navbar', 'Click', 'contact-sales');">
-        Contact Sales
-      </a>
-      <a
-        class="button-secondary nav-link uber-nav-link uber-nav_right pingdom-transactional-check__sign-in-button nav-sign-in-button d-none"
-        href="https://identity.getpostman.com/login?continue=https%3A%2F%2Fgo.postman.co%2Fhome"
-        title="Sign In"
-        aria-label="Sign In"
-        onClick="ga('send', 'event', 'global-navbar', 'Click', 'sign-in');">
-        Sign In
-      </a>
-      <a
-        class="button-primary nav-link uber-nav-link uber-nav_right pingdom-transactional-check__register-button nav-sign-up-button d-none"
-        title="Sign Up for Free"
-        aria-label="Sign Up for Free"
-        href="https://identity.getpostman.com/signup?continue=https%3A%2F%2Fgo.postman.co%2Fbuild"
-        onClick="ga('send', 'event', 'global-navbar', 'Click', 'sign-up');"
-        style="white-space: nowrap;">
-        Sign Up for Free
-      </a>
-      <a
-        class="button-primary nav-link uber-nav-link uber-nav_right pingdom-transactional-check__launch-button nav-launch-postman-button d-none"
-        title="Launch Postman"
-        aria-label="Launch Postman"
-        href="https://go.postman.co/home"
-        onClick="ga('send', 'event', 'global-navbar', 'Click', 'launch-postman');">
-        Launch Postman
-      </a>
-    </div>
+      </nav>
+    <!--/lit-part--></template>
+  <div slot="account" class="pm-support-account">
+    {{#if signed_in}}
+      <a class="nav-link uber-nav" href="https://support.postman.com/hc/en-us/requests"
+        onClick="ga('send', 'event', 'global-navbar', 'Click', 'my-requests');">My requests</a>
+      <a class="nav-link uber-nav" href="https://support.postman.com/access/logout?return_to=https%3A%2F%2Fsupport.postman.com%2Fhc%2Fen-us"
+        onClick="ga('send', 'event', 'global-navbar', 'Click', 'sign-out');">Sign out</a>
+    {{else}}
+      <a class="nav-link uber-nav" href="/hc/en-us/signin"
+        onClick="ga('send', 'event', 'global-navbar', 'Click', 'sign-in');">Sign in</a>
+    {{/if}}
   </div>
-</nav>
+  <div slot="account-mobile" class="pm-support-account">
+    {{#if signed_in}}
+      <a class="nav-link uber-nav" href="https://support.postman.com/hc/en-us/requests">My requests</a>
+      <a class="nav-link uber-nav" href="https://support.postman.com/access/logout?return_to=https%3A%2F%2Fsupport.postman.com%2Fhc%2Fen-us">Sign out</a>
+    {{else}}
+      <a class="nav-link uber-nav" href="/hc/en-us/signin">Sign in</a>
+    {{/if}}
+  </div>
+</postman-navbar><!--/lit-part-->
 
-<!-- Support Center Secondary Navbar -->
 <nav class="navbar-v6 navbar sticky-top navbar-expand-xl navbar-light nav-secondary">
   <div class="dropdown position-static">
     <a
