@@ -4,10 +4,19 @@
   hand-inlined markup that duplicated the marketing site's footer.
 
   CLIENT-MOUNTED, unlike the navbar above. The footer is below the fold and not
-  LCP-critical, so there is no prerendered fragment; the element reserves its own
-  height (--pm-footer-min-height) and fills in on mount, so no layout shift.
-  It is registered by the same bundle the navbar's hydration uses — see
-  templates/document_head.hbs — so no extra script is needed here.
+  LCP-critical, so there is no prerendered fragment; the element reserves height
+  via --pm-footer-min-height and fills in on mount. It is registered by the same
+  bundle the navbar's hydration uses — see templates/document_head.hbs — so no
+  extra script is needed here.
+
+  That reserve is PARTIAL, not exact. The component's default is 320px, while the
+  mounted footer measures ~647px on desktop and ~1348px on mobile (v3.0.0, in
+  Chromium), so mount still grows the page. It is below the fold, so this costs
+  scroll position rather than CLS on the initial view. Not introduced here — the
+  same 320px default under-reserved at v1.0.6 too, by more (682/1517px). The fix
+  belongs in the component's default rather than in an override per consumer; if
+  it needs solving here first, set --pm-footer-min-height on this element behind
+  a media query rather than picking one value for both breakpoints.
 
   No `host` attribute: it falls back to location.origin, and support.postman.com
   is not www-family, so internal links resolve to absolute www.postman.com URLs.
@@ -15,6 +24,13 @@
   emit-jsonld is left ON (the default). Unlike the docs site, the support center
   has no competing SiteNavigationElement data of its own, so letting the
   component emit it is a net gain rather than a duplicate.
+
+  language-switcher is left OFF (also the default). v2.0.0 added a built-in
+  English/日本語 switcher, but its options point at www.postman.com/jp/, not at a
+  translation of the page you are on — a foreign host gets the site-root
+  fallback. On the support center that control would read as "switch this page's
+  language" and instead navigate the reader off the support center entirely.
+  Turn it on only alongside a decision about localized /hc/ URLs.
 --}}
 <div>
   <hr>
