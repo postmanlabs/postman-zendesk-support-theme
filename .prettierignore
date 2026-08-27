@@ -1,2 +1,9 @@
 assets/
 node_modules/
+# GENERATED, not hand-written: the <postman-navbar> Declarative Shadow DOM
+# fragment from postman-eng/marketing-global-navbar-footer is inlined here.
+# Reformatting it moves Lit's hydration marker comments, which makes the
+# hydrate bundle re-render from scratch instead of adopting the markup — the
+# navbar flashes and shifts. Regenerate by re-fetching the release artifact,
+# never by editing or formatting.
+templates/header.hbs
