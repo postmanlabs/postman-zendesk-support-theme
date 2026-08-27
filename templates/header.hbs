@@ -3,14 +3,26 @@
 {{!--
   GLOBAL NAVBAR — GENERATED, do not hand-edit.
 
-  Prerendered <postman-navbar> from postman-eng/marketing-global-navbar-footer,
-  inlined verbatim. Refresh on a version bump with:
+  Prerendered <postman-navbar> from postman-eng/marketing-global-navbar-footer
+  v3.0.0, inlined verbatim. Refresh on a version bump with:
 
-    curl -fsS https://global-navbar-footer.postman-account2009.workers.dev/v1/navbar.foreign.en.html
+    curl -fsS https://global-navbar-footer.postman-account2009.workers.dev/3.0.0/navbar.foreign.en.html
 
-  ...then re-insert the two slot blocks below the markup and update the version
-  and integrity hash in templates/document_head.hbs. No build step, no npm, no
-  Node — the artifact is static HTML.
+  Pin the exact version, not the `v3` alias: that alias moves with every 3.x
+  release, so a copy taken from it cannot be re-derived later, and the integrity
+  hash in document_head.hbs pins one exact bundle anyway.
+
+  Exactly two local edits are made to the artifact, and they are the only reason
+  this file is not a byte-for-byte copy:
+
+    1. `{{#if signed_in}}signed-in {{/if}}` on the <postman-navbar> opening tag,
+       so Zendesk's server-side flag drives the component's signed-in state.
+    2. The two slot blocks re-inserted between </template> and
+       </postman-navbar> below.
+
+  Then update the version and integrity hash in templates/document_head.hbs —
+  they must match this artifact's version. No build step, no npm, no Node; the
+  artifact is static HTML.
 
   It is inlined rather than client-mounted so the navbar is SERVER-RENDERED:
   Zendesk emits this template, so the browser's parser sees the
@@ -45,7 +57,44 @@
       height: 54px;
       background: var(--pm-nav-bg, #fff);
       border-bottom: 1px solid var(--pm-nav-border, #e6e6e6);
-      padding: 0.8rem 1.6rem;
+      /* px, not the source's 0.8rem/1.6rem: www.postman.com sets
+         html{font-size:62.5%}, so its rem values compute to 8px/16px. A
+         component that ships to any host cannot borrow the host's root font
+         size — on a default 16px root the same rems would render 12.8/25.6px
+         and the 30px hamburger would no longer fit the 54px bar. */
+      padding: 8px 16px;
+    }
+    /* Bar layout: logo + menubar pinned left, host controls + hamburger right
+       (source: "flex w-full items-center justify-between"). */
+    .bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-width: 0;
+    }
+    .bar-left,
+    .bar-right {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+    }
+    /* Gap between the host's "search" control and the hamburger. Collapses on
+       desktop, where the hamburger is display:none. */
+    .bar-right {
+      gap: 8px;
+    }
+    /* ONE node, two roles. Above the breakpoint .drawer/.drawer-scroll are inert
+       flex wrappers that leave the menubar sitting in the bar; below it, the same
+       node becomes the sliding overlay drawer (see the mobile block). The
+       alternative — a second copy of the menu markup for the drawer, which is
+       what the React source does — would duplicate every id in the mega-menu and
+       double the SSR payload. */
+    .drawer,
+    .drawer-scroll {
+      display: flex;
+      align-items: center;
+      min-width: 0;
     }
     /* Default account controls (slot fallback). Plain shadow CSS, no utility
        classes: Fern's custom-header compiler silently no-ops Tailwind arbitrary
@@ -56,11 +105,12 @@
       align-items: center;
       gap: 0.4rem;
     }
+    /* In the drawer the same buttons stay a ROW, as they do on the marketing
+       site ("mr-[0.4rem]" between them) — but wrapping, so three localized
+       labels can never scroll a 390px phone sideways. */
     .acct-group.acct-mobile {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.6rem;
-      width: 100%;
+      flex-wrap: wrap;
+      gap: 4px;
     }
     .acct {
       font: inherit;
@@ -99,7 +149,10 @@
       display: inline-flex;
       align-items: center;
       flex: none;
-      margin-right: 1.6rem;
+      /* Measured off the live bar (its mr-1 computes to 10px there), and in px
+         for the same reason as the bar padding. At 1.6rem the first trigger sat
+         16px right of where www.postman.com puts it. */
+      margin-right: 10px;
       border: 0;
       text-decoration: none;
     }
@@ -133,7 +186,10 @@
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      /* Space before the chevron: the source's ml-[0.5rem] on the chevron
+         wrapper, which computes to 5px there. At 0.5rem (8px here) every
+         dropdown trigger came out 3px wide, pushing the whole bar right. */
+      gap: 5px;
       white-space: nowrap;
     }
     .trigger[aria-expanded='true'],
@@ -170,8 +226,13 @@
       position: absolute;
       top: 100%;
       left: -14px;
+      /* Never wider than the viewport. Belt to the braces of the runtime shift
+         below: if a panel is so wide that shifting cannot fit it, it wraps
+         instead of hanging off an edge. */
+      max-width: calc(100vw - 2 * var(--pm-panel-gutter, 16px));
       z-index: 2147483647;
-      margin-top: 0.8rem;
+      /* 8px, the source's 0.8rem at its 62.5% root. */
+      margin-top: 8px;
       width: max-content;
       box-sizing: border-box;
       background: var(--pm-panel-bg, #fff);
@@ -195,6 +256,8 @@
     }
     .col.w180 {
       width: 180px;
+      /* The source's xl:mb-[20px] on the Resources columns. */
+      margin-bottom: 20px;
     }
     /* Product's Platform/Explore column: narrower, rendered last, with a
        20px gap (margin) + divider separating it from the icon columns. */
@@ -203,6 +266,16 @@
       margin-left: 20px;
       border-left: 1px solid #e6e6e6;
       padding-left: 20px;
+    }
+    /* Solutions rows stretch to the grid row, so the hover background covers the
+       whole cell rather than just a one-line item beside a two-line one — the
+       source's items are the grid children themselves. */
+    .solutions-grid > li {
+      display: flex;
+    }
+    .solutions-grid .menu-item {
+      flex: 1;
+      box-sizing: border-box;
     }
     /* Solutions: all items in one 2-column grid, equal-height rows. */
     .solutions-grid {
@@ -217,9 +290,13 @@
     }
     .col-title,
     .section-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
       margin: 0 0 10px 10px;
       font-family: var(--pm-mono, 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace);
       font-size: 12px;
+      line-height: var(--pm-panel-line-height, 1.625);
       font-weight: 400;
       text-transform: uppercase;
       color: var(--pm-nav-section, #e05320);
@@ -227,10 +304,27 @@
     .section-header {
       margin-top: 30px;
     }
+    /* Grey pill beside a column heading ("TOOLS new"). */
+    .col-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border: 1px solid var(--pm-panel-border, #e6e6e6);
+      border-radius: 4px;
+      background: #fff;
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #707070;
+    }
     .menu-item {
       display: flex;
       gap: 8px;
-      align-items: flex-start;
+      /* Centred, because these rows are a single line: the icon columns carry
+         titles only (see nav-data.js). The two places that DO stack a
+         description — featured cards and brands — align to the top instead. */
+      align-items: center;
       padding: 10px;
       border-radius: 5px;
       text-decoration: none;
@@ -240,22 +334,45 @@
     .menu-item:hover {
       background: var(--pm-nav-hover-bg, #efefef);
     }
+    /* 1.625 is the line-height the panel inherits on www.postman.com — 22.75px
+       on a 14px title, 19.5px on a 12px description or column heading. Left to
+       "normal" the rows came out 37px against the site's 43px. (The BAR is
+       different: its triggers set leading-[21px] explicitly, so those stay 21px.) */
     .menu-item .title {
       display: block;
       font-size: 14px;
+      line-height: var(--pm-panel-line-height, 1.625);
       font-weight: 600;
       color: #212121;
     }
     .menu-item .desc {
       display: block;
       font-size: 12px;
+      line-height: var(--pm-panel-line-height, 1.625);
       color: #5c5c5c;
     }
+    /* Column icons are recolored, not orange to begin with: the art at
+       voyager.postman.com is multi-colored, and the live menu flattens it to
+       black and re-tints it to the brand orange. Same filter chain as the
+       source's .navIcon, with its empty saturate() given the value it meant —
+       an argument-less filter function is invalid CSS, which would drop the
+       whole declaration and leave the icons raw.
+       scale(0.8) is the source's background-size:80%: the box stays 22px, so
+       every title still starts at the same x, but the glyph is drawn smaller. */
     .menu-item img {
       width: 22px;
       height: 22px;
-      margin-top: 1px;
       flex-shrink: 0;
+      transform: scale(0.8);
+      filter: var(
+        --pm-nav-icon-filter,
+        brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(576%) hue-rotate(331deg)
+          brightness(104%)
+      );
+    }
+    /* "See all tools →" — the orange row that closes a column. */
+    .menu-item.see-all .title {
+      color: var(--pm-nav-section, #e05320);
     }
     .menu-item.app-cta .title {
       color: #0265d2;
@@ -273,7 +390,10 @@
     .card-row {
       display: flex;
       flex-wrap: nowrap;
-      gap: 8px;
+      /* The source's xl:gap-2, which computes to 20px. At 8px the four cards
+         were 208px instead of 199px, and the AI Engineer card's description
+         reflowed from three lines to two — a 9px height difference. */
+      gap: 20px;
     }
     .card-row > li {
       flex: 1 1 0;
@@ -283,6 +403,23 @@
       height: 100%;
       box-sizing: border-box;
       background: #f9f9f9;
+      /* Two lines (title + description), so the icon sits with the first one. */
+      align-items: flex-start;
+    }
+    /* The featured cards get the source's OTHER filter (.navIconDark): flattened
+       to near-black rather than orange, and drawn full-size in a 20px box
+       (background-size:contain there). */
+    .featured .menu-item .text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .featured .menu-item img {
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      transform: none;
+      filter: var(--pm-nav-icon-filter-dark, brightness(0) invert(12%));
     }
     /* Cards carry an inline gradient; hover keeps it and adds the ring +
        a subtle darken (mirrors the source's ring + brightness hover). */
@@ -309,12 +446,13 @@
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
-      /* Fixed width (like the source's xl:w-[895px]) so the featured card row
-         can't expand the panel past the column grid: content width 861px =
-         3×210 icon columns + the 190px Platform column with its 20px gap +
-         20px pad + 1px divider. This makes the 4 flex cards ≈210px each, so
-         they line up under the columns above. */
-      width: 901px;
+      /* The source's xl:w-[895px], verbatim — an earlier 901px here was arrived
+         at by arithmetic that double-counted the padding, and it made the four
+         featured cards 10px wider than the site's, which reflows their
+         descriptions. Content width 855px holds the grid with room to spare:
+         3×210 icon columns + 20px gap + the 190px Platform column (its 20px
+         padding and 1px divider are inside that 190px) = 840px. */
+      width: 895px;
       background: var(--pm-panel-bg, #fff);
       border-radius: 10px;
       padding: 20px;
@@ -351,12 +489,22 @@
       display: inline-flex;
       align-items: center;
       font-size: 14px;
+      line-height: var(--pm-panel-line-height, 1.625);
       font-weight: 600;
       color: #212121;
+    }
+    /* The brands stack title and description with a gap, unlike the featured
+       cards' 4px — the source's gap-1, which is 10px on its spacing scale (the
+       same unit as the 10px logo gap and the 20px card gap). */
+    .brand-item .text {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
     .brand-item .desc {
       display: block;
       font-size: 12px;
+      line-height: var(--pm-panel-line-height, 1.625);
       color: #5c5c5c;
     }
     .brand-arrow {
@@ -381,93 +529,286 @@
     .brand-item:focus .brand-arrow .bar {
       width: 12px;
     }
+    /* Hamburger — the marketing site's icon to the pixel, in px for the same
+       reason as the bar padding (its 3rem/2.4rem/0.2rem assume a 62.5% root).
+       The 24px bars in an 18px box is not a mistake to fix: it is what pushes
+       them flush with the bar's right padding, which is how they line up with
+       the logo's inset on the left. */
     .hamburger {
       display: none;
       font: inherit;
       background: none;
-      border: 1px solid var(--pm-nav-border, #e6e6e6);
-      border-radius: 6px;
-      padding: 0.4rem 0.6rem;
+      border: 0;
+      padding: 0;
       cursor: pointer;
-      color: #212121;
+      color: inherit;
+    }
+    .ham-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+    }
+    .ham-lines {
+      position: relative;
+      display: block;
+      width: 18px;
+      height: 24px;
+    }
+    .ham-bar {
+      position: absolute;
+      left: 0;
+      display: block;
+      width: 24px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--pm-nav-link, #6b6b6b);
+      transition:
+        transform 0.1s ease-in-out,
+        opacity 0.1s ease-in-out;
+    }
+    .ham-bar:nth-child(1) {
+      top: 4px;
+    }
+    .ham-bar:nth-child(2) {
+      top: 12px;
+    }
+    .ham-bar:nth-child(3) {
+      top: 20px;
+    }
+    /* Open: the outer bars meet in the middle and cross; the middle one fades. */
+    .hamburger[aria-expanded='true'] .ham-bar:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger[aria-expanded='true'] .ham-bar:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger[aria-expanded='true'] .ham-bar:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
     }
     .actions {
-      margin-left: auto;
       display: flex;
       gap: 0.5rem;
       align-items: center;
+      min-width: 0;
     }
 
-    /* Host controls for the MOBILE drawer. The "account" slot renders in the
-       top bar, which has no room on a phone — and a named slot can only be
-       projected once, so the drawer needs its own. Hidden above the mobile
-       breakpoint so hosts can supply both without double-rendering.
+    /* Host controls for the MOBILE drawer. The "account" and "local-nav" slots
+       render in the top bar, which has no room on a phone — and a named slot can
+       only be projected once, so the drawer needs its own. Hidden above the
+       mobile breakpoint so hosts can supply both without double-rendering.
        (Never use a backtick in this file's CSS comments — the whole block is a
        css tagged template literal, so a stray one terminates it.) */
-    .mobile-account {
+    .drawer-account,
+    .drawer-local {
       display: none;
     }
 
-    @media (max-width: 1200px) {
-      /* The open menu needs a row of its own BELOW the bar. Without wrapping,
-         .menubar{width:100%} can't break to a new line — it just takes the
-         leftover space beside the logo and hamburger (~300px on a phone) — and
-         the bar's fixed 54px height clips it. So: allow wrapping, and let the
-         bar grow once the menu is open while keeping 54px as the closed height. */
-      nav {
-        flex-wrap: wrap;
-        height: auto;
-        min-height: 54px;
-        align-content: flex-start;
-      }
-      /* Host-supplied slot content (auth buttons, switchers) must not force the
-         bar wider than the viewport — it's authored by the consumer and can be
-         any width. Let it shrink and wrap rather than overflow the page. */
-      .actions {
-        min-width: 0;
-        flex-wrap: wrap;
-      }
+    /* ---------------------------------------------------------------------
+       MOBILE (< 1150px) — the marketing site's drawer.
+       1150px is www.postman.com's own switch (its "min-[1150px]:" variants),
+       so a visitor crossing between properties sees the swap at the same width.
+       --------------------------------------------------------------------- */
+    @media (max-width: 1149.98px) {
       .hamburger {
-        display: inline-block;
-        order: 2;
+        display: inline-flex;
       }
-      .mobile-account {
-        display: block;
-        padding: 0.5rem 0;
-        border-top: 1px solid var(--pm-nav-border, #e6e6e6);
-        margin-top: 0.25rem;
-      }
-      .menubar {
+      /* The bar keeps its 54px: the drawer is an OVERLAY (absolute, under the
+         bar), not an extra row, so nothing here wraps or grows. */
+      /* Account + local-nav move into the drawer; "search" stays in the bar.
+         display:none on the <slot> takes its assigned nodes AND its fallback
+         with it, so this needs no cooperation from the host. */
+      .actions slot[name='local-nav'],
+      .actions slot[name='account'] {
         display: none;
+      }
+      .drawer {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 60;
+        display: block;
+        overflow: hidden;
+        background: var(--pm-nav-bg, #fff);
+        max-height: 100vh;
+        opacity: 1;
+        /* visibility, not [hidden]/inert, is what keeps the closed drawer out of
+           the tab order and the a11y tree: the same node holds the desktop
+           menubar, so anything driven off _mobileOpen alone would hide the
+           menubar for every desktop visitor too. Delay it on close so the
+           collapse is visible, drop the delay on open. */
+        visibility: visible;
+        pointer-events: auto;
+        transition:
+          max-height 0.3s ease-in-out,
+          opacity 0.3s ease-in-out,
+          visibility 0s linear 0s;
+      }
+      .drawer[data-open='false'] {
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          max-height 0.3s ease-in-out,
+          opacity 0.3s ease-in-out,
+          visibility 0s linear 0.3s;
+      }
+      .drawer:focus-visible {
+        outline: none;
+      }
+      .drawer-scroll {
+        display: flex;
         flex-direction: column;
         align-items: stretch;
-        width: 100%;
-        order: 3;
+        box-sizing: border-box;
+        height: calc(100vh - 54px);
+        overflow-y: auto;
+        padding-top: 16px;
       }
-      .menubar[data-mobile-open='true'] {
+      .menubar {
         display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px;
       }
+      .item {
+        margin: 0 8px 10px;
+      }
+      /* The 15px side padding is an xl-only rule in the source. */
+      .trigger,
+      .top-link {
+        padding: 0;
+      }
+      .drawer-account {
+        display: block;
+        margin: 10px 0;
+        padding: 3px 0 0 16px;
+      }
+      .drawer-local {
+        display: block;
+        margin: 10px 0;
+        padding-left: 16px;
+      }
+      /* Accordion. A closed panel collapses instead of going display:none, so it
+         can animate like the drawer; visibility keeps its links untabbable and
+         unannounced while collapsed. */
       .panel {
         position: static;
         width: auto;
         max-width: none;
-        margin-top: 0;
+        margin-top: 8px;
         box-shadow: none;
         border: 0;
         border-radius: 0;
-        padding: 0.5rem 0 0.5rem 1rem;
+        padding: 10px;
+        overflow: hidden;
+        /* 300vh is the source's value. The floor is not: below ~560px of
+           viewport height (any phone in landscape, still under the breakpoint)
+           300vh is shorter than the stacked Product panel, and max-height
+           CLIPS — the source silently loses its bottom rows there. */
+        max-height: max(300vh, 2400px);
+        opacity: 1;
+        visibility: visible;
+        transition:
+          max-height 0.3s ease-in-out,
+          padding 0.3s ease-in-out,
+          margin-top 0.3s ease-in-out,
+          opacity 0.3s ease-in-out,
+          visibility 0s linear 0s;
+      }
+      .panel[hidden] {
+        /* Beats the base rule's display:none (same specificity, both important —
+           this one is later). Per-display-type so the Product panel does not
+           flip block/flex mid-collapse. */
+        display: block !important;
+        max-height: 0;
+        /* A border-box height can never go below its own padding, so max-height:0
+           alone leaves every collapsed panel 20px tall — which is what spaced the
+           dropdown rows 28px further apart than the plain links. The source gets
+           this for free by putting the padding on a separate inner element. */
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          max-height 0.3s ease-in-out,
+          padding 0.3s ease-in-out,
+          margin-top 0.3s ease-in-out,
+          opacity 0.3s ease-in-out,
+          visibility 0s linear 0.3s;
+      }
+      /* Product only. Its .panel.has-brands rule below re-declares padding at the
+         same specificity as .panel[hidden] and comes later, so the collapse has
+         to be restated here to win. */
+      .panel.has-brands[hidden] {
+        display: flex !important;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
       }
       .columns {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0;
+      }
+      /* Product's Platform/Explore column leads on mobile with a rule UNDER it
+         (the source's "border-b" / "xl:order-last xl:border-l"), so undo the
+         desktop left divider and pull it back to the front. */
+      .col.left-nav {
+        order: -1;
+        width: auto;
+        margin-left: 0;
+        border-left: 0;
+        border-bottom: 1px solid #e6e6e6;
+        padding-left: 20px;
+        padding-bottom: 15px;
+      }
+      .col.w210 {
+        width: auto;
+        padding: 30px 0;
+      }
+      /* "Download Postman →" is a bottom-anchored CTA in the desktop Platform
+         column (mt-auto); the source hides it outside that layout rather than
+         leaving a stray blue link in the drawer. */
+      .menu-item.app-cta {
+        display: none;
+      }
+      .col.w180 {
+        width: auto;
+      }
+      /* One column per row: two columns of 14px titles + descriptions do not fit
+         a phone (the source drops to grid-cols-1 below lg for the same reason). */
+      .solutions-grid {
+        grid-template-columns: 1fr;
+        width: auto;
+      }
+      .card-row {
+        flex-direction: column;
+        gap: 0;
+      }
+      /* The featured cards lose their grey/gradient fill on mobile (the source
+         hides the gradient layer below xl). The gradient is an inline style, so
+         only !important can take it back off. */
+      .featured .menu-item,
+      .featured .feat-card {
+        background: none !important;
+        box-shadow: none;
       }
       /* Stack the brands sidebar below the columns on small screens. */
       .panel.has-brands {
         flex-direction: column;
         background: none;
-        padding: 0.5rem 0 0.5rem 1rem;
+        padding: 10px;
       }
       .panel-inner {
+        width: auto;
         background: none;
         box-shadow: none;
         border-radius: 0;
@@ -475,38 +816,65 @@
       }
       .brands-panel {
         width: auto;
-        padding: 0.5rem 0 0;
+        padding: 20px 0 0;
         margin-top: 10px;
         border-top: 1px solid #e6e6e6;
       }
     }
-  </style><!--lit-part xCEnq2tI3o8=-->
+
+    /* Respect a reduced-motion preference: the drawer and its accordions still
+       open and close, they just do it instantly. */
+    @media (prefers-reduced-motion: reduce) {
+      .drawer,
+      .drawer[data-open='false'],
+      .panel,
+      .panel[hidden],
+      .chevron,
+      .trigger[aria-expanded='true'] .chevron,
+      .ham-bar {
+        transition: none;
+      }
+    }
+  </style><!--lit-part uBf4cB+HVRA=-->
       <nav part="navbar" aria-label="Primary">
-        <slot name="logo"><!--lit-part SvgRjkC8tbs=--><!--lit-node 0--><a class="logo" part="logo" href="https://www.postman.com/" aria-label="Home">
+        <div class="bar">
+          <div class="bar-left">
+            <slot name="logo"><!--lit-part Cn6Wqcodx7Q=--><!--lit-node 0--><a class="logo" part="logo" href="https://www.postman.com/" aria-label="Home">
       <!-- alt="" because the anchor carries the accessible name; a filled alt
            here would make screen readers announce it twice. -->
-      <img src="https://voyager.postman.com/logo/postman-logo-icon-orange.svg" alt="" width="32" height="32" />
+      <img
+        src="https://voyager.postman.com/logo/postman-logo-icon-orange.svg"
+        alt=""
+        width="32"
+        height="32"
+      />
     </a><!--/lit-part--></slot>
-        <!--lit-node 3--><button
-          class="hamburger"
-          aria-expanded="false"
-          aria-controls="menubar"
-          
-        >
-          Menu
-        </button>
-        <!--lit-node 4--><ul
-          id="menubar"
-          class="menubar"
-          part="menubar"
-          role="menubar"
-          aria-label="Primary"
-          aria-orientation="horizontal"
-          data-mobile-open="false"
-          
-        >
-          <!--lit-part--><!--lit-part 6jR3+WBNtW4=--><li class="item" role="none">
-                  <!--lit-part Ag/IPlHBETg=--><!--lit-node 0--><button
+            <!-- The mobile drawer, and on desktop just a wrapper around the
+                 menubar. tabindex="-1" so opening it can move focus here, the
+                 way the marketing site focuses its panel. Deliberately NOT
+                 role="navigation": that would add a second nav landmark inside
+                 the outer one at every width, including desktop, where this
+                 element is only a layout wrapper. -->
+            <!--lit-node 6--><div
+              id="mobile-panel"
+              class="drawer"
+              part="mobile-panel"
+              tabindex="-1"
+              data-open="false"
+              
+            >
+              <div class="drawer-scroll">
+                <!--lit-node 8--><ul
+                  id="menubar"
+                  class="menubar"
+                  part="menubar"
+                  role="menubar"
+                  aria-label="Primary"
+                  aria-orientation="horizontal"
+                  
+                >
+                  <!--lit-part--><!--lit-part 6j2/f2CLPqI=--><li class="item" role="none">
+                          <!--lit-part Ag/IPlHBETg=--><!--lit-node 0--><button
       id="trigger-product"
       class="trigger"
       part="menu-trigger"
@@ -544,11 +912,13 @@
               <div class="panel-inner"><!--lit-part r9tjawXZNgc=-->
       <!--lit-part b19ok/bgW/U=--><div class="columns">
         <!--lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w210">
-      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Design &amp; Build<!--/lit-part--></p><!--/lit-part-->
+      <!--lit-part NLHA82V7IeU=--><p class="col-title">
+              <!--lit-part-->Design &amp; Build<!--/lit-part--><!--lit-part--><!--/lit-part-->
+            </p><!--/lit-part-->
       <ul>
-        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+        <!--lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/spec-hub/"
@@ -559,12 +929,12 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/spec-hub-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->Spec Hub<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Manage specifications<!--/lit-part--></span><!--/lit-part-->
+          <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/workspaces/"
@@ -575,12 +945,28 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/workspaces-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->Workspaces<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Collaborate with teams<!--/lit-part--></span><!--/lit-part-->
+          <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/documents/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/document-icon.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Documents<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/mock-servers/"
@@ -591,12 +977,12 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/local-mock-servers-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->Mock Servers<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Simulate API behavior<!--/lit-part--></span><!--/lit-part-->
+          <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/sdk-generator/"
@@ -607,12 +993,12 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/sdk-generator-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->SDK Generator<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Create SDKs instantly<!--/lit-part--></span><!--/lit-part-->
+          <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/flows/"
@@ -623,17 +1009,19 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/flows-local-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->Flows<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Create visual workflows<!--/lit-part--></span><!--/lit-part-->
+          <!--lit-part--><!--/lit-part-->
         </span>
       </a>
     </li><!--/lit-part--><!--/lit-part-->
       </ul>
     </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w210">
-      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Test &amp; Validate<!--/lit-part--></p><!--/lit-part-->
+      <!--lit-part NLHA82V7IeU=--><p class="col-title">
+              <!--lit-part-->Test &amp; Validate<!--/lit-part--><!--lit-part--><!--/lit-part-->
+            </p><!--/lit-part-->
       <ul>
-        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+        <!--lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/api-client/"
@@ -644,12 +1032,12 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/api-client-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->API Client<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Send API requests<!--/lit-part--></span><!--/lit-part-->
+          <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/collection-runner/"
@@ -660,12 +1048,12 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/collection-runner-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->Collection Runner<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Automate API workflows<!--/lit-part--></span><!--/lit-part-->
+          <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/monitors/"
@@ -676,12 +1064,12 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/monitors-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->Monitors<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Validate performance<!--/lit-part--></span><!--/lit-part-->
+          <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/webhooks/"
@@ -691,18 +1079,36 @@
       >
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/webhooks-icon.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
-          <span class="title"><!--lit-part-->Webhooks<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->First-class webhook support<!--/lit-part--></span><!--/lit-part-->
+          <span class="title"><!--lit-part-->Webhook Testing<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item   "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/functional-testing/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/api-testing-icon-postman-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Functional Testing<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
         </span>
       </a>
     </li><!--/lit-part--><!--/lit-part-->
       </ul>
     </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w210">
-      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Manage &amp; Operate<!--/lit-part--></p><!--/lit-part-->
+      <!--lit-part NLHA82V7IeU=--><p class="col-title">
+              <!--lit-part-->Manage &amp; Operate<!--/lit-part--><!--lit-part--><!--/lit-part-->
+            </p><!--/lit-part-->
       <ul>
-        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+        <!--lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/api-catalog/"
@@ -713,12 +1119,12 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/api-catalog-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->API Catalog<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Know every API and service<!--/lit-part--></span><!--/lit-part-->
+          <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/postman-insights/"
@@ -729,17 +1135,35 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/insights-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->Insights<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Track every endpoint<!--/lit-part--></span><!--/lit-part-->
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item   "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/application-inventory/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/api-products-icon.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Application Inventory<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
         </span>
       </a>
     </li><!--/lit-part--><!--/lit-part-->
       </ul>
     </div><!--/lit-part--><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col left-nav">
-      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Platform<!--/lit-part--></p><!--/lit-part-->
+      <!--lit-part NLHA82V7IeU=--><p class="col-title">
+              <!--lit-part-->Platform<!--/lit-part--><!--lit-part--><!--/lit-part-->
+            </p><!--/lit-part-->
       <ul>
-        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+        <!--lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/new-postman/"
@@ -753,9 +1177,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/security/"
@@ -769,9 +1193,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/integrations/"
@@ -785,9 +1209,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part MkpDcwos3Mo=--><li class="section-header" role="presentation"><!--lit-part-->Explore<!--/lit-part--></li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part MkpDcwos3Mo=--><li class="section-header" role="presentation"><!--lit-part-->Explore<!--/lit-part--></li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/explore"
@@ -801,9 +1225,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/explore/mcp-servers"
@@ -817,9 +1241,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item app-cta "
+        class="menu-item app-cta  "
         part="nav-link"
         
         href="https://www.postman.com/downloads/"
@@ -839,9 +1263,9 @@
       </div><!--/lit-part-->
       <!--lit-part +ra7spn/DWQ=--><div class="featured">
               <ul class="card-row">
-                <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+                <!--lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  feat-card"
+        class="menu-item   feat-card"
         part="nav-link"
         style="background:linear-gradient(99deg, #FFCCFC 0%, rgba(207, 207, 207, 0.00) 100%);--ring:#F37FFE"
         href="https://www.postman.com/product/ai-engineer/"
@@ -852,12 +1276,12 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/postman-ai-engineer-icon-3.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->AI Engineer<!--/lit-part--></span>
-          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->AI Engineer is ready to help<!--/lit-part--></span><!--/lit-part-->
+          <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Scale velocity with agents. Keep quality and security.<!--/lit-part--></span><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  feat-card"
+        class="menu-item   feat-card"
         part="nav-link"
         style="background:linear-gradient(275deg, rgba(161, 161, 161, 0.00) 0%, rgba(255, 108, 55, 0.20) 100%);--ring:#FF6C37"
         href="https://www.postman.com/product/agent-mode/"
@@ -871,9 +1295,9 @@
           <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Automate API workflows with native AI<!--/lit-part--></span><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  feat-card"
+        class="menu-item   feat-card"
         part="nav-link"
         style="background:linear-gradient(275deg, rgba(207, 207, 207, 0.00) 0%, rgba(255, 216, 117, 0.20) 100%);--ring:#FFA90A"
         href="https://www.postman.com/product/postman-cli/"
@@ -887,9 +1311,9 @@
           <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Work with Postman from the command line<!--/lit-part--></span><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  feat-card"
+        class="menu-item   feat-card"
         part="nav-link"
         style="background:linear-gradient(275deg, rgba(207, 207, 207, 0.00) 0%, rgba(179, 135, 245, 0.20) 100%);--ring:#7A24F0"
         href="https://www.postman.com/product/mcp-server/"
@@ -920,7 +1344,7 @@
       <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/logo/fabric-gateway-mark-gradient.svg" alt="" aria-hidden="true" /><!--/lit-part-->
       <span class="text">
         <span class="title"
-          ><!--lit-part-->Fabric Gateway<!--/lit-part-->
+          ><!--lit-part-->Fabric<!--/lit-part-->
           <span class="brand-arrow" aria-hidden="true">
             <span class="bar"></span>
             <svg
@@ -1003,8 +1427,8 @@
               </aside>
             <!--/lit-part-->
     </div><!--/lit-part-->
-                </li><!--/lit-part--><!--lit-part 6jR3+WBNtW4=--><li class="item" role="none">
-                  <!--lit-part Ag/IPlHBETg=--><!--lit-node 0--><button
+                        </li><!--/lit-part--><!--lit-part 6j2/f2CLPqI=--><li class="item" role="none">
+                          <!--lit-part Ag/IPlHBETg=--><!--lit-node 0--><button
       id="trigger-solutions"
       class="trigger"
       part="menu-trigger"
@@ -1040,9 +1464,9 @@
     >
       <!--lit-part r9tjawXZNgc=-->
       <!--lit-part 93yI3VTwxwY=--><ul class="solutions-grid">
-        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+        <!--lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/solutions/api-governance/"
@@ -1056,9 +1480,9 @@
           <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Enforce API standards at scale<!--/lit-part--></span><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/solutions/partner-api-management/"
@@ -1072,9 +1496,9 @@
           <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Onboard partners in days, not months<!--/lit-part--></span><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/solutions/api-lifecycle-management/"
@@ -1088,9 +1512,9 @@
           <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Run every stage as one connected system<!--/lit-part--></span><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/solutions/sdlc-automation/"
@@ -1109,7 +1533,7 @@
       <!--lit-part--><!--/lit-part-->
     <!--/lit-part-->
     </div><!--/lit-part-->
-                </li><!--/lit-part--><!--lit-part CD4CAwJpRgY=--><li class="item" role="none"><!--lit-part IVugGeXMSMo=--><!--lit-node 0--><a
+                        </li><!--/lit-part--><!--lit-part CD4CAwJpRgY=--><li class="item" role="none"><!--lit-part IVugGeXMSMo=--><!--lit-node 0--><a
       class="top-link"
       part="nav-link"
       role="menuitem"
@@ -1129,8 +1553,8 @@
       
       
       ><!--lit-part-->Enterprise<!--/lit-part--></a
-    ><!--/lit-part--></li><!--/lit-part--><!--lit-part 6jR3+WBNtW4=--><li class="item" role="none">
-                  <!--lit-part Ag/IPlHBETg=--><!--lit-node 0--><button
+    ><!--/lit-part--></li><!--/lit-part--><!--lit-part 6j2/f2CLPqI=--><li class="item" role="none">
+                          <!--lit-part Ag/IPlHBETg=--><!--lit-node 0--><button
       id="trigger-resources"
       class="trigger"
       part="menu-trigger"
@@ -1167,11 +1591,13 @@
       <!--lit-part r9tjawXZNgc=-->
       <!--lit-part b19ok/bgW/U=--><div class="columns">
         <!--lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w180">
-      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Learn<!--/lit-part--></p><!--/lit-part-->
+      <!--lit-part NLHA82V7IeU=--><p class="col-title">
+              <!--lit-part-->Learn<!--/lit-part--><!--lit-part--><!--/lit-part-->
+            </p><!--/lit-part-->
       <ul>
-        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+        <!--lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/learn/"
@@ -1185,9 +1611,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://learning.postman.com"
@@ -1201,9 +1627,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://academy.postman.com/page/enterprise-implementation-onboarding-guide"
@@ -1217,9 +1643,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://academy.postman.com"
@@ -1233,9 +1659,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/customer-stories/"
@@ -1249,9 +1675,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/postman-best-practices/"
@@ -1268,11 +1694,13 @@
     </li><!--/lit-part--><!--/lit-part-->
       </ul>
     </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w180">
-      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Connect<!--/lit-part--></p><!--/lit-part-->
+      <!--lit-part NLHA82V7IeU=--><p class="col-title">
+              <!--lit-part-->Connect<!--/lit-part--><!--lit-part--><!--/lit-part-->
+            </p><!--/lit-part-->
       <ul>
-        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+        <!--lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://community.postman.com"
@@ -1286,9 +1714,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/events/"
@@ -1302,9 +1730,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://discord.gg/58aNNsRBGR"
@@ -1318,9 +1746,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/product/mcp-server/"
@@ -1334,9 +1762,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/partner-program/"
@@ -1353,112 +1781,13 @@
     </li><!--/lit-part--><!--/lit-part-->
       </ul>
     </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w180">
-      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Tools<!--/lit-part--></p><!--/lit-part-->
+      <!--lit-part NLHA82V7IeU=--><p class="col-title">
+              <!--lit-part-->Get Support<!--/lit-part--><!--lit-part--><!--/lit-part-->
+            </p><!--/lit-part-->
       <ul>
-        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+        <!--lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
-        part="nav-link"
-        
-        href="https://www.postman.com/tools/spechub-visualizer-and-linter"
-        
-        
-        
-      >
-        <!--lit-part--><!--/lit-part-->
-        <span class="text">
-          <span class="title"><!--lit-part-->Spec editor and visualizer<!--/lit-part--></span>
-          <!--lit-part--><!--/lit-part-->
-        </span>
-      </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
-      <!--lit-node 1--><a
-        class="menu-item  "
-        part="nav-link"
-        
-        href="https://www.postman.com/tools/api-health-check"
-        
-        
-        
-      >
-        <!--lit-part--><!--/lit-part-->
-        <span class="text">
-          <span class="title"><!--lit-part-->Check API health<!--/lit-part--></span>
-          <!--lit-part--><!--/lit-part-->
-        </span>
-      </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
-      <!--lit-node 1--><a
-        class="menu-item  "
-        part="nav-link"
-        
-        href="https://www.postman.com/tools/is-it-up"
-        
-        
-        
-      >
-        <!--lit-part--><!--/lit-part-->
-        <span class="text">
-          <span class="title"><!--lit-part-->Check site uptime<!--/lit-part--></span>
-          <!--lit-part--><!--/lit-part-->
-        </span>
-      </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
-      <!--lit-node 1--><a
-        class="menu-item  "
-        part="nav-link"
-        
-        href="https://www.postman.com/tools/site-speed-checker"
-        
-        
-        
-      >
-        <!--lit-part--><!--/lit-part-->
-        <span class="text">
-          <span class="title"><!--lit-part-->Check site speed<!--/lit-part--></span>
-          <!--lit-part--><!--/lit-part-->
-        </span>
-      </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
-      <!--lit-node 1--><a
-        class="menu-item  "
-        part="nav-link"
-        
-        href="https://www.postman.com/tools/curl-to-code"
-        
-        
-        
-      >
-        <!--lit-part--><!--/lit-part-->
-        <span class="text">
-          <span class="title"><!--lit-part-->cURL to code<!--/lit-part--></span>
-          <!--lit-part--><!--/lit-part-->
-        </span>
-      </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
-      <!--lit-node 1--><a
-        class="menu-item  "
-        part="nav-link"
-        
-        href="https://www.postman.com/tools"
-        
-        
-        
-      >
-        <!--lit-part--><!--/lit-part-->
-        <span class="text">
-          <span class="title"><!--lit-part-->See all tools →<!--/lit-part--></span>
-          <!--lit-part--><!--/lit-part-->
-        </span>
-      </a>
-    </li><!--/lit-part--><!--/lit-part-->
-      </ul>
-    </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w180">
-      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Get Support<!--/lit-part--></p><!--/lit-part-->
-      <ul>
-        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
-      <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://support.postman.com/hc/en-us/"
@@ -1472,9 +1801,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/release-notes/"
@@ -1488,9 +1817,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://status.postman.com"
@@ -1504,9 +1833,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/security/"
@@ -1523,11 +1852,13 @@
     </li><!--/lit-part--><!--/lit-part-->
       </ul>
     </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w180">
-      <!--lit-part oxgaMnJ0t+s=--><p class="col-title"><!--lit-part-->Postman<!--/lit-part--></p><!--/lit-part-->
+      <!--lit-part NLHA82V7IeU=--><p class="col-title">
+              <!--lit-part-->Postman<!--/lit-part--><!--lit-part--><!--/lit-part-->
+            </p><!--/lit-part-->
       <ul>
-        <!--lit-part--><!--lit-part KkH6yAay17M=--><li>
+        <!--lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://blog.postman.com"
@@ -1541,9 +1872,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/company/press-media/"
@@ -1557,9 +1888,9 @@
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
-    </li><!--/lit-part--><!--lit-part KkH6yAay17M=--><li>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
       <!--lit-node 1--><a
-        class="menu-item  "
+        class="menu-item   "
         part="nav-link"
         
         href="https://www.postman.com/company/about-postman/"
@@ -1575,26 +1906,156 @@
       </a>
     </li><!--/lit-part--><!--/lit-part-->
       </ul>
+    </div><!--/lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w180">
+      <!--lit-part NLHA82V7IeU=--><p class="col-title">
+              <!--lit-part-->Tools<!--/lit-part--><!--lit-part gHaeGzuJnGA=--><span class="col-badge" part="badge"><!--lit-part-->new<!--/lit-part--></span><!--/lit-part-->
+            </p><!--/lit-part-->
+      <ul>
+        <!--lit-part--><!--lit-part iu5FuAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item   "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools/spechub-visualizer-and-linter"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Spec editor and visualizer<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item   "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools/api-health-check"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Check API health<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item   "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools/is-it-up"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Check site uptime<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item   "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools/site-speed-checker"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Check site speed<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item   "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools/curl-to-code"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->cURL to code<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item  see-all "
+        part="nav-link"
+        
+        href="https://www.postman.com/tools"
+        
+        
+        
+      >
+        <!--lit-part--><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->See all tools →<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--/lit-part-->
+      </ul>
     </div><!--/lit-part--><!--/lit-part-->
       </div><!--/lit-part-->
       <!--lit-part--><!--/lit-part-->
     <!--/lit-part-->
     </div><!--/lit-part-->
-                </li><!--/lit-part--><!--/lit-part-->
-          <li class="item mobile-account" role="none">
-            <slot name="account-mobile"><!--lit-part KiZeL1tOw0U=--><!--lit-node 0--><div class="acct-group acct-mobile">
+                        </li><!--/lit-part--><!--/lit-part-->
+                </ul>
+                <div class="drawer-account">
+                  <slot name="account-mobile"><!--lit-part KiZeL1tOw0U=--><!--lit-node 0--><div class="acct-group acct-mobile">
       <!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-secondary" part="account-link" href="https://www.postman.com/company/contact-sales/"><!--lit-part-->Contact Sales<!--/lit-part--></a><!--/lit-part-->
       <!--lit-part--><!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-secondary" part="account-link" href="https://identity.getpostman.com/login"><!--lit-part-->Sign In<!--/lit-part--></a><!--/lit-part--><!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-primary" part="account-link" href="https://identity.getpostman.com/signup"><!--lit-part-->Sign Up for Free<!--/lit-part--></a><!--/lit-part--><!--/lit-part-->
     </div><!--/lit-part--></slot>
-          </li>
-        </ul>
-        <div class="actions">
-          <slot name="search"></slot>
-          <slot name="local-nav"></slot>
-          <slot name="account"><!--lit-part KiZeL1tOw0U=--><!--lit-node 0--><div class="acct-group ">
+                </div>
+                <div class="drawer-local">
+                  <slot name="local-nav-mobile"></slot>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bar-right">
+            <!--lit-node 16--><div class="actions" >
+              <slot name="search"></slot>
+              <slot name="local-nav"></slot>
+              <slot name="account"><!--lit-part KiZeL1tOw0U=--><!--lit-node 0--><div class="acct-group ">
       <!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-secondary" part="account-link" href="https://www.postman.com/company/contact-sales/"><!--lit-part-->Contact Sales<!--/lit-part--></a><!--/lit-part-->
       <!--lit-part--><!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-secondary" part="account-link" href="https://identity.getpostman.com/login"><!--lit-part-->Sign In<!--/lit-part--></a><!--/lit-part--><!--lit-part 9LHhsf+BtZQ=--><!--lit-node 0--><a class="acct acct-primary" part="account-link" href="https://identity.getpostman.com/signup"><!--lit-part-->Sign Up for Free<!--/lit-part--></a><!--/lit-part--><!--/lit-part-->
     </div><!--/lit-part--></slot>
+            </div>
+            <!--lit-node 21--><button
+              type="button"
+              class="hamburger"
+              part="hamburger"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false"
+              aria-controls="mobile-panel"
+              aria-haspopup="menu"
+              
+            >
+              <span class="ham-box" aria-hidden="true">
+                <span class="ham-lines">
+                  <span class="ham-bar"></span>
+                  <span class="ham-bar"></span>
+                  <span class="ham-bar"></span>
+                </span>
+              </span>
+            </button>
+          </div>
         </div>
       </nav>
     <!--/lit-part--></template>
