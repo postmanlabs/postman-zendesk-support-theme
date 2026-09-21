@@ -4,9 +4,9 @@
   GLOBAL NAVBAR — GENERATED, do not hand-edit.
 
   Prerendered <postman-navbar> from postman-eng/marketing-global-navbar-footer
-  v3.0.0, inlined verbatim. Refresh on a version bump with:
+  v3.0.1, inlined verbatim. Refresh on a version bump with:
 
-    curl -fsS https://global-navbar-footer.postman-account2009.workers.dev/3.0.0/navbar.foreign.en.html
+    curl -fsS https://global-navbar-footer.postman-account2009.workers.dev/3.0.1/navbar.foreign.en.html
 
   Pin the exact version, not the `v3` alias: that alias moves with every 3.x
   release, so a copy taken from it cannot be re-derived later, and the integrity
@@ -63,6 +63,14 @@
          size — on a default 16px root the same rems would render 12.8/25.6px
          and the 30px hamburger would no longer fit the 54px bar. */
       padding: 8px 16px;
+      /* www.postman.com sets letter-spacing:-0.16px on the BODY (global.css), so
+         every string in the bar and the mega-menu inherits it. Left at normal,
+         a 12px description measures wide enough to take an extra line: the AI
+         Engineer card stood 105px tall against the site's 86px, and its subtitle
+         broke after "with" instead of "agents.". The bar's triggers opt back out
+         below (the source sets tracking-normal on them), so this lands on the
+         panel, the drawer and the slot fallbacks — the live scope. */
+      letter-spacing: var(--pm-letter-spacing, -0.16px);
     }
     /* Bar layout: logo + menubar pinned left, host controls + hamburger right
        (source: "flex w-full items-center justify-between"). */
@@ -276,6 +284,20 @@
     .solutions-grid .menu-item {
       flex: 1;
       box-sizing: border-box;
+      /* Undo .menu-item's align-items:center HERE, and only here. That centring
+         is right for the icon columns, where the row is exactly as tall as its
+         one line of content — but a Solutions cell is stretched to the tallest
+         cell in its row, so centring drops the content to the middle of the
+         stretched box. "API Governance" sits beside a two-line description and
+         was the only item this showed on: its title landed 19.75px below its
+         cell against the site's 10px, ~10px lower than "Partner API
+         Management" next to it. The other three wrap to two lines, so they fill
+         their cells and centring is a no-op — which is what hid it.
+         The source never has to do this because the hover background and the
+         flex box are DIFFERENT elements there: the wrapper div stretches and
+         carries the background, while the anchor inside it is block-level and
+         so starts at the top. Here .menu-item is both. */
+      align-items: flex-start;
     }
     /* Solutions: all items in one 2-column grid, equal-height rows. */
     .solutions-grid {
@@ -374,9 +396,27 @@
     .menu-item.see-all .title {
       color: var(--pm-nav-section, #e05320);
     }
+    /* The ONE panel row that does not take the 1.625 above, and the only one
+       whose height is a TWO-FONT line box rather than a single line-height.
+       Every other title is a <p> in the source, so global.css's
+       "p { line-height: 1.625 }" catches it; the app-cta label is a bare <span>,
+       which keeps modern-normalize's "html { line-height: 1.15 }".
+       Production measures 39.39px for the row: its wrapper is 16px/1.15 (an
+       18.4px strut) and the label is a 14px INLINE span inside it, so baseline
+       alignment grows the line box to 19.39px. Both halves are needed — at
+       1.625 the row was 42.75px, and as a 14px BLOCK it is 16.1px, i.e. 36.09.
+       Either way the Platform column, and with it the whole panel, misses.
+       font-size is stated rather than inherited so a consumer's root size can't
+       move the strut. */
+    .menu-item.app-cta {
+      font-size: 16px;
+      line-height: var(--pm-panel-cta-line-height, 1.15);
+    }
     .menu-item.app-cta .title {
+      display: inline;
       color: #0265d2;
       font-weight: 400;
+      line-height: var(--pm-panel-cta-line-height, 1.15);
     }
     .menu-item.app-cta:hover {
       background: none;
@@ -429,10 +469,13 @@
         box-shadow 0.15s ease-in-out,
         filter 0.15s ease-in-out;
     }
+    /* 0.5px, not 1px: the source's hover only swaps the ring COLOUR
+       (hover:ring-[#F37FFE]) — its width is fixed by ring-[0.5px] on the card
+       itself, so a 1px hover ring was twice the site's. */
     .featured .feat-card:hover {
       background: inherit;
-      box-shadow: 0 0 0 1px var(--ring, #efefef);
-      filter: brightness(0.98);
+      box-shadow: 0 0 0 0.5px var(--ring, #efefef);
+      filter: brightness(0.97);
     }
     /* "More from Postman": grey shell + white inner panel + grey brands
        sidebar, mirroring the live Product mega-menu (NavDropdownMenu). */
@@ -908,7 +951,7 @@
       hidden
       
     >
-      <!--lit-part 1m7IJyrRrSQ=-->
+      <!--lit-part jxQyYSqddhI=-->
               <div class="panel-inner"><!--lit-part r9tjawXZNgc=-->
       <!--lit-part b19ok/bgW/U=--><div class="columns">
         <!--lit-part--><!--lit-part 73MTHBZy4yQ=--><!--lit-node 0--><div class="col w210">
@@ -1056,6 +1099,22 @@
         class="menu-item   "
         part="nav-link"
         
+        href="https://www.postman.com/product/performance-testing/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/performance-testing-icon-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Performance Testing<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item   "
+        part="nav-link"
+        
         href="https://www.postman.com/product/monitors/"
         
         
@@ -1096,6 +1155,22 @@
         <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/api-testing-icon-postman-2.svg" alt="" aria-hidden="true" /><!--/lit-part-->
         <span class="text">
           <span class="title"><!--lit-part-->Functional Testing<!--/lit-part--></span>
+          <!--lit-part--><!--/lit-part-->
+        </span>
+      </a>
+    </li><!--/lit-part--><!--lit-part iu5FuAay17M=--><li>
+      <!--lit-node 1--><a
+        class="menu-item   "
+        part="nav-link"
+        
+        href="https://www.postman.com/product/data-driven-testing/"
+        
+        
+        
+      >
+        <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/icon/run-collection-with-data-file-icon.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+        <span class="text">
+          <span class="title"><!--lit-part-->Data-Driven Testing<!--/lit-part--></span>
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
@@ -1267,7 +1342,7 @@
       <!--lit-node 1--><a
         class="menu-item   feat-card"
         part="nav-link"
-        style="background:linear-gradient(99deg, #FFCCFC 0%, rgba(207, 207, 207, 0.00) 100%);--ring:#F37FFE"
+        style="background:linear-gradient(to bottom, rgba(255, 204, 252, 0) 0%, rgba(255, 204, 252, 0.2) 100%);--ring:#F37FFE"
         href="https://www.postman.com/product/ai-engineer/"
         
         
@@ -1283,7 +1358,7 @@
       <!--lit-node 1--><a
         class="menu-item   feat-card"
         part="nav-link"
-        style="background:linear-gradient(275deg, rgba(161, 161, 161, 0.00) 0%, rgba(255, 108, 55, 0.20) 100%);--ring:#FF6C37"
+        style="background:linear-gradient(to bottom, rgba(255, 108, 55, 0) 0%, rgba(255, 108, 55, 0.2) 100%);--ring:#FF6C37"
         href="https://www.postman.com/product/agent-mode/"
         
         
@@ -1299,7 +1374,7 @@
       <!--lit-node 1--><a
         class="menu-item   feat-card"
         part="nav-link"
-        style="background:linear-gradient(275deg, rgba(207, 207, 207, 0.00) 0%, rgba(255, 216, 117, 0.20) 100%);--ring:#FFA90A"
+        style="background:linear-gradient(to bottom, rgba(254, 230, 133, 0) 0%, rgba(254, 230, 133, 0.2) 100%);--ring:#FFA90A"
         href="https://www.postman.com/product/postman-cli/"
         
         
@@ -1315,7 +1390,7 @@
       <!--lit-node 1--><a
         class="menu-item   feat-card"
         part="nav-link"
-        style="background:linear-gradient(275deg, rgba(207, 207, 207, 0.00) 0%, rgba(179, 135, 245, 0.20) 100%);--ring:#7A24F0"
+        style="background:linear-gradient(to bottom, rgba(166, 133, 255, 0) 0%, rgba(166, 133, 255, 0.2) 100%);--ring:#7A24F0"
         href="https://www.postman.com/product/mcp-server/"
         
         
@@ -1332,7 +1407,7 @@
             </div><!--/lit-part-->
     <!--/lit-part--></div>
               <aside class="brands-panel" part="brands">
-                <p class="col-title">More from Postman</p>
+                <p class="col-title"><!--lit-part-->More from Postman<!--/lit-part--></p>
                 <!--lit-part--><!--lit-part 8REdX04aCUw=--><!--lit-node 0--><a
       class="brand-item"
       part="nav-link"
@@ -1422,6 +1497,66 @@
           </span>
         </span>
         <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Manage and control AI agents in production<!--/lit-part--></span><!--/lit-part-->
+      </span>
+    </a><!--/lit-part--><!--lit-part 8REdX04aCUw=--><!--lit-node 0--><a
+      class="brand-item"
+      part="nav-link"
+      href="https://buildwithorbit.ai/"
+      
+      
+      
+    >
+      <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/logo/external/orbit-icon.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+      <span class="text">
+        <span class="title"
+          ><!--lit-part-->Orbit<!--/lit-part-->
+          <span class="brand-arrow" aria-hidden="true">
+            <span class="bar"></span>
+            <svg
+              class="chev"
+              xmlns="http://www.w3.org/2000/svg"
+              width="5"
+              height="9"
+              viewBox="9 0 5 8"
+              fill="currentColor"
+            >
+              <path
+                d="M13.3536 4.03553C13.5488 3.84027 13.5488 3.52369 13.3536 3.32843L10.1716 0.146447C9.97631 -0.0488155 9.65973 -0.0488155 9.46447 0.146447C9.2692 0.341709 9.2692 0.658291 9.46447 0.853554L12.2929 3.68198L9.46447 6.51041C9.2692 6.70567 9.2692 7.02225 9.46447 7.21751C9.65973 7.41278 9.97631 7.41278 10.1716 7.21751L13.3536 4.03553Z"
+              ></path>
+            </svg>
+          </span>
+        </span>
+        <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Turn any task into the right API calls<!--/lit-part--></span><!--/lit-part-->
+      </span>
+    </a><!--/lit-part--><!--lit-part 8REdX04aCUw=--><!--lit-node 0--><a
+      class="brand-item"
+      part="nav-link"
+      href="https://app.usepassport.ai/"
+      
+      
+      
+    >
+      <!--lit-part 5SfixccoF5w=--><!--lit-node 0--><img src="https://voyager.postman.com/uploads/postman-passport-logo-icon-2026-09-14-1318.svg" alt="" aria-hidden="true" /><!--/lit-part-->
+      <span class="text">
+        <span class="title"
+          ><!--lit-part-->Passport<!--/lit-part-->
+          <span class="brand-arrow" aria-hidden="true">
+            <span class="bar"></span>
+            <svg
+              class="chev"
+              xmlns="http://www.w3.org/2000/svg"
+              width="5"
+              height="9"
+              viewBox="9 0 5 8"
+              fill="currentColor"
+            >
+              <path
+                d="M13.3536 4.03553C13.5488 3.84027 13.5488 3.52369 13.3536 3.32843L10.1716 0.146447C9.97631 -0.0488155 9.65973 -0.0488155 9.46447 0.146447C9.2692 0.341709 9.2692 0.658291 9.46447 0.853554L12.2929 3.68198L9.46447 6.51041C9.2692 6.70567 9.2692 7.02225 9.46447 7.21751C9.65973 7.41278 9.97631 7.41278 10.1716 7.21751L13.3536 4.03553Z"
+              ></path>
+            </svg>
+          </span>
+        </span>
+        <!--lit-part vIYRVBGBSHQ=--><span class="desc"><!--lit-part-->Secure API access for agents, humans and machines<!--/lit-part--></span><!--/lit-part-->
       </span>
     </a><!--/lit-part--><!--/lit-part-->
               </aside>
@@ -1916,14 +2051,14 @@
         class="menu-item   "
         part="nav-link"
         
-        href="https://www.postman.com/tools/spechub-visualizer-and-linter"
+        href="https://www.postman.com/tools/openapi-editor-and-visualizer"
         
         
         
       >
         <!--lit-part--><!--/lit-part-->
         <span class="text">
-          <span class="title"><!--lit-part-->Spec editor and visualizer<!--/lit-part--></span>
+          <span class="title"><!--lit-part-->OpenAPI editor and visualizer<!--/lit-part--></span>
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
@@ -1932,14 +2067,14 @@
         class="menu-item   "
         part="nav-link"
         
-        href="https://www.postman.com/tools/api-health-check"
+        href="https://www.postman.com/tools/api-designer"
         
         
         
       >
         <!--lit-part--><!--/lit-part-->
         <span class="text">
-          <span class="title"><!--lit-part-->Check API health<!--/lit-part--></span>
+          <span class="title"><!--lit-part-->API designer<!--/lit-part--></span>
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
@@ -1948,14 +2083,14 @@
         class="menu-item   "
         part="nav-link"
         
-        href="https://www.postman.com/tools/is-it-up"
+        href="https://www.postman.com/tools/unit-test-generator"
         
         
         
       >
         <!--lit-part--><!--/lit-part-->
         <span class="text">
-          <span class="title"><!--lit-part-->Check site uptime<!--/lit-part--></span>
+          <span class="title"><!--lit-part-->AI unit test generator<!--/lit-part--></span>
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
@@ -1964,14 +2099,14 @@
         class="menu-item   "
         part="nav-link"
         
-        href="https://www.postman.com/tools/site-speed-checker"
+        href="https://www.postman.com/tools/api-monitor-multistep"
         
         
         
       >
         <!--lit-part--><!--/lit-part-->
         <span class="text">
-          <span class="title"><!--lit-part-->Check site speed<!--/lit-part--></span>
+          <span class="title"><!--lit-part-->Multi-step API monitor<!--/lit-part--></span>
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
@@ -1980,14 +2115,14 @@
         class="menu-item   "
         part="nav-link"
         
-        href="https://www.postman.com/tools/curl-to-code"
+        href="https://www.postman.com/tools/api-load-test"
         
         
         
       >
         <!--lit-part--><!--/lit-part-->
         <span class="text">
-          <span class="title"><!--lit-part-->cURL to code<!--/lit-part--></span>
+          <span class="title"><!--lit-part-->API load test<!--/lit-part--></span>
           <!--lit-part--><!--/lit-part-->
         </span>
       </a>
