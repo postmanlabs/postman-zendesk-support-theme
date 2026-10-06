@@ -2443,3 +2443,119 @@
     {{/if}}
   </div>
 </postman-navbar><!--/lit-part-->
+
+
+<!-- Support Center Secondary Navbar -->
+<nav class="navbar-v6 navbar sticky-top navbar-expand-xl navbar-light nav-secondary">
+  <div class="dropdown position-static">
+    <a
+      class="nav-link navbar-brand secondary-nav-header ps-0"
+      href="/"
+      id="secondary-nav-header"
+      data-bs-toggle="dropdown"
+      data-bs-display="static"
+      aria-expanded="false">
+      Support Center
+      <svg class="arrow-icon topic-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="#212121">
+        <g><path d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z" /></g>
+      </svg>
+    </a>
+    <div class="dropdown-menu lc-iconic">
+      <a href="https://learning.postman.com/" class="dropdown-item topic-item mb-3">
+        <div class="row p-2">
+          <div class="col-1 mx-auto mt-2 pe-0 ps-0">
+            <img class="img-fluid" src='https://voyager.postman.com/icon/learning-documentation-icon-postman.svg' loading='lazy' style='color: transparent; width: 100%; height: 25px;' />
+          </div>
+          <div class="col-11">
+            <p class="dropdown-item-link strong mb-0">Learning Center<svg class="arrow-icon arrow-topic-icon " xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="#212121">
+                <g><path d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z"></path></g>
+              </svg></p>
+            <p class="dropdown-item-text-wrap dropdown-item-text-wrap small">Learn about how to get started using Postman, and read more in the product docs.</p>
+          </div>
+        </div>
+      </a>
+      <a href="/" class="dropdown-item topic-item mb-3">
+        <div class="row p-2">
+          <div class="col-1 mx-auto mt-2 pe-0 ps-0">
+            <img class="img-fluid" src="https://voyager.postman.com/icon/support-life-ring-icon-postman.svg" loading='lazy' style="color: transparent; width: 100%; height: 25px;" />
+          </div>
+          <div class="col-11">
+            <p class="dropdown-item-link strong mb-0">Support Center<svg class="arrow-icon arrow-topic-icon " xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="#212121">
+                <g><path d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z"></path></g>
+              </svg></p>
+            <p class="dropdown-item-text-wrap dropdown-item-text-wrap small">Need help? Check out our FAQ, documentation or submit a request.</p>
+          </div>
+        </div>
+      </a>
+      <a href="https://blog.postman.com/" class="dropdown-item topic-item mb-3">
+        <div class="row p-2">
+          <div class="col-1 mx-auto mt-2 pe-0 ps-0 p">
+            <img class="img-fluid" src="https://voyager.postman.com/icon/api-data-contract-icon-postman.svg" loading='lazy' style='color: transparent; width: 100%; height: 25px;' />
+          </div>
+          <div class="col-11">
+            <p class="dropdown-item-link strong mb-0">Blog<svg class="arrow-icon arrow-topic-icon " xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="#212121">
+                <g><path d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z"></path></g>
+              </svg></p>
+            <p class="dropdown-item-text-wrap dropdown-item-text-wrap small">The Postman blog is your hub for API resources, news, and community. Learn about the Postman API Platform and much more.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <!-- nav button local navbar start -->
+  <button
+    id="secondaryNav"
+    class="mobile-icon-button_caret mobile-icon-button navbar-toggler"
+    type="button"
+    data-test="mobileNavTogglerBottom"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarSupportedContentBottom"
+    aria-controls="navbarSupportedContentBottom"
+    aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon">
+      <div id="icon-wrap-two" aria-expanded="false">
+        <svg id="navbar-chevron-icons" width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L10 10L19 1" stroke="#6B6B6B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+    </span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContentBottom">
+    <ul class="navbar-nav ms-auto mt-2 mt-sm-0">
+      {{#unless signed_in}}
+        <li class="nav-item">
+          <a id="pm-signed-in" class="nav-link uber-nav"
+            href="/hc/en-us/signin"
+            onClick="ga('send', 'event', 'secondary-navbar', 'Click', 'sign-in');">
+            Sign in to Support Center
+          </a>
+        </li>
+      {{/unless}}
+      {{#if signed_in}}
+        <li class="nav-item">
+          <a id="pm-signed-in" class="nav-link uber-nav" href="https://support.postman.com/hc/en-us/requests"
+            onClick="ga('send', 'event', 'secondary-navbar', 'Click', 'my-requests');">
+            My requests
+          </a>
+        </li>
+      {{/if}}
+      <li class="nav-item">
+        <a class="nav-link uber-nav" target="_blank" rel="noreferrer" href="https://discord.gg/58aNNsRBGR"
+          onClick="ga('send', 'event', 'secondary-navbar', 'Click', 'community');">
+          Discord
+        </a>
+      </li>
+       {{#if signed_in}}
+        <li class="nav-item nav-secondary-last-item">
+          <a id="pm-signed-out" class="nav-link uber-nav" href="https://support.postman.com/access/logout?return_to=https%3A%2F%2Fsupport.postman.com%2Fhc%2Fen-us"
+            onClick="ga('send', 'event', 'secondary-navbar', 'Click', 'sign-out');">
+            Sign out
+          </a>
+        </li>
+      {{/if}}
+    </ul>
+    <svg class="nav-search__icon" width="16" height="16" viewBox="0 0 16 16" fill="#6b6b6b" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.87147 9.16437C10.5768 8.30243 11 7.20063 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11C7.20063 11 8.30243 10.5768 9.16437 9.87147L9.89648 10.6036L9.64648 10.8536L13.5758 14.7829C13.8101 15.0172 14.19 15.0172 14.4243 14.7829L14.7829 14.4243C15.0172 14.19 15.0172 13.8101 14.7829 13.5758L10.8536 9.64648L10.6036 9.89648L9.87147 9.16437ZM6 10C8.20914 10 10 8.20914 10 6C10 3.79086 8.20914 2 6 2C3.79086 2 2 3.79086 2 6C2 8.20914 3.79086 10 6 10Z"></path></svg>
+    {{search submit=false instant=settings.instant_search placeholder='Search Postman support center' class='search search-full nav-search__form ml-5 mr-4'}}
+  </div>
+</nav>

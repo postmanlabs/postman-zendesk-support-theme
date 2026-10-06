@@ -601,32 +601,6 @@ document.addEventListener('DOMContentLoaded', function () {
   $('.dropdown').on('show.bs.dropdown', showBsDropdown);
   $('.dropdown').on('hide.bs.dropdown', hideBsDropdown);
 
-  function toggleGlobalNav() {
-    // Global Mobile Icon Transition
-    const toggler = document.getElementById('postman-primary-nav').getAttribute('aria-expanded');
-    const body = document.querySelector('body');
-    const icon1 = document.querySelector('#icon-wrap-one');
-    if (toggler === 'true') {
-      body.classList.add('lock');
-      icon1.classList.add('open');
-    } else {
-      icon1.classList.remove('open');
-      body.classList.remove('lock');
-      const icon2 = document.getElementById('navbar-chevron-icons');
-      const togglerSecondary = document
-        .querySelector('#secondaryNav.navbar-toggler')
-        .getAttribute('aria-expanded');
-      if (togglerSecondary === 'true') {
-        icon2.classList.remove('open');
-      }
-    }
-  }
-
-  let primaryNav = document.getElementById('postman-primary-nav');
-  primaryNav.addEventListener('click', function (e) {
-    toggleGlobalNav();
-  });
-
   function showTargetElement() {
     const toggler = document.getElementById('secondaryNav').getAttribute('aria-expanded');
     const toggleChevron = document.getElementById('navbar-chevron-icons');
